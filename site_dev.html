@@ -5,12 +5,167 @@
 	<title>Desenvolvendo</title>
 	<!-- Estilos e Formatação-->
 	<style type="text/css">
-		#a
+		@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+		body
 		{
-			width: 100%;
-			height: 100%
-			font-size:500px;
+			margin: 0;
 		}
+		div.elementoPai
+		{
+			position: absolute;
+    		height: 100%;
+   			width: 100%;
+    		margin-right: 0px;
+    		margin-bottom: 0px;
+    		right: 0px;
+    		left: 0px;
+   			bottom: 0px;
+   	 		top: 0px;
+   	 		margin-left: 0px;
+   	 		margin-top: 0px;
+   	 		display: flex;
+		}
+
+		div.corpo
+		{
+			box-shadow: 0 0 2px 0px black;
+    		display: flex;
+    		margin-top: 8px;
+    		margin-right: 5px;
+    		margin-bottom: 5px;
+   		 	margin-left: 5px;
+    		right: 0px;
+    		bottom: 0px;
+    		left: 0px;
+    		top: 10px;
+    		width: 95%;
+    		position: absolute;
+    		height: 95%;
+    		margin: 0 auto;
+		}
+
+		div.corpo_detalhes
+		{
+			
+			width: 50%;
+		}
+		div.corpo_avaliacao
+		{
+			
+			width: 50%;
+		}
+
+		div#referencia
+		{
+			
+			/*box-shadow: 0 0 0 1px black; */
+    		
+    		text-align: center;
+    		height: 40px;
+    		width: 100%;
+    		position: relative;
+    		left: 50%;
+    		height: 12%;
+    		font-family: 'Lato', sans-serif;
+
+		}
+
+		div#imagem
+		{
+			/*box-shadow: 0 0 0 1px black; */
+    		width: 100%;
+    		height: 53%;
+    		text-align: center;
+    		height: 55%;
+    		top: 22px;
+    		position: relative;
+		}
+		img.imagem_1 
+		{
+    		/*box-shadow: 0 0 0 1px black; */
+    		height: 100%;
+    		margin-left: 20px;
+    
+		}
+		img.imagem_2
+		{
+    		/*box-shadow: 0 0 0 1px black; */
+    		height: 100%;
+    		margin-left: 2px;
+    
+		}
+
+		div#detalhes
+		{
+			/*box-shadow: 0 0 0 1px black; */
+   			 width: 100%;
+    		     top: 23px;
+    		 height: 29.4%;
+    		 position: relative;
+   			margin-top: 0px;
+    		padding-left: 0px;
+    		padding-top: 0px;
+    		display: inline-table;
+
+		}
+		.item_descricao
+		{
+			margin-top: 3px;
+    		margin-bottom: 0px;
+    		background-color: #d8dceb;
+    		border-radius: 12px;
+    		width: max-content;
+    		color: #36313e;
+    		padding-right: 8px;
+    		padding-top: 2px;
+    		padding-left: 8px;
+    		margin-top: 3px;
+    		text-align: center;
+    		padding-bottom: 2px;
+    		/* font-family: "lato"; */
+    		font-family: 'Lato', sans-serif;
+    		margin-left: 22px;
+    		display: inline-table;
+
+		}
+
+		.descricao_titulo
+		{
+			font-family: 'Lato', sans-serif;
+			margin-bottom: 0px;
+   			margin-top: 0px;
+			margin-left: 10px;
+
+            padding-top: 30px;
+
+
+		}
+
+		div#avaliacao
+		{
+			/*box-shadow: 0 0 0 1px black; */
+    		width: 100%;
+    		height: 100%;
+
+
+			
+		}
+
+		h4#titulo_Peca{
+			margin-bottom: 0px;
+   			margin-top: 0px;
+   			font-size: 160%;
+			padding-top: 5px;
+
+		}
+		h4#ref_Peca{
+			margin-bottom: 0px;
+    		margin-top: 0px;
+    		font-size: 90%;
+    		color: #676767;
+		}	
+
 	</style>
 
 	<!--Códigos de Inicialização-->
@@ -19,6 +174,35 @@
 	</script>
 </head>
 <body>
-	<div = id="teste"> Iniciou </div>
+<div class="elementoPai">
+
+	<div id="" class="corpo">
+		<div  id="" class="corpo_detalhes">
+			 <div id="referencia">
+			 	<h4 id="titulo_Peca">MHARKY L.32</h4>
+			 	<h4 id="ref_Peca" >00SH3Q088AI - 01</h4>
+			 
+
+			</div>
+			 <div id="imagem">
+			 		<img class="imagem_1" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00SH3Q088AI_FRENTE.png">
+			 		<img class="imagem_2" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00SH3Q088AI_COSTAS.png">
+			 </div>
+			 
+			 <div id="detalhes">
+			 	<h4 class="descricao_titulo">Descrição</h4>
+			 	<h4 class="item_descricao">Denim</h4>
+			 	<h4 class="item_descricao">Skinny</h4>
+			 </div>
+		</div>
+
+		<div class="corpo_avaliacao">
+			 <div id="avaliacao"></div>
+	   </div>
+
+	</div>
+
+</div>	
+
 </body>
 </html>
