@@ -137,18 +137,16 @@
         height: 100%;
         display: inline-flex;
         text-align: center;
-
       
     }
     h4#titulo_Peca{
       margin-bottom: 0px;
         margin-top: 0px;
-        font-size: 160%;
+        font-size: 115%;
       padding-top: 5px;
       width: 50%;
       text-align: left;
     }
-
     h4#titulo_Preco{
       margin-bottom: 0px;
         margin-top: 0px;
@@ -156,6 +154,8 @@
       padding-top: 5px;
       width: 50%;
       text-align: right;
+      position: absolute;
+      right: 0%;
     }
     h4#ref_Peca{
       margin-bottom: 0px;
@@ -163,11 +163,10 @@
         font-size: 90%;
         color: #676767;
     } 
-
     img.areaVoto
     {
           width: 7%;
-              cursor: pointer;
+    cursor: pointer;
     background-color: #efefef;
     border-radius: 80px;
     padding-left: 25px;
@@ -176,7 +175,6 @@
     object-fit: cover;
     padding-bottom: 5px;
     }
-
     img.areaVotoPreco
     {
       
@@ -190,42 +188,108 @@
     object-fit: cover;
     padding-bottom: 5px;
     }
-
     #areaVoto
     {
           width: 50%;
     }
-
     #areaVotoPreco
     {
       
           width: 50%;
     }
-
     img#VotoNegativo
     {
         transform: rotate(180deg);
     }
+    img#VotoPrecoNegativo
+    {
+        transform: rotate(180deg);
+    }
 
+    h4#tituloDetalhe_Peca
+    {
+    	font-size: 80% ; 
+    	text-align: left;
+    	margin-top: 0px;
+    	position: relative;
+    	margin-left: 0px;
+    	margin-bottom: 0px;
+   		width: 266.109px;
+
+    }
+
+    img#setaDireita
+    {
+    	float: right;
+    	position: absolute;
+    	right: 0%;
+    	top: 40%;
+    	
+    	z-index: 1;
+    	width: 4%;
+    }
+    img#setaEsquerda
+    {
+    	float: left;
+    	position: absolute;
+    	right: 100%%;
+    	top: 40%;
+    	
+    	z-index: 1;
+    	width: 4%;
+    	transform: rotate(180deg);
+    }
 
   </style>
 
   <!--Códigos de Inicialização-->
   <script type="text/javascript">
     
+
+
   </script>
+
+
 </head>
 <body>
-<div class="elementoPai">
+<div class="elementoPai" id="elementoPaiId">
+<!-- Inicio do corpo!!! -->
+<img id="setaDireita" onclick="trocarProduto(comando+=1)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+<img id="setaEsquerda" onclick="trocarProduto(comando-=1)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
 
-  <div id="" class="corpo">
+<div id="prod0" class="corpo">
     <div  id="" class="corpo_detalhes">
        <div id="referencia">
-        <h4 id="titulo_Peca">MHARKY L.32 - 00SH3Q088AI_01</h4>
+       	<div >
+       		<h4 id="titulo_Peca">Inicio Testes (Não será visível)</h4>
+            <h4 id="tituloDetalhe_Peca"></h4>
+       	</div>
         
-        <h4 id="titulo_Preco">1.380R$</h4>
+        <h4 id="titulo_Preco"></h4>
        
+      </div>
+       <div id="imagem">
 
+       </div>
+       
+    </div>
+
+    
+     <input type="file" name="" id="DadosCsv">
+     <button onclick="importarProdutos()" >Importar</button>
+  </div>
+<!-- final de um produto -->
+<!-- começo de um produto -->
+  <div id="prod1" class="corpo"style="display: none;">
+    <div  id="" class="corpo_detalhes">
+       <div id="referencia">
+       	<div >
+       		<h4 id="titulo_Peca">MHARKY L.32 - 00SH3Q088AI_01</h4>
+            <h4 id="tituloDetalhe_Peca">Denim - Skinny</h4>
+       	</div>
+        
+        <h4 id="titulo_Preco">R$1.380</h4>
+       
       </div>
        <div id="imagem">
           <img class="imagem_1" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00SH3Q088AI_FRENTE.png">
@@ -233,11 +297,6 @@
           <img class="imagem_2" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00SH3Q088AI_COSTAS.png">
        </div>
        
-       <!-- <div id="detalhes">
-        <h4 class="descricao_titulo">Descrição</h4>
-        <h4 class="item_descricao">Denim</h4>
-        <h4 class="item_descricao">Skinny</h4>
-       </div> -->
     </div>
 
     <div class="corpo_avaliacao">
@@ -246,18 +305,63 @@
          <div id="areaVoto">
           <h2 class="votoTitulo">Aposta?</h2>
 
-           <img class="areaVoto" style="cursor: pointer;" id="VotoPositivo" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
+           <img class="areaVoto" style="cursor: pointer;" id="VotoPositivo" onclick="votos(this)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
 
-           <img class="areaVoto" style="cursor: pointer;" id="VotoNegativo" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
+           <img class="areaVoto" style="cursor: pointer;" id="VotoNegativo" onclick="votos(this)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
 
          </div>
 
           <div id="areaVotoPreco">
           <h2 class="votoTitulo">Preço</h2>
 
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPositivo" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
+           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
 
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoNegativo" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
+           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
+
+         </div>
+         
+       </div>
+     </div>
+     
+  </div>
+<!-- final de um produto -->
+<!-- começo de um produto -->
+  <div id="prod2" class="corpo" style="display: none;">
+    <div  id="" class="corpo_detalhes">
+       <div id="referencia">
+        <div >
+       		<h4 id="titulo_Peca">Thommer L.32 - 0000000000_01</h4>
+            <h4 id="tituloDetalhe_Peca">Denim - Skinny</h4>
+       	</div>
+        <h4 id="titulo_Preco">R$1.380</h4>
+       
+      </div>
+       <div id="imagem">
+          <img class="imagem_1" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00SH3Q088AI_FRENTE.png">
+
+          <img class="imagem_2" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00SH3Q088AI_COSTAS.png">
+       </div>
+       
+    </div>
+
+    <div class="corpo_avaliacao">
+       <div id="avaliacao">
+         
+         <div id="areaVoto">
+          <h2 class="votoTitulo">Aposta?</h2>
+
+           <img class="areaVoto" style="cursor: pointer;" id="VotoPositivo" onclick="votos(this)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
+
+           <img class="areaVoto" style="cursor: pointer;" id="VotoNegativo" onclick="votos(this)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
+
+         </div>
+
+          <div id="areaVotoPreco">
+          <h2 class="votoTitulo">Preço</h2>
+
+           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
+
+           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
 
          </div>
          
@@ -265,8 +369,301 @@
      </div>
 
   </div>
+<!-- final de um produto -->
 
+<!-- final do corpo!!! -->
 </div>  
 
+
+
+<script type="text/javascript">
+
+	function votos(elemento) {
+		
+		    //----------------------------------------------------------------------------------------
+			if(elemento.id == "VotoPrecoPositivo")
+				{
+					elemento.style.backgroundColor = "#58c658";
+					document.getElementById("VotoPrecoNegativo").style.backgroundColor = "#efefef";
+					elemento.alt = "OK";
+
+				}
+			if(elemento.id == "VotoPrecoNegativo")
+				{
+					elemento.style.backgroundColor = "#f54747";
+					document.getElementById("VotoPrecoPositivo").style.backgroundColor = "#efefef";
+					elemento.alt = "OK";
+
+				}
+
+			//-----------------------------------------------------------------------------------------
+
+			if(elemento.id == "VotoPositivo")
+				{
+					elemento.style.backgroundColor = "#58c658";
+					document.getElementById("VotoNegativo").style.backgroundColor = "#efefef";
+					elemento.alt = "OK";
+
+				}
+
+			if(elemento.id == "VotoNegativo")
+				{
+					elemento.style.backgroundColor = "#f54747";
+					document.getElementById("VotoPositivo").style.backgroundColor = "#efefef";
+					elemento.alt = "OK";
+				
+				}
+			//------------------------------------------------------------------------------------------
+			
+			
+
+
+
+
+	}
+	var comando = 0;
+
+	function trocarProduto(comando)
+	{
+		
+
+		
+		    index = "prod" + comando;
+		    antIndex = "prod" + (comando - 1);
+		    nexIndex = "prod" + (comando + 1);
+		    console.log("index: " + index);
+		    console.log("antIndex: " + antIndex);
+		    console.log("nexIndex: " + nexIndex);
+
+		    if (document.getElementById(index) != null) {
+
+			document.getElementById(index).style.display = "inline-block";
+
+			if(comando > 0){
+			document.getElementById(antIndex).style.display = "none";
+		    }
+		    
+			document.getElementById(nexIndex).style.display = "none";
+			console.log(index);
+
+			for(var a = 0;a<100;a++)
+		{
+			if(document.getElementsByTagName("br")[a])
+			{
+				document.getElementsByTagName("br")[a].remove();
+			}
+			
+		}
+	}else
+	{
+		comando -= 1;
+	}
+	
+
+	}
+
+
+
+	function importarProdutos()
+	{
+		var file = document.getElementById("DadosCsv");
+
+		var reader = new FileReader();
+
+		reader.readAsBinaryString(file.files[0]);
+
+
+		reader.onloadend = function()
+		{
+		 var listaProdutos = reader.result;
+		 console.log(listaProdutos)
+		  produto = [];
+		 	//Quantidade de colunas que há no produto
+		 	pos =4;
+		 	//quantidade de produtos na planilha
+ 			j = 4;
+			for( i = 0; i < 5; i++)
+			{
+  				for( ; j < pos; j++){
+  
+  				 	produto[[i,j]] = listaProdutos.split(";")[j];
+    			}
+				pos = pos+4;
+ 
+				}
+		}
+
+		console.log(produto)
+
+		//Criando os produtos
+		var index = 3 //index da div
+		var tituloPos = 4;
+		var refPos = 5;
+		var DetalhePos = 6;
+		var precoPos = 7;
+		var cont = 1;
+		//i = quantidade de produtos para criar
+		
+		for(i = 0; i < 4;i++)
+		{
+			if (!produto[[cont,refPos]])
+			{
+
+			}else{
+			//inicio dos corpos
+			nodeCorpoProduto = document.createElement("div");
+			nodeCorpoProduto.setAttribute("id","prod"+index);
+			nodeCorpoProduto.setAttribute("class","corpo");
+			nodeCorpoProduto.setAttribute("style","display:none;");
+
+			nodeCorpoDetalhes = document.createElement("div");
+			nodeCorpoDetalhes.setAttribute("class","corpo_detalhes");
+
+			nodeCorpoAvaliacao = document.createElement("div");
+			nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+			//fim dos corpos
+			
+
+
+			
+
+			//inicio da div referencia
+			nodeDivReferencia = document.createElement("div");
+			nodeDivReferencia.setAttribute("id","referencia");
+			//inicio divvazia
+			nodeDivVazia = document.createElement("div");
+
+			nodeTituloPeca = document.createElement("h4");
+			nodeTituloPeca.setAttribute("id","titulo_Peca");
+			nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+
+
+			nodeTituloDetalhe_Peca = document.createElement("h4");
+			nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+			nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+
+
+			nodeDivVazia.appendChild(nodeTituloPeca);
+			nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+			//fim divvazia
+
+			//preco
+			nodeTituloPreco = document.createElement("h4");
+			nodeTituloPreco.setAttribute("id","titulo_Preco");
+			nodeTituloPreco.innerText = produto[[cont,precoPos]];
+			//fim preco
+			nodeDivReferencia.appendChild(nodeDivVazia);
+			nodeDivReferencia.appendChild(nodeTituloPreco);
+			//Fim da div Referencia
+
+			//inicio da div imagem
+						
+			nodeDivImagem = document.createElement("div");
+			nodeDivImagem.setAttribute("id","imagem")
+
+			nodeImg1 = document.createElement("img");
+			nodeImg1.setAttribute("class","imagem_1");
+			nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/00SH3Q088AI_FRENTE.png");
+
+			nodeDivImagem.appendChild(nodeImg1);
+
+			//fim da div imagem
+
+			nodeCorpoDetalhes.appendChild(nodeDivReferencia);
+			nodeCorpoDetalhes.appendChild(nodeDivImagem);
+			//fim do corpo detalhes
+
+			//inicio corpo avaliacao
+
+			nodeDivAvaliacao = document.createElement("div");
+			nodeDivAvaliacao.setAttribute("id","avaliacao");
+
+			//area de voto 1: aposta
+			nodeAreaVoto = document.createElement("div");
+			nodeAreaVoto.setAttribute("id","areaVoto");
+
+			nodeVotoTitulo = document.createElement("h2");
+			nodeVotoTitulo.setAttribute("class","votoTitulo");
+			nodeVotoTitulo.innerText = "Aposta?";
+
+			nodeVotoPositivo = document.createElement("img");
+			nodeVotoPositivo.setAttribute("class","areaVoto");
+			nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+			nodeVotoPositivo.setAttribute("id","VotoPositivo");
+			nodeVotoPositivo.setAttribute("onclick","votos(this)");
+			nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+
+			nodeVotoNegativo = document.createElement("img");
+			nodeVotoNegativo.setAttribute("class","areaVoto");
+			nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+			nodeVotoNegativo.setAttribute("id","VotoNegativo");
+			nodeVotoNegativo.setAttribute("onclick","votos(this)");
+			nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+
+
+			nodeAreaVoto.appendChild(nodeVotoTitulo);
+			nodeAreaVoto.appendChild(nodeVotoPositivo);
+			nodeAreaVoto.appendChild(nodeVotoNegativo);
+			//fim area de voto 1: aposta
+
+		 //area de voto 2, preco:
+		    nodeAreaVotoPreco = document.createElement("div");
+			nodeAreaVotoPreco.setAttribute("id","areaVoto");
+
+			nodeVotoTituloPreco = document.createElement("h2");
+			nodeVotoTituloPreco.setAttribute("class","votoTitulo");
+			nodeVotoTituloPreco.innerText = "Preço";
+
+			nodeVotoPositivoPreco = document.createElement("img");
+			nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
+			nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
+			nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
+			nodeVotoPositivoPreco.setAttribute("onclick","votos(this)");
+			nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+
+			nodeVotoNegativoPreco = document.createElement("img");
+			nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
+			nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
+			nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
+			nodeVotoNegativoPreco.setAttribute("onclick","votos(this)");
+			nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+
+
+			nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
+			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
+			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
+			//fim area de voto preco
+			nodeDivAvaliacao.appendChild(nodeAreaVoto);
+			nodeDivAvaliacao.appendChild(nodeAreaVotoPreco);
+
+			nodeCorpoAvaliacao.appendChild(nodeDivAvaliacao);
+			
+
+
+
+			nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+			nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+
+			document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+
+
+			refPos +=4;
+			cont += 1;
+			precoPos +=4;
+			DetalhePos +=4;
+			tituloPos += 4;  
+			index += 1;
+			}
+		}
+
+
+
+	}
+
+	
+
+
+
+</script>
 </body>
 </html>
