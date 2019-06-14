@@ -10,8 +10,6 @@
     {
       margin: 0;
     }
-
-
     div.elementoPai
     {
       position: absolute;
@@ -94,16 +92,13 @@
     background-color: #ffffff;
     width: 6px;
 }
-
-
-
-
     img.imagem_1 
     {
         /*box-shadow: 0 0 0 1px black; */
         height: 100%;
         /*margin-left: 20px;*/
         margin:0 auto;
+       object-fit: contain;
     
     }
     img.imagem_2
@@ -264,12 +259,9 @@
     	font-family: 'Roboto Condensed',sans-serif;
     	    margin: 0 auto;
     }
-
     h2.gerentesDivTitulo
     {
-
     }
-
     .corpo_Categoria
     {
     	text-align: center;
@@ -283,7 +275,19 @@
     top: 33%;
     font-size: 564%;
     }
-
+    .corpo_Inicio
+    {
+    	text-align: center;
+    	font-family: 'Roboto Condensed',sans-serif;
+    	text-align: center;
+    font-family: 'Roboto Condensed',sans-serif;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    top: 33%;
+    font-size: 564%;
+    }
   </style>
 
   <!--Códigos de Inicialização-->
@@ -299,11 +303,16 @@
 <img id="setaDireita" onclick="trocarProduto(comando+=1)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
 <img id="setaEsquerda" onclick="trocarProduto(comando-=1)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
 
-<div id="prod0" class="corpo">
+<div id="prod0" class="corpo" style="">
     <div  id="" class="corpo_detalhes">
        <div id="referencia">
        	<div >
-       		<h4 id="titulo_Peca">Inicio Testes (Não será visível)</h4>
+       		<h4 id="titulo_Peca" style="text-align: center;
+    font-size: xx-large;" >IMPORTAÇÃO DE PRODUTOS</h4>
+    <h4 id="titulo_Peca" style="
+    text-align: center;
+    font-size: x-large;
+    ">Não será visível</h4>
             <h4 id="tituloDetalhe_Peca"></h4>
        	</div>
         
@@ -321,8 +330,14 @@
      <button onclick="importarProdutos()" >Importar</button>
   </div>
 <!-- final de um produto -->
+
+<div id="prod1" class="corpo" style="display: none;"><div class="corpo_Inicio">LINE REVIEW  
+SS19 PREVIEW
+</div><div class="corpo_avaliacao"></div></div>
+
+<!-- final de um produto -->
 <!-- começo de um produto -->
-  <div id="prod1" class="corpo"style="display: none;">
+  <div id="prod2" class="corpo"style="display: none;">
     <div  id="" class="corpo_detalhes">
        <div id="referencia">
        	<div >
@@ -419,7 +434,7 @@
   </div>
 <!-- final de um produto -->
 <!-- começo de um produto -->
-  <div id="prod2" class="corpo"style="display: none;">
+  <div id="prod3" class="corpo"style="display: none;">
     <div  id="" class="corpo_detalhes">
        <div id="referencia">
        	<div >
@@ -524,10 +539,7 @@
 <script type="text/javascript">
 	function votos(elemento,parente) {
 		
-
 			console.log(parente);
-
-
 		 //    //----------------------------------------------------------------------------------------
 			if(elemento.id == "VotoPrecoPositivo")
 			{
@@ -550,9 +562,7 @@
 				
 				parente.getElementsByTagName("img")[1].style.backgroundColor = "#efefef";
 				elemento.alt = "OK";
-
 			 	}
-
 			 if(elemento.id == "VotoNegativo")
 			 	{
 			 		parente.getElementsByTagName("img")[1].style.backgroundColor = "rgb(244, 67, 54)";
@@ -613,7 +623,7 @@
 		 	
  			j = 4;
  			// i é a quantidade de produtos na planilha
-			for( var i = 0; i < 10; i++)
+			for( var i = 0; i < 100; i++)
 			{
   				for( ; j < pos; j++){
   
@@ -625,30 +635,32 @@
 		}
 		console.log(produto)
 		//Criando os produtos
-		var index = 3 //index da div
+		var index = 4 //index da div
 		var tituloPos = 4;
 		var refPos = 5;
 		var DetalhePos = 6;
 		var precoPos = 7;
 		var cont = 1;
+		var imgVar = 5;
 		//i = quantidade de produtos para criar
 		
-		for(i = 0; i < 7;i++)
+		for(i = 1; i < 100;i++)
 		{
 			if (!produto[[cont,refPos]])
 			{
+				return 0 ;
 			}
+
+			console.log(produto[[i,refPos]])
 				if(produto[[cont,tituloPos]].replace(/\s+/g, '') == "CATEGORIA")
 				{
 					nodeCorpoProduto = document.createElement("div");
 					nodeCorpoProduto.setAttribute("id","prod"+index);
 					nodeCorpoProduto.setAttribute("class","corpo");
 					nodeCorpoProduto.setAttribute("style","display:none;");
-
 					nodeCorpoDetalhes = document.createElement("div");
 					nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
 					nodeCorpoDetalhes.innerText = produto[[cont,refPos]].split("_")[0] + " " +  produto[[cont,refPos]].split("_")[1];
-
 					nodeCorpoAvaliacao = document.createElement("div");
 					nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
 					
@@ -674,11 +686,9 @@
 					nodeDivReferencia.appendChild(nodeDivVazia);
 					nodeDivReferencia.appendChild(nodeTituloPreco);
 					//Fim da div Referencia
-
 					nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
 					nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
 					document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
-
 					console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
 					refPos +=4;
 					cont += 1;
@@ -721,60 +731,54 @@
 			nodeDivReferencia.appendChild(nodeDivVazia);
 			nodeDivReferencia.appendChild(nodeTituloPreco);
 			//Fim da div Referencia
-
 			nodeCorpoDetalhes.appendChild(nodeDivReferencia);
 			//inicio da div imagem
+			nodeDivImagem = document.createElement("div");
+			nodeDivImagem.setAttribute("id","imagem")
 			if (produto[[i,refPos]])
 				{
 					if (produto[[i,refPos]].length > 22){
-
-					for(var ii = 1; ii < produto[[i,refPos]].split("-").length;ii++)
+					for(var ii = 0; ii < produto[[i,refPos]].split("-").length;ii++)
 					{			
-						nodeDivImagem = document.createElement("div");
-						nodeDivImagem.setAttribute("id","imagem")
+						
 						nodeImg1 = document.createElement("img");
 						nodeImg1.setAttribute("class","imagem_1");
 						nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("-")[ii]+".png");
-
+						console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("-")[ii]);
 						nodeDivImagem.appendChild(nodeImg1);
+						nodeCorpoDetalhes.appendChild(nodeDivImagem);
 
 					}
-
+					
 				}
 			
 			//fim da div imagem
 			
-		}else
+		else
 		{
 			nodeDivImagem = document.createElement("div");
 			nodeDivImagem.setAttribute("id","imagem")
 			nodeImg1 = document.createElement("img");
 			nodeImg1.setAttribute("class","imagem_1");
-			nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+ produto[[5,refPos]] +".png");
-			console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]]);
+			nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+ produto[[i,refPos]] +".png");
+			
 			nodeDivImagem.appendChild(nodeImg1);
 			nodeCorpoDetalhes.appendChild(nodeDivImagem);
 		}
+	}
 	
 			//fim do corpo detalhes
 			
-
-
-
 			//inicio corpo avaliacao
 			nodeDivAvaliacao = document.createElement("div");
 			nodeDivAvaliacao.setAttribute("id","avaliacao");
-
 			
 			//Div do gerente01
 			nodeGerente01 = document.createElement("div");
 			nodeGerente01.setAttribute("id","gerente01");
 			nodeGerente01.setAttribute("class","gerentesDiv");
-
 			nodeGerenteTitulo01 = document.createElement("h2");
 			nodeGerenteTitulo01.setAttribute("class","nodeDivAvaliacao");
-
-
 			//area de voto 1: aposta
 			nodeAreaVoto = document.createElement("div");
 			nodeAreaVoto.setAttribute("id","areaVoto");
@@ -797,8 +801,6 @@
 			nodeAreaVoto.appendChild(nodeVotoPositivo);
 			nodeAreaVoto.appendChild(nodeVotoNegativo);
 			//fim area de voto 1: aposta
-
-
 		 //area de voto 2, preco:
 		    nodeAreaVotoPreco = document.createElement("div");
 			nodeAreaVotoPreco.setAttribute("id","areaVoto");
@@ -821,8 +823,6 @@
 			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
 			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
 			//fim area de voto preco
-
-
 			nodeGerenteTitulo01.innerText = "Gerente 1";
 			nodeGerente01.appendChild(nodeGerenteTitulo01);
 			nodeGerente01.appendChild(nodeAreaVoto);
@@ -834,7 +834,6 @@
 			nodeGerente02.setAttribute("class","gerentesDiv");
 			nodeGerenteTitulo02 = document.createElement("h2");
 			nodeGerenteTitulo02.setAttribute("class","nodeDivAvaliacao");
-
 			//area de voto 1: aposta
 			nodeAreaVoto = document.createElement("div");
 			nodeAreaVoto.setAttribute("id","areaVoto");
@@ -857,8 +856,6 @@
 			nodeAreaVoto.appendChild(nodeVotoPositivo);
 			nodeAreaVoto.appendChild(nodeVotoNegativo);
 			//fim area de voto 1: aposta
-
-
 		 //area de voto 2, preco:
 		    nodeAreaVotoPreco = document.createElement("div");
 			nodeAreaVotoPreco.setAttribute("id","areaVoto");
@@ -881,9 +878,7 @@
 			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
 			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
 			//fim area de voto preco
-
 			nodeGerenteTitulo02.innerText = "Gerente 2";
-
 			nodeGerente02.appendChild(nodeGerenteTitulo02);
 			nodeGerente02.appendChild(nodeAreaVoto);
 			nodeGerente02.appendChild(nodeAreaVotoPreco);
@@ -894,7 +889,6 @@
 			nodeGerente03.setAttribute("class","gerentesDiv");
 			nodeGerenteTitulo03 = document.createElement("h2");
 			nodeGerenteTitulo03.setAttribute("class","nodeDivAvaliacao");
-
 			//area de voto 1: aposta
 			nodeAreaVoto = document.createElement("div");
 			nodeAreaVoto.setAttribute("id","areaVoto");
@@ -917,8 +911,6 @@
 			nodeAreaVoto.appendChild(nodeVotoPositivo);
 			nodeAreaVoto.appendChild(nodeVotoNegativo);
 			//fim area de voto 1: aposta
-
-
 		 //area de voto 2, preco:
 		    nodeAreaVotoPreco = document.createElement("div");
 			nodeAreaVotoPreco.setAttribute("id","areaVoto");
@@ -941,26 +933,17 @@
 			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
 			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
 			//fim area de voto preco
-
 			
 			nodeGerenteTitulo03.innerText = "Gerente 3";
-
 			nodeGerente03.appendChild(nodeGerenteTitulo03);
 			nodeGerente03.appendChild(nodeAreaVoto);
 			nodeGerente03.appendChild(nodeAreaVotoPreco);
 			//-----------------fim gerente 03--------------------------
-
 			
-
-
-
 			nodeDivAvaliacao.appendChild(nodeGerente01);
 			nodeDivAvaliacao.appendChild(nodeGerente02);
 			nodeDivAvaliacao.appendChild(nodeGerente03);
-
 			nodeCorpoAvaliacao.appendChild(nodeDivAvaliacao);
-
-
 			
 			nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
 			nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
