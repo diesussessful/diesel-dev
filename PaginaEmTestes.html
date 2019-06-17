@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Desenvolvendo</title>
   <!-- Estilos e Formatação-->
   <style type="text/css">
@@ -41,7 +42,45 @@
         position: absolute;
         height: 95%;
         margin: 0 auto;
+        
     }
+
+    @media only screen and (max-height: 400px) {
+  .corpo {
+        display: inline-block;
+        margin-top: 8px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        top: 10px;
+        width: 95%;
+        position: absolute;
+        height: 95%;
+        margin: 0 auto;
+        zoom:75%;
+  }
+}
+@media only screen and (max-height: 250px) {
+  .corpo {
+        display: inline-block;
+        margin-top: 8px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        top: 10px;
+        width: 95%;
+        position: absolute;
+        height: 95%;
+        margin: 0 auto;
+            zoom: 55%;
+  }
+}
     div.corpo_detalhes
     {
       
@@ -273,7 +312,7 @@
     bottom: 0px;
     left: 0px;
     top: 33%;
-    font-size: 564%;
+    font-size: 12vh;
     }
     .corpo_Inicio
     {
@@ -286,7 +325,7 @@
     bottom: 0px;
     left: 0px;
     top: 33%;
-    font-size: 564%;
+    font-size: 12vh;
     }
   </style>
 
@@ -304,109 +343,107 @@
  * @author John Doherty <www.johndoherty.info>
  * @license MIT
  */
-// (function (window, document) {
+(function (window, document) {
 
-//     'use strict';
+    'use strict';
 
-//     // patch CustomEvent to allow constructor creation (IE/Chrome)
-//     if (typeof window.CustomEvent !== 'function') {
+    // patch CustomEvent to allow constructor creation (IE/Chrome)
+    if (typeof window.CustomEvent !== 'function') {
 
-//         window.CustomEvent = function (event, params) {
+        window.CustomEvent = function (event, params) {
 
-//             params = params || { bubbles: false, cancelable: false, detail: undefined };
+            params = params || { bubbles: false, cancelable: false, detail: undefined };
 
-//             var evt = document.createEvent('CustomEvent');
-//             evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-//             return evt;
-//         };
+            var evt = document.createEvent('CustomEvent');
+            evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+            return evt;
+        };
 
-//         window.CustomEvent.prototype = window.Event.prototype;
-//     }
+        window.CustomEvent.prototype = window.Event.prototype;
+    }
 
-//     document.addEventListener('touchstart', handleTouchStart, false);
-//     document.addEventListener('touchmove', handleTouchMove, false);
-//     document.addEventListener('touchend', handleTouchEnd, false);
+    document.addEventListener('touchstart', handleTouchStart, false);
+    document.addEventListener('touchmove', handleTouchMove, false);
+    document.addEventListener('touchend', handleTouchEnd, false);
 
-//     var xDown = null;
-//     var yDown = null;
-//     var xDiff = null;
-//     var yDiff = null;
-//     var timeDown = null;
-//     var startEl = null;
+    var xDown = null;
+    var yDown = null;
+    var xDiff = null;
+    var yDiff = null;
+    var timeDown = null;
+    var startEl = null;
 
-//     function handleTouchEnd(e) {
+    function handleTouchEnd(e) {
 
-//         // if the user released on a different target, cancel!
-//         if (startEl !== e.target) return;
+        // if the user released on a different target, cancel!
+        if (startEl !== e.target) return;
 
-//         var swipeThreshold = parseInt(startEl.getAttribute('data-swipe-threshold') || '20', 10);    // default 10px
-//         var swipeTimeout = parseInt(startEl.getAttribute('data-swipe-timeout') || '500', 10);      // default 1000ms
-//         var timeDiff = Date.now() - timeDown;
-//         var eventType = '';
+        var swipeThreshold = parseInt(startEl.getAttribute('data-swipe-threshold') || '20', 10);    // default 10px
+        var swipeTimeout = parseInt(startEl.getAttribute('data-swipe-timeout') || '500', 10);      // default 1000ms
+        var timeDiff = Date.now() - timeDown;
+        var eventType = '';
 
-//         if (Math.abs(xDiff) > Math.abs(yDiff)) { // most significant
-//             if (Math.abs(xDiff) > swipeThreshold && timeDiff < swipeTimeout) {
-//                 if (xDiff > 0) {
-//                     eventType = 'swiped-left';
-//                 }
-//                 else {
-//                     eventType = 'swiped-right';
-//                 }
-//             }
-//         }
-//         else {
-//             if (Math.abs(yDiff) > swipeThreshold && timeDiff < swipeTimeout) {
-//                 if (yDiff > 0) {
-//                     eventType = 'swiped-up';
-//                 }
-//                 else {
-//                     eventType = 'swiped-down';
-//                 }
-//             }
-//         }
+        if (Math.abs(xDiff) > Math.abs(yDiff)) { // most significant
+            if (Math.abs(xDiff) > swipeThreshold && timeDiff < swipeTimeout) {
+                if (xDiff > 0) {
+                    eventType = 'swiped-left';
+                }
+                else {
+                    eventType = 'swiped-right';
+                }
+            }
+        }
+        else {
+            if (Math.abs(yDiff) > swipeThreshold && timeDiff < swipeTimeout) {
+                if (yDiff > 0) {
+                    eventType = 'swiped-up';
+                }
+                else {
+                    eventType = 'swiped-down';
+                }
+            }
+        }
 
-//         if (eventType !== '') {
+        if (eventType !== '') {
 
-//             // fire event on the element that started the swipe
-//             startEl.dispatchEvent(new CustomEvent(eventType, { bubbles: true, cancelable: true }));
+            // fire event on the element that started the swipe
+            startEl.dispatchEvent(new CustomEvent(eventType, { bubbles: true, cancelable: true }));
 
-//             // if (console && console.log) console.log(eventType + ' fired on ' + startEl.tagName);
-//         }
+            // if (console && console.log) console.log(eventType + ' fired on ' + startEl.tagName);
+        }
 
-//         // reset values
-//         xDown = null;
-//         yDown = null;
-//         timeDown = null;
-//     }
+        // reset values
+        xDown = null;
+        yDown = null;
+        timeDown = null;
+    }
 
-//     function handleTouchStart(e) {
+    function handleTouchStart(e) {
 
-//         // if the element has data-swipe-ignore="true" we stop listening for swipe events
-//         if (e.target.getAttribute('data-swipe-ignore') === 'true') return;
+        // if the element has data-swipe-ignore="true" we stop listening for swipe events
+        if (e.target.getAttribute('data-swipe-ignore') === 'true') return;
 
-//         startEl = e.target;
+        startEl = e.target;
 
-//         timeDown = Date.now();
-//         xDown = e.touches[0].clientX;
-//         yDown = e.touches[0].clientY;
-//         xDiff = 0;
-//         yDiff = 0;
-//     }
+        timeDown = Date.now();
+        xDown = e.touches[0].clientX;
+        yDown = e.touches[0].clientY;
+        xDiff = 0;
+        yDiff = 0;
+    }
 
-//     function handleTouchMove(e) {
+    function handleTouchMove(e) {
 
-//         if (!xDown || !yDown) return;
+        if (!xDown || !yDown) return;
 
-//         var xUp = e.touches[0].clientX;
-//         var yUp = e.touches[0].clientY;
+        var xUp = e.touches[0].clientX;
+        var yUp = e.touches[0].clientY;
 
-//         xDiff = xDown - xUp;
-//         yDiff = yDown - yUp;
-//     }
+        xDiff = xDown - xUp;
+        yDiff = yDown - yUp;
+    }
 
-// }(window, document));
-
-
+}(window, document));
 
 
 
@@ -414,16 +451,19 @@
 
 
 
-//  window.onload = function swipeIniciar() {
 
-//  		document.addEventListener('swiped-left', function(e) {
-//   		document.getElementById("setaEsquerda").click();
-// });
 
-// document.addEventListener('swiped-right', function(e) {
-//     document.getElementById("setaDireita").click();
-// });
-//  }
+ window.onload = function swipeIniciar() {
+
+ 		document.addEventListener('swiped-left', function(e) {
+  		document.getElementById("setaDireita").click();
+});
+
+document.addEventListener('swiped-right', function(e) {
+    
+    document.getElementById("setaEsquerda").click();
+});
+ }
     
 	
 
@@ -504,14 +544,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -527,14 +560,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+         
          
        </div>
        <!-- fim gerente div -->
@@ -550,14 +576,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -601,14 +620,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -624,14 +636,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -647,14 +652,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -675,20 +673,20 @@ SS19 PREVIEW
 		
 			console.log(parente);
 		 //    //----------------------------------------------------------------------------------------
-			if(elemento.id == "VotoPrecoPositivo")
-			{
-				parente.getElementsByTagName("img")[0].style.backgroundColor = "rgb(88, 198, 88)";
+			//if(elemento.id == "VotoPrecoPositivo")
+			//{
+				//parente.getElementsByTagName("img")[0].style.backgroundColor = "rgb(88, 198, 88)";
 				
-				parente.getElementsByTagName("img")[1].style.backgroundColor = "#efefef";
-				elemento.alt = "OK";
-			}
-			if(elemento.id == "VotoPrecoNegativo")
-				{
-				parente.getElementsByTagName("img")[1].style.backgroundColor = "#F44336";
+			//	parente.getElementsByTagName("img")[1].style.backgroundColor = "#efefef";
+			//	elemento.alt = "OK";
+			//}
+			//if(elemento.id == "VotoPrecoNegativo")
+			//	{
+			//	parente.getElementsByTagName("img")[1].style.backgroundColor = "#F44336";
 				
-				parente.getElementsByTagName("img")[0].style.backgroundColor = "#efefef";
-				elemento.alt = "OK";
-			 	}
+			//	parente.getElementsByTagName("img")[0].style.backgroundColor = "#efefef";
+			//	elemento.alt = "OK";
+			 //	}
 			 //-----------------------------------------------------------------------------------------
 			 if(elemento.id == "VotoPositivo")
 			 	{
@@ -868,38 +866,44 @@ SS19 PREVIEW
 			nodeCorpoDetalhes.appendChild(nodeDivReferencia);
 			//inicio da div imagem
 			nodeDivImagem = document.createElement("div");
-			nodeDivImagem.setAttribute("id","imagem")
+			nodeDivImagem.setAttribute("id","imagem");
+
 			if (produto[[i,refPos]])
 				{
-					if (produto[[i,refPos]].length > 22){
-					for(var ii = 0; ii < produto[[i,refPos]].split("-").length;ii++)
+					cont = produto[[i,refPos]].split("_")[1];
+						console.log("CONT: "+cont);
+					///if (produto[[i,refPos]].length > 22){
+					for(var ii = 1; ii < Number(cont);ii++)
 					{			
-						
-						nodeImg1 = document.createElement("img");
+						//criando o elemento
+						nodeImg1 =  document.createElement("img");
 						nodeImg1.setAttribute("class","imagem_1");
-						nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("-")[ii]+".png");
-						console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("-")[ii]);
+
+
+						nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("_")[0]+"_"+ii+".png");
+						//console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("/")[ii]);
 						nodeDivImagem.appendChild(nodeImg1);
 						nodeCorpoDetalhes.appendChild(nodeDivImagem);
 
 					}
-					
 				}
+					
+				//}
 			
 			//fim da div imagem
 			
-		else
-		{
-			nodeDivImagem = document.createElement("div");
-			nodeDivImagem.setAttribute("id","imagem")
-			nodeImg1 = document.createElement("img");
-			nodeImg1.setAttribute("class","imagem_1");
-			nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+ produto[[i,refPos]] +".png");
+		//else
+		///{
+		//	nodeDivImagem = document.createElement("div");
+		//	nodeDivImagem.setAttribute("id","imagem")
+		//	nodeImg1 = document.createElement("img");
+		///	nodeImg1.setAttribute("class","imagem_1");
+		///	nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+ produto[[i,refPos]] +".png");
 			
-			nodeDivImagem.appendChild(nodeImg1);
-			nodeCorpoDetalhes.appendChild(nodeDivImagem);
-		}
-	}
+		//	nodeDivImagem.appendChild(nodeImg1);
+		//	nodeCorpoDetalhes.appendChild(nodeDivImagem);
+		//}
+	//}
 	
 			//fim do corpo detalhes
 			
@@ -936,31 +940,31 @@ SS19 PREVIEW
 			nodeAreaVoto.appendChild(nodeVotoNegativo);
 			//fim area de voto 1: aposta
 		 //area de voto 2, preco:
-		    nodeAreaVotoPreco = document.createElement("div");
-			nodeAreaVotoPreco.setAttribute("id","areaVoto");
-			nodeVotoTituloPreco = document.createElement("h2");
-			nodeVotoTituloPreco.setAttribute("class","votoTitulo");
-			nodeVotoTituloPreco.innerText = "Preço";
-			nodeVotoPositivoPreco = document.createElement("img");
-			nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
-			nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeVotoNegativoPreco = document.createElement("img");
-			nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
-			nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
+		    //nodeAreaVotoPreco = document.createElement("div");
+			//nodeAreaVotoPreco.setAttribute("id","areaVoto");
+			//nodeVotoTituloPreco = document.createElement("h2");
+			//nodeVotoTituloPreco.setAttribute("class","votoTitulo");
+			//nodeVotoTituloPreco.innerText = "Preço";
+			//nodeVotoPositivoPreco = document.createElement("img");
+			//nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
+			//nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeVotoNegativoPreco = document.createElement("img");
+			//nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
+			//nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
 			//fim area de voto preco
 			nodeGerenteTitulo01.innerText = "Gerente 1";
 			nodeGerente01.appendChild(nodeGerenteTitulo01);
 			nodeGerente01.appendChild(nodeAreaVoto);
-			nodeGerente01.appendChild(nodeAreaVotoPreco);
+			//nodeGerente01.appendChild(nodeAreaVotoPreco);
 			//-----------------gerente 01 fim--------------------------
 			//Div do gerente02
 			nodeGerente02 = document.createElement("div");
@@ -991,31 +995,31 @@ SS19 PREVIEW
 			nodeAreaVoto.appendChild(nodeVotoNegativo);
 			//fim area de voto 1: aposta
 		 //area de voto 2, preco:
-		    nodeAreaVotoPreco = document.createElement("div");
-			nodeAreaVotoPreco.setAttribute("id","areaVoto");
-			nodeVotoTituloPreco = document.createElement("h2");
-			nodeVotoTituloPreco.setAttribute("class","votoTitulo");
-			nodeVotoTituloPreco.innerText = "Preço";
-			nodeVotoPositivoPreco = document.createElement("img");
-			nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
-			nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeVotoNegativoPreco = document.createElement("img");
-			nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
-			nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
+		    //nodeAreaVotoPreco = document.createElement("div");
+			//nodeAreaVotoPreco.setAttribute("id","areaVoto");
+			//nodeVotoTituloPreco = document.createElement("h2");
+			//nodeVotoTituloPreco.setAttribute("class","votoTitulo");
+			//nodeVotoTituloPreco.innerText = "Preço";
+			//nodeVotoPositivoPreco = document.createElement("img");
+			//nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
+			//nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeVotoNegativoPreco = document.createElement("img");
+			//nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
+			//nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
 			//fim area de voto preco
 			nodeGerenteTitulo02.innerText = "Gerente 2";
 			nodeGerente02.appendChild(nodeGerenteTitulo02);
 			nodeGerente02.appendChild(nodeAreaVoto);
-			nodeGerente02.appendChild(nodeAreaVotoPreco);
+			//nodeGerente02.appendChild(nodeAreaVotoPreco);
 			//----------------fim gerente 02---------------------------
 			//Div do gerente03
 			nodeGerente03 = document.createElement("div");
@@ -1046,32 +1050,32 @@ SS19 PREVIEW
 			nodeAreaVoto.appendChild(nodeVotoNegativo);
 			//fim area de voto 1: aposta
 		 //area de voto 2, preco:
-		    nodeAreaVotoPreco = document.createElement("div");
-			nodeAreaVotoPreco.setAttribute("id","areaVoto");
-			nodeVotoTituloPreco = document.createElement("h2");
-			nodeVotoTituloPreco.setAttribute("class","votoTitulo");
-			nodeVotoTituloPreco.innerText = "Preço";
-			nodeVotoPositivoPreco = document.createElement("img");
-			nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
-			nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeVotoNegativoPreco = document.createElement("img");
-			nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
-			nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
+		   // nodeAreaVotoPreco = document.createElement("div");
+			//nodeAreaVotoPreco.setAttribute("id","areaVoto");
+			//nodeVotoTituloPreco = document.createElement("h2");
+			//nodeVotoTituloPreco.setAttribute("class","votoTitulo");
+			//nodeVotoTituloPreco.innerText = "Preço";
+			//nodeVotoPositivoPreco = document.createElement("img");
+			//nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
+			//nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeVotoNegativoPreco = document.createElement("img");
+			//nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
+			//nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
 			//fim area de voto preco
 			
 			nodeGerenteTitulo03.innerText = "Gerente 3";
 			nodeGerente03.appendChild(nodeGerenteTitulo03);
 			nodeGerente03.appendChild(nodeAreaVoto);
-			nodeGerente03.appendChild(nodeAreaVotoPreco);
+			//nodeGerente03.appendChild(nodeAreaVotoPreco);
 			//-----------------fim gerente 03--------------------------
 			
 			nodeDivAvaliacao.appendChild(nodeGerente01);
