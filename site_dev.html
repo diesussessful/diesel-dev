@@ -274,7 +274,7 @@
     bottom: 0px;
     left: 0px;
     top: 33%;
-    font-size: 564%;
+    font-size: 12vh;
     }
     .corpo_Inicio
     {
@@ -287,7 +287,7 @@
     bottom: 0px;
     left: 0px;
     top: 33%;
-    font-size: 564%;
+    font-size: 12vh;
     }
   </style>
 
@@ -832,13 +832,13 @@ SS19 PREVIEW
 			if (produto[[i,refPos]])
 				{
 					if (produto[[i,refPos]].length > 22){
-					for(var ii = 0; ii < produto[[i,refPos]].split("-").length;ii++)
+					for(var ii = 0; ii < produto[[i,refPos]].split("/").length;ii++)
 					{			
 						
 						nodeImg1 = document.createElement("img");
 						nodeImg1.setAttribute("class","imagem_1");
-						nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("-")[ii]+".png");
-						console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("-")[ii]);
+						nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("/")[ii]+".png");
+						console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("/")[ii]);
 						nodeDivImagem.appendChild(nodeImg1);
 						nodeCorpoDetalhes.appendChild(nodeDivImagem);
 
