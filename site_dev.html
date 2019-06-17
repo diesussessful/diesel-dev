@@ -506,14 +506,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -529,14 +522,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+         
          
        </div>
        <!-- fim gerente div -->
@@ -552,14 +538,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -603,14 +582,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -626,14 +598,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -649,14 +614,7 @@ SS19 PREVIEW
 
          </div>
 
-          <div id="areaVotoPreco">
-          <h2 class="votoTitulo">Preço</h2>
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVotoPreco" style="cursor: pointer;" id="VotoPrecoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
+          
          
        </div>
        <!-- fim gerente div -->
@@ -677,20 +635,20 @@ SS19 PREVIEW
 		
 			console.log(parente);
 		 //    //----------------------------------------------------------------------------------------
-			if(elemento.id == "VotoPrecoPositivo")
-			{
-				parente.getElementsByTagName("img")[0].style.backgroundColor = "rgb(88, 198, 88)";
+			//if(elemento.id == "VotoPrecoPositivo")
+			//{
+				//parente.getElementsByTagName("img")[0].style.backgroundColor = "rgb(88, 198, 88)";
 				
-				parente.getElementsByTagName("img")[1].style.backgroundColor = "#efefef";
-				elemento.alt = "OK";
-			}
-			if(elemento.id == "VotoPrecoNegativo")
-				{
-				parente.getElementsByTagName("img")[1].style.backgroundColor = "#F44336";
+			//	parente.getElementsByTagName("img")[1].style.backgroundColor = "#efefef";
+			//	elemento.alt = "OK";
+			//}
+			//if(elemento.id == "VotoPrecoNegativo")
+			//	{
+			//	parente.getElementsByTagName("img")[1].style.backgroundColor = "#F44336";
 				
-				parente.getElementsByTagName("img")[0].style.backgroundColor = "#efefef";
-				elemento.alt = "OK";
-			 	}
+			//	parente.getElementsByTagName("img")[0].style.backgroundColor = "#efefef";
+			//	elemento.alt = "OK";
+			 //	}
 			 //-----------------------------------------------------------------------------------------
 			 if(elemento.id == "VotoPositivo")
 			 	{
@@ -938,31 +896,31 @@ SS19 PREVIEW
 			nodeAreaVoto.appendChild(nodeVotoNegativo);
 			//fim area de voto 1: aposta
 		 //area de voto 2, preco:
-		    nodeAreaVotoPreco = document.createElement("div");
-			nodeAreaVotoPreco.setAttribute("id","areaVoto");
-			nodeVotoTituloPreco = document.createElement("h2");
-			nodeVotoTituloPreco.setAttribute("class","votoTitulo");
-			nodeVotoTituloPreco.innerText = "Preço";
-			nodeVotoPositivoPreco = document.createElement("img");
-			nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
-			nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeVotoNegativoPreco = document.createElement("img");
-			nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
-			nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
+		    //nodeAreaVotoPreco = document.createElement("div");
+			//nodeAreaVotoPreco.setAttribute("id","areaVoto");
+			//nodeVotoTituloPreco = document.createElement("h2");
+			//nodeVotoTituloPreco.setAttribute("class","votoTitulo");
+			//nodeVotoTituloPreco.innerText = "Preço";
+			//nodeVotoPositivoPreco = document.createElement("img");
+			//nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
+			//nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeVotoNegativoPreco = document.createElement("img");
+			//nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
+			//nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
 			//fim area de voto preco
 			nodeGerenteTitulo01.innerText = "Gerente 1";
 			nodeGerente01.appendChild(nodeGerenteTitulo01);
 			nodeGerente01.appendChild(nodeAreaVoto);
-			nodeGerente01.appendChild(nodeAreaVotoPreco);
+			//nodeGerente01.appendChild(nodeAreaVotoPreco);
 			//-----------------gerente 01 fim--------------------------
 			//Div do gerente02
 			nodeGerente02 = document.createElement("div");
@@ -993,31 +951,31 @@ SS19 PREVIEW
 			nodeAreaVoto.appendChild(nodeVotoNegativo);
 			//fim area de voto 1: aposta
 		 //area de voto 2, preco:
-		    nodeAreaVotoPreco = document.createElement("div");
-			nodeAreaVotoPreco.setAttribute("id","areaVoto");
-			nodeVotoTituloPreco = document.createElement("h2");
-			nodeVotoTituloPreco.setAttribute("class","votoTitulo");
-			nodeVotoTituloPreco.innerText = "Preço";
-			nodeVotoPositivoPreco = document.createElement("img");
-			nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
-			nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeVotoNegativoPreco = document.createElement("img");
-			nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
-			nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
+		    //nodeAreaVotoPreco = document.createElement("div");
+			//nodeAreaVotoPreco.setAttribute("id","areaVoto");
+			//nodeVotoTituloPreco = document.createElement("h2");
+			//nodeVotoTituloPreco.setAttribute("class","votoTitulo");
+			//nodeVotoTituloPreco.innerText = "Preço";
+			//nodeVotoPositivoPreco = document.createElement("img");
+			//nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
+			//nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeVotoNegativoPreco = document.createElement("img");
+			//nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
+			//nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
 			//fim area de voto preco
 			nodeGerenteTitulo02.innerText = "Gerente 2";
 			nodeGerente02.appendChild(nodeGerenteTitulo02);
 			nodeGerente02.appendChild(nodeAreaVoto);
-			nodeGerente02.appendChild(nodeAreaVotoPreco);
+			//nodeGerente02.appendChild(nodeAreaVotoPreco);
 			//----------------fim gerente 02---------------------------
 			//Div do gerente03
 			nodeGerente03 = document.createElement("div");
@@ -1048,32 +1006,32 @@ SS19 PREVIEW
 			nodeAreaVoto.appendChild(nodeVotoNegativo);
 			//fim area de voto 1: aposta
 		 //area de voto 2, preco:
-		    nodeAreaVotoPreco = document.createElement("div");
-			nodeAreaVotoPreco.setAttribute("id","areaVoto");
-			nodeVotoTituloPreco = document.createElement("h2");
-			nodeVotoTituloPreco.setAttribute("class","votoTitulo");
-			nodeVotoTituloPreco.innerText = "Preço";
-			nodeVotoPositivoPreco = document.createElement("img");
-			nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
-			nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeVotoNegativoPreco = document.createElement("img");
-			nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
-			nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
-			nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
-			nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-			nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-			nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
-			nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
+		   // nodeAreaVotoPreco = document.createElement("div");
+			//nodeAreaVotoPreco.setAttribute("id","areaVoto");
+			//nodeVotoTituloPreco = document.createElement("h2");
+			//nodeVotoTituloPreco.setAttribute("class","votoTitulo");
+			//nodeVotoTituloPreco.innerText = "Preço";
+			//nodeVotoPositivoPreco = document.createElement("img");
+			//nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
+			//nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeVotoNegativoPreco = document.createElement("img");
+			//nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
+			//nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
+			//nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
+			//nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
+			//nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+			//nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
+			//nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
 			//fim area de voto preco
 			
 			nodeGerenteTitulo03.innerText = "Gerente 3";
 			nodeGerente03.appendChild(nodeGerenteTitulo03);
 			nodeGerente03.appendChild(nodeAreaVoto);
-			nodeGerente03.appendChild(nodeAreaVotoPreco);
+			//nodeGerente03.appendChild(nodeAreaVotoPreco);
 			//-----------------fim gerente 03--------------------------
 			
 			nodeDivAvaliacao.appendChild(nodeGerente01);
