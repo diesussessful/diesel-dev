@@ -468,14 +468,18 @@ document.addEventListener('swiped-right', function(e) {
 	
 
   </script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+  
 
 
 </head>
-<body onkeydown="uniKeyCode(event)" > <!-- data-swipe-threshold="10"  --> 
+<body id="body" onkeydown="uniKeyCode(event)" > <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
-<img id="setaDireita" onclick="trocarProduto(comando+=1)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+<img id="setaDireita" onclick="trocarProduto(comando+=1);printImagem()" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
 <img id="setaEsquerda" onclick="trocarProduto(comando-=1)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+
+<!-- <div id = "modal" class="modalEstilo" style="background-color: white; width: "></div> -->
 
 <div id="prod0" class="corpo" style="">
     <div  id="" class="corpo_detalhes">
@@ -494,6 +498,7 @@ document.addEventListener('swiped-right', function(e) {
        
       </div>
        <div id="imagem">
+       	<canvas></canvas>
 
        </div>
        
@@ -502,6 +507,7 @@ document.addEventListener('swiped-right', function(e) {
     
      <input type="file" name="" id="DadosCsv">
      <button onclick="importarProdutos()" >Importar</button>
+     <button onclick="printImagem()" >Transformar os produtos em imagem</button>
   </div>
 <!-- final de um produto -->
 
@@ -510,158 +516,7 @@ SS19 PREVIEW
 </div><div class="corpo_avaliacao"></div></div>
 
 <!-- final de um produto -->
-<!-- começo de um produto -->
-  <div id="prod2" class="corpo"style="display: none;">
-    <div  id="" class="corpo_detalhes">
-       <div id="referencia">
-       	<div >
-       		<h4 id="titulo_Peca">MHARKY L.32 - 00SH3Q088AI_01</h4>
-            <h4 id="tituloDetalhe_Peca">Denim - Skinny</h4>
-       	</div>
-        
-        <h4 id="titulo_Preco">R$1.380</h4>
-       
-      </div>
-       <div id="imagem">
-          <img class="imagem_1" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00SH3Q088AI_FRENTE.png">
 
-          <img class="imagem_1" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00SH3Q088AI_COSTAS.png">
-       </div>
-       
-    </div>
-
-    <div class="corpo_avaliacao">
-       <div id="avaliacao">
-       	<!-- gerente div -->
-         <div id="gerente01" class="gerentesDiv">
-         	<h2 class="gerentesDivTitulo" >Gerente 01</h2>
-         <div id="areaVoto">
-          <h2 class="votoTitulo">Aposta?</h2>
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
-
-          
-         
-       </div>
-       <!-- fim gerente div -->
-       <!-- gerente div -->
-         <div id="gerente02" class="gerentesDiv">
-         	<h2 class="gerentesDivTitulo" >Gerente 02</h2>
-         <div id="areaVoto">
-          <h2 class="votoTitulo">Aposta?</h2>
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
-
-         
-         
-       </div>
-       <!-- fim gerente div -->
-       <!-- gerente div -->
-         <div id="gerente03" class="gerentesDiv">
-         	<h2 class="gerentesDivTitulo" >Gerente 03</h2>
-         <div id="areaVoto">
-          <h2 class="votoTitulo">Aposta?</h2>
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
-
-          
-         
-       </div>
-       <!-- fim gerente div -->
-
-       </div>
-     </div>
-     
-  </div>
-<!-- final de um produto -->
-<!-- começo de um produto -->
-  <div id="prod3" class="corpo"style="display: none;">
-    <div  id="" class="corpo_detalhes">
-       <div id="referencia">
-       	<div >
-       		<h4 id="titulo_Peca">SLEENKER.32 - 00S7VG069DJ_01</h4>
-            <h4 id="tituloDetalhe_Peca">Denim - Skinny</h4>
-       	</div>
-        
-        <h4 id="titulo_Preco">R$1.795</h4>
-       
-      </div>
-       <div id="imagem">
-          <img class="imagem_1" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00S7VG069DJ_FRENTE.png">
-
-          <img class="imagem_1" src="https://github.com/diesussessful/diesel-dev/raw/master/imagens/00S7VG069DJ_COSTAS.png">
-       </div>
-       
-    </div>
-
-    <div class="corpo_avaliacao">
-       <div id="avaliacao">
-       	<!-- gerente div -->
-         <div id="gerente01" class="gerentesDiv">
-         	<h2 class="gerentesDivTitulo" >Gerente 01</h2>
-         <div id="areaVoto">
-          <h2 class="votoTitulo">Aposta?</h2>
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
-
-          
-         
-       </div>
-       <!-- fim gerente div -->
-       <!-- gerente div -->
-         <div id="gerente02" class="gerentesDiv">
-         	<h2 class="gerentesDivTitulo" >Gerente 02</h2>
-         <div id="areaVoto">
-          <h2 class="votoTitulo">Aposta?</h2>
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
-
-          
-         
-       </div>
-       <!-- fim gerente div -->
-       <!-- gerente div -->
-         <div id="gerente03" class="gerentesDiv">
-         	<h2 class="gerentesDivTitulo" >Gerente 03</h2>
-         <div id="areaVoto">
-          <h2 class="votoTitulo">Aposta?</h2>
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoPositivo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-           <img class="areaVoto" style="cursor: pointer;" id="VotoNegativo" onclick="votos(this,this.parentElement)" src="https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png">
-
-         </div>
-
-          
-         
-       </div>
-       <!-- fim gerente div -->
-
-       </div>
-     </div>
-     
-  </div>
-<!-- final de um produto -->
 
 <!-- final do corpo!!! -->
 </div>  
@@ -711,14 +566,16 @@ SS19 PREVIEW
 	function trocarProduto(comando)
 	{
 		
-		
+			
 		    index = "prod" + comando;
+		    if (document.getElementById(index) != null) {
 		    antIndex = "prod" + (comando - 1);
 		    nexIndex = "prod" + (comando + 1);
 		    console.log("index: " + index);
 		    console.log("antIndex: " + antIndex);
 		    console.log("nexIndex: " + nexIndex);
-		    if (document.getElementById(index) != null) {
+
+		    
 			document.getElementById(index).style.display = "inline-block";
 			if(comando > 0){
 			document.getElementById(antIndex).style.display = "none";
@@ -736,7 +593,7 @@ SS19 PREVIEW
 		}
 	}else
 	{
-		comando -= 1;
+		index = antIndex;
 	}
 	
 	}
@@ -767,7 +624,7 @@ SS19 PREVIEW
 		}
 		console.log(produto)
 		//Criando os produtos
-		var index = 4 //index da div
+		var index = 2 //index da div na qual renomeara prod1 -- prod2 -- prod3...
 		var tituloPos = 4;
 		var refPos = 5;
 		var DetalhePos = 6;
@@ -776,7 +633,7 @@ SS19 PREVIEW
 		var imgVar = 5;
 		//i = quantidade de produtos para criar
 		
-		for(i = 1; i < 100;i++)
+		for(i = 1; i < 10;i++)
 		{
 			if (!produto[[cont,refPos]])
 			{
@@ -870,23 +727,24 @@ SS19 PREVIEW
 
 			if (produto[[i,refPos]])
 				{
-					cont = produto[[i,refPos]].split("_")[1];
-						console.log("CONT: "+cont);
+					contx = produto[[i,refPos]].split("_")[1];
+						console.log("CONT: "+contx);
 					///if (produto[[i,refPos]].length > 22){
-					for(var ii = 1; ii < Number(cont);ii++)
+					for(var ii = 1; ii < Number(contx)+1;ii++)
 					{			
 						//criando o elemento
 						nodeImg1 =  document.createElement("img");
 						nodeImg1.setAttribute("class","imagem_1");
-
-
 						nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("_")[0]+"_"+ii+".png");
 						//console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("/")[ii]);
 						nodeDivImagem.appendChild(nodeImg1);
-						nodeCorpoDetalhes.appendChild(nodeDivImagem);
+						
 
 					}
+					
+
 				}
+				nodeCorpoDetalhes.appendChild(nodeDivImagem);
 					
 				//}
 			
@@ -1111,6 +969,72 @@ SS19 PREVIEW
 			}
 
 		}
+
+		function printImagem()
+		{
+			ind = "prod"+comando;
+			
+			//for(i = 0;i < 3; i++){
+			//document.getElementById("setaDireita").click();
+			html2canvas(document.querySelector("#"+ind),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: true,imageTimeout: 0}).then(canvas => {
+    console.log(canvas)
+    saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
+});
+		}
+
+
+		function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}
+	//}
+
+
+		
+			// async function  makeScreenshot(selector="#prod1") 
+			// {
+  	// 			return new Promise((resolve, reject) => {  
+   //  			let node = document.querySelector(selector);
+    
+   //  			html2canvas(node, { onrendered: (canvas) => {
+   //      		let pngUrl = canvas.toDataURL();      
+   //      		resolve("Aqui: " +pngUrl);
+        		
+   //  		}});  
+  	// 		});
+			// }
+
+			// async function report() {
+   // 			 let screenshot = await makeScreenshot(); // png dataUrl
+   //  			let img = document.querySelector(".img");
+   //  			img.src = screenshot; 
+
+    // ... show screenshot to user, allow to draw region
+    // and send screnshot with region coordinates to server 
+//}
+			
+
+		
 
 		
 		
