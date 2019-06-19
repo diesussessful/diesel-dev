@@ -568,14 +568,14 @@ SS19 PREVIEW
 		
 			
 		    index = "prod" + comando;
-		    if (document.getElementById(index) != null) {
+		    
 		    antIndex = "prod" + (comando - 1);
 		    nexIndex = "prod" + (comando + 1);
 		    console.log("index: " + index);
 		    console.log("antIndex: " + antIndex);
 		    console.log("nexIndex: " + nexIndex);
 
-		    
+		    if (document.getElementById(index) != null) {
 			document.getElementById(index).style.display = "inline-block";
 			if(comando > 0){
 			document.getElementById(antIndex).style.display = "none";
@@ -583,7 +583,7 @@ SS19 PREVIEW
 		    
 			document.getElementById(nexIndex).style.display = "none";
 			console.log(index);
-			for(var a = 0;a<100;a++)
+			for(var a = 0;a<600;a++)
 		{
 			if(document.getElementsByTagName("br")[a])
 			{
@@ -973,11 +973,14 @@ SS19 PREVIEW
 		function printImagem()
 		{
 			ind = "prod"+comando;
+
 			
 			//for(i = 0;i < 3; i++){
 			//document.getElementById("setaDireita").click();
-			html2canvas(document.querySelector("#"+ind),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: true,imageTimeout: 0}).then(canvas => {
-    console.log(canvas)
+			//document.querySelector("#"+ind).crossOrigin = null
+			console.log("indind: "+ind)
+			html2canvas(document.querySelector("#"+ind),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
+    
     saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
 });
 		}
