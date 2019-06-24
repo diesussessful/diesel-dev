@@ -410,7 +410,9 @@ align: middle; }
   </style>
 
   <!--Códigos de Inicialização-->
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
   
 
 
@@ -418,8 +420,8 @@ align: middle; }
 <body id="body" onkeydown="uniKeyCode(event)" > <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
-<img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
-<img data-html2canvas-ignore id="setaEsquerda" onclick="trocarProduto(comando-=1)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+<img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+<img data-html2canvas-ignore id="setaEsquerda" onclick="trocarProduto(comando-=1,false)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
 
 <!-- <div id = "modal" class="modalEstilo" style="background-color: white; width: "></div> -->
 <div id ="modalApuracao" class="apuracao" style="display: none;">
@@ -429,7 +431,7 @@ align: middle; }
         <tr>
             <th>Gerente</th>
             <th>Produto</th>
-            <th>Voto</th>
+            <th>Aposta</th>
         </tr>
     </thead>
     <tbody>
@@ -437,7 +439,7 @@ align: middle; }
 
     </tbody>
 </table>
-  
+  <button onclick="fnExcelReport()">Baixar (teste)</button>
 </div>
 
 <div id="prod0" class="corpo" style="">
@@ -586,6 +588,7 @@ document.addEventListener('swiped-right', function(e) {
 
 
 
+ 
   function votos(elemento,parente) {
     naoIncluir = null;
     nomeGerente = parente.parentElement.getElementsByTagName("h2")[0].innerText;
@@ -610,7 +613,7 @@ document.addEventListener('swiped-right', function(e) {
         }
        if(elemento.id == "VotoNegativo")
         {
-          votoGerente = "Não";
+          votoGerente = "Nao";
           votoGerenteCor = "rgb(244, 67, 54)"
           parente.getElementsByTagName("img")[1].style.backgroundColor = "rgb(244, 67, 54)";
         
@@ -618,6 +621,29 @@ document.addEventListener('swiped-right', function(e) {
         elemento.alt = "OK";
         
         }
+
+
+        for(var x = cont_i ;x < indiceTabelaApostas;x++){
+        	
+        	if(nomeGerente == tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[0].innerText){
+        		
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[0].innerText = nomeGerente;
+        		
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText = prodRef;
+        		
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].innerText = votoGerente;
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].style.backgroundColor = votoGerenteCor; 
+        		}
+             
+
+        
+
+    	}
+
+
+
+
+
 
 
       // //------------------------------------------------------------------------------------------
@@ -640,35 +666,7 @@ document.addEventListener('swiped-right', function(e) {
 // }
 
 // if(naoIncluir){
-var novalinha = tabela.insertRow(tabela.rows.length);
-for(var i = 0; i  < 3; i++)
-{
-   var novaCelula = novalinha.insertCell(i);
-   if(i == 0){
-    //nome
-   var texto = document.createTextNode(nomeGerente);
-   novaCelula.appendChild(texto);
-   novaCelula.setAttribute("class","G_nome");
 
-   }
-   //ref
-    if(i==1)
-   {
-    var texto = document.createTextNode(prodRef);
-    novaCelula.appendChild(texto);
-    novaCelula.setAttribute("class","G_ref");
-   }
-
-   //voto(aposta)
-   if(i==2)
-   {
-    var texto = document.createTextNode(votoGerente);
-    novaCelula.appendChild(texto);
-    novaCelula.setAttribute("style","background-color: "+votoGerenteCor+";");
-    novaCelula.setAttribute("class","G_voto");
-   }
-   
-}
   }
   //}
 
@@ -679,25 +677,63 @@ for(var i = 0; i  < 3; i++)
 
 
   var comando = 0;
-  function trocarProduto(comando)
+  var direc = null;  
+  var indiceTabelaApostas = 0;
+  var cont_i = 0;
+
+  function trocarProduto(comando,direc)
   {
-    
-      
-        index = "prod" + comando;
+  	    index = "prod" + comando;
+
+  	    
         
+        //indiceApostas = document.getElementById(indiceAtual);
+        if(comando <= 1){//2 é o primeiro produto
+        	indiceTabelaApostas = 0;
+        }
+
+        if( document.getElementById(index).getElementsByClassName("gerentesDiv").length > 0){
+        	if(direc){
+        	 	indiceTabelaApostas += document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+        	 	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            }else
+            {
+            	indiceTabelaApostas -= document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            }
+  	    }
+
+  	
+  	    console.log("indiceTabelaApostas: "+ indiceTabelaApostas)
+  	    console.log("Cont_i: "+cont_i)
+
+
+
+
+
+      
+       
         antIndex = "prod" + (comando - 1);
         nexIndex = "prod" + (comando + 1);
         console.log("index: " + index);
-        console.log("antIndex: " + antIndex);
-        console.log("nexIndex: " + nexIndex);
-        if (document.getElementById(index) != null) {
+        //console.log("antIndex: " + antIndex);
+        //console.log("nexIndex: " + nexIndex);
+        if (document.getElementById(index)) {
+
+
       document.getElementById(index).style.display = "inline-block";
+
+      if(document.getElementById(antIndex)){
       if(comando > 0){
       document.getElementById(antIndex).style.display = "none";
         }
+    }
+    if (document.getElementById(nexIndex)) {
         
       document.getElementById(nexIndex).style.display = "none";
-      console.log(index);
+  }
+     // console.log(index);
+
       for(var a = 0;a<600;a++)
     {
       if(document.getElementsByTagName("br")[a])
@@ -708,10 +744,92 @@ for(var i = 0; i  < 3; i++)
     }
   }else
   {
-    index = antIndex;
+    index = "prod" + (comando + 1);
   }
-  
-  }
+
+
+//criando tabela
+
+
+    if(direc){
+    
+    votoGerente = "null";
+    votoGerenteCor = "null";
+    prod = document.getElementById(index);
+    prodRef = prod.getElementsByTagName("h4")[0].innerText;
+
+    var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
+     console.log(prodRef);
+
+     console.log("Tabela rows length: "+ tabela.rows.length)
+
+if(tabela.rows.length > 0){
+for(var tab = 0;tab < tabela.rows.length; tab++)
+{
+	comp1 = tabela.getElementsByClassName("G_ref")[tab].innerText.replace(/ /g,"");
+	
+	console.log("AQUI: "+comp1)
+	if(comp1 ==  prodRef.replace(/ /g,""))
+	{
+		var naoRepetido = false;
+		return 0;
+	}else
+	{
+		var naoRepetido = true;
+	}
+
+}
+}else
+{
+	var naoRepetido = true;
+}
+
+
+
+if(naoRepetido){
+
+for(var x = 0; x < indiceTabelaApostas; x++) {
+  var nomeGerente = document.getElementById(index).getElementsByClassName("gerentesDiv")[x].getElementsByTagName("h2")[0].innerText   
+
+	var novalinha = tabela.insertRow(tabela.rows.length);
+	for(var i = 0; i  < 3; i++)
+	{
+  	 	var novaCelula = novalinha.insertCell(i);
+   		if(i == 0){
+    //nome
+   		var texto = document.createTextNode(nomeGerente);
+   		novaCelula.appendChild(texto);
+   		novaCelula.setAttribute("class","G_nome");
+   		gerentesNom[i] += nomeGerente;
+   		}
+   //ref
+    	if(i==1)
+   		{
+    	  var texto = document.createTextNode(prodRef);
+    	  novaCelula.appendChild(texto);
+   		  novaCelula.setAttribute("class","G_ref");
+        }
+
+   //voto(aposta)
+   		if(i==2)
+   		{
+    	  var texto = document.createTextNode(votoGerente);
+    	  novaCelula.appendChild(texto);
+    	  novaCelula.setAttribute("style","background-color: "+votoGerenteCor+";");
+    	  novaCelula.setAttribute("class","G_voto");
+   		}
+	}
+   
+}
+}
+console.log(gerentesNom);
+}
+
+
+
+  }//fim func
+
+var gerentesNom = []
   function importarProdutos()
   {
     var file = document.getElementById("DadosCsv");
@@ -748,7 +866,7 @@ for(var i = 0; i  < 3; i++)
     var imgVar = 5;
     //i = quantidade de produtos para criar
     
-    for(i = 1; i < 10;i++)
+    for(i = 1; i < 100;i++)
     {
       if (!produto[[cont,refPos]])
       {
@@ -1064,6 +1182,15 @@ for(var i = 0; i  < 3; i++)
       index += 1;
       }
     }
+
+   // for(m = 0; m < document.getElementById("avaliacao").getElementsByTagName("div")[0].getElementsByTagName("h2").length;m++)
+ 	//{
+ 	//	 gerentesNom[m] =  document.getElementById("avaliacao").getElementsByTagName("div")[m].getElementsByTagName("h2")[0].innerText
+ 	//}
+
+
+
+ 	//console.log("AQUIAAAAA: "+gerentesNom);
     }
     apuracaoAtivo = false;
     function uniKeyCode(event)
@@ -1165,6 +1292,9 @@ for(var i = 0; i  < 3; i++)
 
 
  <script type="text/javascript">
+ 	
+ 	
+
        function fnExcelReport(){
   var tab_text="<table border='2px'>";
   var textRange; var j=0;
@@ -1199,9 +1329,31 @@ for(var i = 0; i  < 3; i++)
     txtArea1.focus(); 
     sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
   }  
-  else                 //other browser not tested on IE 11
+  else {               //other browser not tested on IE 11
     sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
-  return (sa);}
+
+
+var linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
+    
+    Email.send({
+    SecureToken : "c0edc424-cceb-4b6e-943d-7467cceeb519",
+    To : 'wanderson.barros@asteserv.com.br',
+    From : "wandersonrnosrednaw@gmail.com",
+    Subject : "Apostas: " ,
+    Body : "Apuracao dos gerentes: ",
+    Attachments : [
+  {
+    name : "Apuracao.xls",
+    path : linkPlanilha
+  }]
+}).then(
+  message => alert("Enviado com sucesso.")
+);
+
+  
+}
+return (sa);
+}
 
 
 
