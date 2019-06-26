@@ -1462,7 +1462,7 @@ var request = new XMLHttpRequest();
 //se adicionar mais produtos, precisará mudar no final do código importarProduto o if do uIndex
 var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/produtoscs.txt";
 var contagem = 1;
-function carregarduasvezes()
+window.onload = function carregarduasvezes()
 {
 	setTimeout(function(){ 
    	carregar()
@@ -1480,7 +1480,7 @@ setTimeout(function(){
    	SincronizarProdutos()
    }, 500);
 
-if(contagem < 4){
+if(contagem < 2){
 
 setTimeout(function(){ 
    	carregarduasvezes()
