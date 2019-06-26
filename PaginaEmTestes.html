@@ -412,7 +412,7 @@ align: middle; }
   <!--Códigos de Inicialização-->
   <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   
 
 
@@ -420,10 +420,10 @@ align: middle; }
 <body id="body" onkeydown="uniKeyCode(event)" > <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
-<a href="javascript:trocarProduto(comando+=1,true);" data-html2canvas-ignore="" style="cursor: pointer;">
-<img id="setaDireita" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
-</a>
-<img data-html2canvas-ignore id="setaEsquerda" onclick="javascript:trocarProduto(comando-=1,false)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+<img data-html2canvas-ignore id="setaDireita" onclick="" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+<img data-html2canvas-ignore id="setaEsquerda" onclick="//trocarProduto(comando-=1,false)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+
+
 
 <!-- <div id = "modal" class="modalEstilo" style="background-color: white; width: "></div> -->
 <div id ="modalApuracao" class="apuracao" style="display: none;">
@@ -939,7 +939,7 @@ var gerentesNom = []
       nodeDivVazia = document.createElement("div");
       nodeTituloPeca = document.createElement("h4");
       nodeTituloPeca.setAttribute("id","titulo_Peca");
-      nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]].split("-")[0].split("_")[0] ;
+      nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]].split("_")[0];
       nodeTituloDetalhe_Peca = document.createElement("h4");
       nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
       nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
@@ -1358,6 +1358,7 @@ return (sa);
 }
 
 
+$('setaDireita').bind('tap',function() { trocarProduto(comando+=1,true); });
 
     </script>
 </body>
