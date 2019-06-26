@@ -583,14 +583,46 @@ SS19 PREVIEW
     document.addEventListener('swiped-left', function(e) {
       document.getElementById("setaDireita").click();
 });
+
+
 document.addEventListener('swiped-right', function(e) {
     
     document.getElementById("setaEsquerda").click();
 });
+
+document.addEventListener('swiped-right', function(e) {
+    
+    document.getElementById("setaEsquerda").click();
+});
+
+document.addEventListener('swiped-down', function(e) {
+
+     apurDownCont += 1;
+
+     if (apurDownCont >= 3)
+     {
+     	if(!apurOpen)
+     	{
+     		document.getElementById("modalApuracao").style.display = "none";
+     		apurOpen = true;
+     		apurDownCont = 0;
+
+     	}else
+     	{
+     		document.getElementById("modalApuracao").style.display = "block";
+     		apurOpen = false;
+     		apurDownCont = 0;
+     	}
+     }
+
+    
+});
+
+
  }
     
-
-
+var apurOpen = false;
+var apurDownCont = 0;
 
  
   function votos(elemento,parente) {
