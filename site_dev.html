@@ -418,7 +418,7 @@ align: middle; }
 
 
 </head>
-<body id="body" onkeydown="uniKeyCode(event)" onload="carregar();"> <!-- data-swipe-threshold="10"  --> 
+<body id="body" onkeydown="uniKeyCode(event)" onload="carregarduasvezes()"> <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
 <img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
@@ -1461,6 +1461,17 @@ return (sa);
 var request = new XMLHttpRequest();
 //se adicionar mais produtos, precisará mudar no final do código importarProduto o if do uIndex
 var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/produtoscs.txt";
+
+function carregarduasvezes()
+{
+	setTimeout(function(){ 
+   	carregar()
+   }, 500);
+
+	setTimeout(function(){ 
+   	carregar()
+   }, 500);
+}
 
 function carregar()
 {
