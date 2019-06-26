@@ -418,7 +418,7 @@ align: middle; }
 
 
 </head>
-<body id="body" onkeydown="uniKeyCode(event)" onload="SincronizarProdutos()"> <!-- data-swipe-threshold="10"  --> 
+<body id="body" onkeydown="uniKeyCode(event)" onload="carregar();"> <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
 <img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
@@ -1482,7 +1482,7 @@ function SincronizarProdutos(evt)
  		console.log(evt)
   		carregar();
     }else{
-
+    	carregar();
 
     //var file = document.getElementById("DadosCsv");
     var reader = new FileReader();
