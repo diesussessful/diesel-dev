@@ -410,7 +410,9 @@ align: middle; }
   </style>
 
   <!--Códigos de Inicialização-->
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
   
 
 
@@ -418,18 +420,18 @@ align: middle; }
 <body id="body" onkeydown="uniKeyCode(event)" > <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
-<img id="setaDireita" onclick="trocarProduto(comando+=1);printImagem()" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
-<img id="setaEsquerda" onclick="trocarProduto(comando-=1)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+<img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+<img data-html2canvas-ignore id="setaEsquerda" onclick="trocarProduto(comando-=1,false)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
 
 <!-- <div id = "modal" class="modalEstilo" style="background-color: white; width: "></div> -->
-<div id ="modalApuracao" class="apuracao" style="display: block;">
+<div id ="modalApuracao" class="apuracao" style="display: none;">
   <h2 class="apuracaoh2">Apuração</h2>
    <table id="table">
     <thead>
         <tr>
             <th>Gerente</th>
             <th>Produto</th>
-            <th>Voto</th>
+            <th>Aposta</th>
         </tr>
     </thead>
     <tbody>
@@ -437,7 +439,7 @@ align: middle; }
 
     </tbody>
 </table>
-  
+  <button onclick="fnExcelReport()">Baixar (teste)</button>
 </div>
 
 <div id="prod0" class="corpo" style="">
@@ -457,6 +459,9 @@ align: middle; }
        
       </div>
        <div id="imagem">
+       	<h2>S : Print da Tela e download automatico </h2>
+        <h2> ___ </h2>
+       	<h2> P : Tela de historico de apostas </h2>
         <canvas></canvas>
 
        </div>
@@ -466,7 +471,7 @@ align: middle; }
     
      <input type="file" name="" id="DadosCsv">
      <button onclick="importarProdutos()" >Importar</button>
-     <button onclick="printImagem()" >Transformar os produtos em imagem</button>
+     <!-- <button onclick="printImagem()" >Transformar os produtos em imagem</button> -->
   </div>
 <!-- final de um produto -->
 
@@ -583,6 +588,7 @@ document.addEventListener('swiped-right', function(e) {
 
 
 
+ 
   function votos(elemento,parente) {
     naoIncluir = null;
     nomeGerente = parente.parentElement.getElementsByTagName("h2")[0].innerText;
@@ -607,7 +613,7 @@ document.addEventListener('swiped-right', function(e) {
         }
        if(elemento.id == "VotoNegativo")
         {
-          votoGerente = "Não";
+          votoGerente = "Nao";
           votoGerenteCor = "rgb(244, 67, 54)"
           parente.getElementsByTagName("img")[1].style.backgroundColor = "rgb(244, 67, 54)";
         
@@ -617,57 +623,52 @@ document.addEventListener('swiped-right', function(e) {
         }
 
 
+        for(var x = cont_i ;x < indiceTabelaApostas;x++){
+        	
+        	if(nomeGerente == tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[0].innerText){
+        		
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[0].innerText = nomeGerente;
+        		
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText = prodRef;
+        		
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].innerText = votoGerente;
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].style.backgroundColor = votoGerenteCor; 
+        		}
+             
+
+        
+
+    	}
+
+
+
+
+
+
+
       // //------------------------------------------------------------------------------------------
       
       //nodetr = new document.createElement("tr");
      // nodetd = new document.createElement("td");
-for(x = 0; x < tabela.rows.length;x++ )
-{
-  comp = document.getElementsByClassName("G_nome")[x].innerText + document.getElementsByClassName("G_ref")[x].innerText +document.getElementsByClassName("G_voto")[x].innerText
+// for(x = 0; x < tabela.rows.length;x++ )
+// {
+//   comp = document.getElementsByClassName("G_nome")[x].innerText + document.getElementsByClassName("G_ref")[x].innerText +document.getElementsByClassName("G_voto")[x].innerText
 
-  comp2 = nomeGerente+prodRef+votoGerente;
+//   comp2 = nomeGerente+prodRef+votoGerente;
 
-  if(comp.replace(/ /g,"") == comp2.replace(/ /g,""))
-  {
-    naoIncluir = true;
-  }else
-  {
-    naoIncluir = false;
+//   if(comp.replace(/ /g,"") == comp2.replace(/ /g,""))
+//   {
+//     naoIncluir = true;
+//   }else
+//   {
+//     naoIncluir = false;
+//   }
+// }
+
+// if(naoIncluir){
+
   }
-}
-
-if(naoIncluir){
-var novalinha = tabela.insertRow(tabela.rows.length);
-for(var i = 0; i  < 3; i++)
-{
-   var novaCelula = novalinha.insertCell(i);
-   if(i == 0){
-    //nome
-   var texto = document.createTextNode(nomeGerente);
-   novaCelula.appendChild(texto);
-   novaCelula.setAttribute("class","G_nome");
-
-   }
-   //ref
-    if(i==1)
-   {
-    var texto = document.createTextNode(prodRef);
-    novaCelula.appendChild(texto);
-    novaCelula.setAttribute("class","G_ref");
-   }
-
-   //voto(aposta)
-   if(i==2)
-   {
-    var texto = document.createTextNode(votoGerente);
-    novaCelula.appendChild(texto);
-    novaCelula.setAttribute("style","background-color: "+votoGerenteCor+";");
-    novaCelula.setAttribute("class","G_voto");
-   }
-   
-}
-  }
-  }
+  //}
 
 
 
@@ -676,25 +677,63 @@ for(var i = 0; i  < 3; i++)
 
 
   var comando = 0;
-  function trocarProduto(comando)
+  var direc = null;  
+  var indiceTabelaApostas = 0;
+  var cont_i = 0;
+
+  function trocarProduto(comando,direc)
   {
-    
-      
-        index = "prod" + comando;
+  	    index = "prod" + comando;
+
+  	    
         
+        //indiceApostas = document.getElementById(indiceAtual);
+        if(comando <= 1){//2 é o primeiro produto
+        	indiceTabelaApostas = 0;
+        }
+
+        if( document.getElementById(index).getElementsByClassName("gerentesDiv").length > 0){
+        	if(direc){
+        	 	indiceTabelaApostas += document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+        	 	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            }else
+            {
+            	indiceTabelaApostas -= document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            }
+  	    }
+
+  	
+  	    console.log("indiceTabelaApostas: "+ indiceTabelaApostas)
+  	    console.log("Cont_i: "+cont_i)
+
+
+
+
+
+      
+       
         antIndex = "prod" + (comando - 1);
         nexIndex = "prod" + (comando + 1);
         console.log("index: " + index);
-        console.log("antIndex: " + antIndex);
-        console.log("nexIndex: " + nexIndex);
-        if (document.getElementById(index) != null) {
+        //console.log("antIndex: " + antIndex);
+        //console.log("nexIndex: " + nexIndex);
+        if (document.getElementById(index)) {
+
+
       document.getElementById(index).style.display = "inline-block";
+
+      if(document.getElementById(antIndex)){
       if(comando > 0){
       document.getElementById(antIndex).style.display = "none";
         }
+    }
+    if (document.getElementById(nexIndex)) {
         
       document.getElementById(nexIndex).style.display = "none";
-      console.log(index);
+  }
+     // console.log(index);
+
       for(var a = 0;a<600;a++)
     {
       if(document.getElementsByTagName("br")[a])
@@ -705,10 +744,92 @@ for(var i = 0; i  < 3; i++)
     }
   }else
   {
-    index = antIndex;
+    index = "prod" + (comando + 1);
   }
-  
-  }
+
+
+//criando tabela
+
+
+    if(direc){
+    
+    votoGerente = "null";
+    votoGerenteCor = "null";
+    prod = document.getElementById(index);
+    prodRef = prod.getElementsByTagName("h4")[0].innerText;
+
+    var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
+     console.log(prodRef);
+
+     console.log("Tabela rows length: "+ tabela.rows.length)
+
+if(tabela.rows.length > 0){
+for(var tab = 0;tab < tabela.rows.length; tab++)
+{
+	comp1 = tabela.getElementsByClassName("G_ref")[tab].innerText.replace(/ /g,"");
+	
+	console.log("AQUI: "+comp1)
+	if(comp1 ==  prodRef.replace(/ /g,""))
+	{
+		var naoRepetido = false;
+		return 0;
+	}else
+	{
+		var naoRepetido = true;
+	}
+
+}
+}else
+{
+	var naoRepetido = true;
+}
+
+
+
+if(naoRepetido){
+
+for(var x = 0; x < indiceTabelaApostas; x++) {
+  var nomeGerente = document.getElementById(index).getElementsByClassName("gerentesDiv")[x].getElementsByTagName("h2")[0].innerText   
+
+	var novalinha = tabela.insertRow(tabela.rows.length);
+	for(var i = 0; i  < 3; i++)
+	{
+  	 	var novaCelula = novalinha.insertCell(i);
+   		if(i == 0){
+    //nome
+   		var texto = document.createTextNode(nomeGerente);
+   		novaCelula.appendChild(texto);
+   		novaCelula.setAttribute("class","G_nome");
+   		gerentesNom[i] += nomeGerente;
+   		}
+   //ref
+    	if(i==1)
+   		{
+    	  var texto = document.createTextNode(prodRef);
+    	  novaCelula.appendChild(texto);
+   		  novaCelula.setAttribute("class","G_ref");
+        }
+
+   //voto(aposta)
+   		if(i==2)
+   		{
+    	  var texto = document.createTextNode(votoGerente);
+    	  novaCelula.appendChild(texto);
+    	  novaCelula.setAttribute("style","background-color: "+votoGerenteCor+";");
+    	  novaCelula.setAttribute("class","G_voto");
+   		}
+	}
+   
+}
+}
+console.log(gerentesNom);
+}
+
+
+
+  }//fim func
+
+var gerentesNom = []
   function importarProdutos()
   {
     var file = document.getElementById("DadosCsv");
@@ -745,7 +866,7 @@ for(var i = 0; i  < 3; i++)
     var imgVar = 5;
     //i = quantidade de produtos para criar
     
-    for(i = 1; i < 10;i++)
+    for(i = 1; i < 100;i++)
     {
       if (!produto[[cont,refPos]])
       {
@@ -816,7 +937,7 @@ for(var i = 0; i  < 3; i++)
       nodeDivVazia = document.createElement("div");
       nodeTituloPeca = document.createElement("h4");
       nodeTituloPeca.setAttribute("id","titulo_Peca");
-      nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]].split("-")[0].split("_")[0] ;
+      nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]].split("_")[0];
       nodeTituloDetalhe_Peca = document.createElement("h4");
       nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
       nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
@@ -876,6 +997,7 @@ for(var i = 0; i  < 3; i++)
       //inicio corpo avaliacao
       nodeDivAvaliacao = document.createElement("div");
       nodeDivAvaliacao.setAttribute("id","avaliacao");
+      nodeDivAvaliacao.setAttribute("data-html2canvas-ignore","")
       
       //Div do gerente01
       nodeGerente01 = document.createElement("div");
@@ -1060,6 +1182,15 @@ for(var i = 0; i  < 3; i++)
       index += 1;
       }
     }
+
+   // for(m = 0; m < document.getElementById("avaliacao").getElementsByTagName("div")[0].getElementsByTagName("h2").length;m++)
+ 	//{
+ 	//	 gerentesNom[m] =  document.getElementById("avaliacao").getElementsByTagName("div")[m].getElementsByTagName("h2")[0].innerText
+ 	//}
+
+
+
+ 	//console.log("AQUIAAAAA: "+gerentesNom);
     }
     apuracaoAtivo = false;
     function uniKeyCode(event)
@@ -1085,57 +1216,70 @@ for(var i = 0; i  < 3; i++)
       {
         document.getElementById("setaEsquerda").click();
       }
+
+      if(event.keyCode == 83)
+      {
+      	printImagem();
+      }
+
+
     }
 
-//     function printImagem()
-//     {
-//       ind = "prod"+comando;
+    function printImagem()
+    {
+      ind = "prod"+comando;
       
-//       //for(i = 0;i < 3; i++){
-//       //document.getElementById("setaDireita").click();
-//       //document.querySelector("#"+ind).crossOrigin = null
-//       console.log("indind: "+ind)
-//       html2canvas(document.querySelector("#"+ind),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
+      //for(i = 0;i < 3; i++){
+      //document.getElementById("setaDireita").click();
+      //document.querySelector("#"+ind).crossOrigin = null
+      console.log("indind: "+ind)
+      html2canvas(document.querySelector("#body"),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
     
-//     saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
-// });
-//     }
-//     function saveAs(uri, filename) {
-//     var link = document.createElement('a');
-//     if (typeof link.download === 'string') {
-//         link.href = uri;
-//         link.download = filename;
-//         //Firefox requires the link to be in the body
-//         document.body.appendChild(link);
-//         //simulate click
-//         link.click();
-//         //remove the link when done
-//         document.body.removeChild(link);
-//     } else {
-//         window.open(uri);
-//     }
-// }
-//   //}
+    if(document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0]){
+
+    		saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
+		}else
+		{
+			saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[0].innerText + '.png');
+		}
+
+});
+    }
+    function saveAs(uri, filename) {
+    var link = document.createElement('a');
+    if (typeof link.download === 'string') {
+        link.href = uri;
+        link.download = filename;
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+        //simulate click
+        link.click();
+        //remove the link when done
+        document.body.removeChild(link);
+    } else {
+        window.open(uri);
+    }
+}
+  //}
     
-      // async function  makeScreenshot(selector="#prod1") 
-      // {
-    //      return new Promise((resolve, reject) => {  
-   //       let node = document.querySelector(selector);
+      async function  makeScreenshot(selector="#prod1") 
+      {
+         return new Promise((resolve, reject) => {  
+         let node = document.querySelector(selector);
     
-   //       html2canvas(node, { onrendered: (canvas) => {
-   //         let pngUrl = canvas.toDataURL();      
-   //         resolve("Aqui: " +pngUrl);
+         html2canvas(node, { onrendered: (canvas) => {
+           let pngUrl = canvas.toDataURL();      
+           resolve("Aqui: " +pngUrl);
             
-   //     }});  
-    //    });
-      // }
-      // async function report() {
-   //        let screenshot = await makeScreenshot(); // png dataUrl
-   //       let img = document.querySelector(".img");
-   //       img.src = screenshot; 
-    // ... show screenshot to user, allow to draw region
-    // and send screnshot with region coordinates to server 
-//}
+       }});  
+       });
+      }
+      async function report() {
+          let screenshot = await makeScreenshot(); // png dataUrl
+         let img = document.querySelector(".img");
+         img.src = screenshot; 
+      
+}
       
     
     
@@ -1148,6 +1292,9 @@ for(var i = 0; i  < 3; i++)
 
 
  <script type="text/javascript">
+ 	
+ 	
+
        function fnExcelReport(){
   var tab_text="<table border='2px'>";
   var textRange; var j=0;
@@ -1182,9 +1329,31 @@ for(var i = 0; i  < 3; i++)
     txtArea1.focus(); 
     sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
   }  
-  else                 //other browser not tested on IE 11
+  else {               //other browser not tested on IE 11
     sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
-  return (sa);}
+
+
+var linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
+    
+    Email.send({
+    SecureToken : "c0edc424-cceb-4b6e-943d-7467cceeb519",
+    To : 'wanderson.barros@asteserv.com.br',
+    From : "wandersonrnosrednaw@gmail.com",
+    Subject : "Apostas: " ,
+    Body : "Apuracao dos gerentes: ",
+    Attachments : [
+  {
+    name : "Apuracao.xls",
+    path : linkPlanilha
+  }]
+}).then(
+  message => alert("Enviado com sucesso.")
+);
+
+  
+}
+return (sa);
+}
 
 
 
