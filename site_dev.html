@@ -1479,14 +1479,15 @@ function SincronizarProdutos(evt)
 
 	if(!evt)
  	{
+ 		console.log(evt)
   		carregar();
     }else{
 
 
-    var file = document.getElementById("DadosCsv");
+    //var file = document.getElementById("DadosCsv");
     var reader = new FileReader();
     reader.readAsBinaryString(request.response);
-    reader.onloadend = function()
+    reader.onload = function()
     {
      var listaProdutos = reader.result;
      console.log(listaProdutos)
