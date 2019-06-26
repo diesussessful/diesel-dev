@@ -40,7 +40,7 @@ button {
     position: relative;
 }
     </style>
-    <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
+    
 
 
 
@@ -349,12 +349,13 @@ align: middle; }
     {
       float: left;
       position: absolute;
-      right: 100%%;
+      
       top: 40%;
       
       z-index: 1;
       width: 4%;
       transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
     }
     div.gerentesDiv
     {
@@ -412,7 +413,7 @@ align: middle; }
   <!--Códigos de Inicialização-->
   <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   
 
 
@@ -422,6 +423,8 @@ align: middle; }
 <!-- Inicio do corpo!!! -->
 <img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
 <img data-html2canvas-ignore id="setaEsquerda" onclick="trocarProduto(comando-=1,false)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+
+
 
 <!-- <div id = "modal" class="modalEstilo" style="background-color: white; width: "></div> -->
 <div id ="modalApuracao" class="apuracao" style="display: none;">
@@ -471,6 +474,7 @@ align: middle; }
     
      <input type="file" name="" id="DadosCsv">
      <button onclick="importarProdutos()" >Importar</button>
+     <button onclick="fnExcelReport()">Baixar (teste)</button>
      <!-- <button onclick="printImagem()" >Transformar os produtos em imagem</button> -->
   </div>
 <!-- final de um produto -->
@@ -579,14 +583,46 @@ SS19 PREVIEW
     document.addEventListener('swiped-left', function(e) {
       document.getElementById("setaDireita").click();
 });
+
+
 document.addEventListener('swiped-right', function(e) {
     
     document.getElementById("setaEsquerda").click();
 });
+
+document.addEventListener('swiped-right', function(e) {
+    
+    document.getElementById("setaEsquerda").click();
+});
+
+document.addEventListener('swiped-down', function(e) {
+
+     apurDownCont += 1;
+
+     if (apurDownCont >= 3)
+     {
+     	if(!apurOpen)
+     	{
+     		document.getElementById("modalApuracao").style.display = "none";
+     		apurOpen = true;
+     		apurDownCont = 0;
+
+     	}else
+     	{
+     		document.getElementById("modalApuracao").style.display = "block";
+     		apurOpen = false;
+     		apurDownCont = 0;
+     	}
+     }
+
+    
+});
+
+
  }
     
-
-
+var apurOpen = false;
+var apurDownCont = 0;
 
  
   function votos(elemento,parente) {
@@ -595,7 +631,10 @@ document.addEventListener('swiped-right', function(e) {
     votoGerente = "";
     votoGerenteCor = "";
     prod = parente.parentElement.parentElement.parentElement.parentElement;
+
+    
     prodRef = prod.getElementsByTagName("h4")[0].innerText;
+		
 
     var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
       console.log(prodRef);
@@ -756,7 +795,12 @@ document.addEventListener('swiped-right', function(e) {
     votoGerente = "null";
     votoGerenteCor = "null";
     prod = document.getElementById(index);
-    prodRef = prod.getElementsByTagName("h4")[0].innerText;
+    if(prod.getElementsByTagName("h4")[0]){
+    	prodRef = prod.getElementsByTagName("h4")[0].innerText;
+    }else{
+    	prodRef = "null";
+    }
+    
 
     var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
      console.log(prodRef);
@@ -870,6 +914,49 @@ var gerentesNom = []
     {
       if (!produto[[cont,refPos]])
       {
+      	nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+
+          nodeCorpoFim = document.createElement("button");
+          nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
+          nodeCorpoFim.setAttribute("style","font-size: 60px;");
+          nodeCorpoFim.innerText = "FINALIZAR";
+          nodeCorpoDetalhes.appendChild(nodeCorpoFim);
+
+
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
         return 0 ;
       }
       console.log(produto[[i,refPos]])
@@ -1284,7 +1371,7 @@ var gerentesNom = []
     
     
     
-      
+
     
   
   
@@ -1354,6 +1441,7 @@ var linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_tex
 }
 return (sa);
 }
+
 
 
 
