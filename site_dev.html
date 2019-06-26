@@ -1471,11 +1471,11 @@ function carregar()
    		request.open('GET',url,true);
  		request.responseType = "blob";
  		request.send();
-  
+  		request.addEventListener("load", SincronizarProdutos, false);
    }, 500);
  
 }
- request.addEventListener("load", SincronizarProdutos, false);
+ 
 }
 
 //IMPORTAR SOZINHO/////////////////////////////////////////////////////////////
