@@ -1466,9 +1466,15 @@ function carregar()
 {
   
  //var request = new XMLHttpRequest();
- request.open('GET',url,true);
- request.responseType = "blob";
- request.send();
+ for(var k = 0;k<2;k++){
+ 	setTimeout(function(){ 
+   		request.open('GET',url,true);
+ 		request.responseType = "blob";
+ 		request.send();
+  
+   }, 500);
+ 
+}
  request.addEventListener("load", SincronizarProdutos, false);
 }
 
@@ -1476,13 +1482,13 @@ function carregar()
 
 function SincronizarProdutos(evt)
   {
-
+  	console.log(evt)
 	if(!evt)
  	{
- 		console.log(evt)
+ 		
   		carregar();
     }else{
-    
+
 
     //var file = document.getElementById("DadosCsv");
     var reader = new FileReader();
