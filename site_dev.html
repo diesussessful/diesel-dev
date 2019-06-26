@@ -1466,15 +1466,11 @@ function carregar()
 {
   
  //var request = new XMLHttpRequest();
- for(var k = 0;k<2;k++){
- 	setTimeout(function(){ 
+ 
    		request.open('GET',url,true);
  		request.responseType = "blob";
  		request.send();
   		request.addEventListener("load", SincronizarProdutos, false);
-   }, 500);
- 
-}
  
 }
 
@@ -1493,7 +1489,7 @@ function SincronizarProdutos(evt)
     //var file = document.getElementById("DadosCsv");
     var reader = new FileReader();
     reader.readAsBinaryString(request.response);
-    reader.onload = function()
+    reader.onloadend = function()
     {
      var listaProdutos = reader.result;
      console.log(listaProdutos)
