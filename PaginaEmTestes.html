@@ -414,83 +414,6 @@ align: middle; }
   <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
-
-
-</head>
-<body id="body" onkeydown="uniKeyCode(event)" > <!-- data-swipe-threshold="10"  --> 
-<div class="elementoPai" id="elementoPaiId" >
-<!-- Inicio do corpo!!! -->
-<a onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;">
-<img data-html2canvas-ignore id="setaDireita"   src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
-</a>
-<img data-html2canvas-ignore id="setaEsquerda" onclick="trocarProduto(comando-=1,false)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
-
-
-
-<!-- <div id = "modal" class="modalEstilo" style="background-color: white; width: "></div> -->
-<div id ="modalApuracao" class="apuracao" style="display: none;">
-  <h2 class="apuracaoh2">Apuração</h2>
-   <table id="table">
-    <thead>
-        <tr>
-            <th>Gerente</th>
-            <th>Produto</th>
-            <th>Aposta</th>
-        </tr>
-    </thead>
-    <tbody>
-        
-
-    </tbody>
-</table>
-  <button onclick="fnExcelReport()">Baixar (teste)</button>
-</div>
-
-<div id="prod0" class="corpo" style="">
-    <div  id="" class="corpo_detalhes">
-       <div id="referencia">
-        <div >
-          <h4 id="titulo_Peca" style="text-align: center;
-    font-size: xx-large;" >IMPORTAÇÃO DE PRODUTOS</h4>
-    <h4 id="titulo_Peca" style="
-    text-align: center;
-    font-size: x-large;
-    ">Não será visível</h4>
-            <h4 id="tituloDetalhe_Peca"></h4>
-        </div>
-        
-        <h4 id="titulo_Preco"></h4>
-       
-      </div>
-       <div id="imagem">
-       	<h2>S : Print da Tela e download automatico </h2>
-        <h2> ___ </h2>
-       	<h2> P : Tela de historico de apostas </h2>
-        <canvas></canvas>
-
-       </div>
-       
-    </div>
-
-    
-     <input type="file" name="" id="DadosCsv">
-     <button onclick="importarProdutos()" >Importar</button>
-     <!-- <button onclick="printImagem()" >Transformar os produtos em imagem</button> -->
-  </div>
-<!-- final de um produto -->
-
-<div id="prod1" class="corpo" style="display: none;"><div class="corpo_Inicio">LINE REVIEW  
-SS19 PREVIEW
-</div><div class="corpo_avaliacao"></div></div>
-
-<!-- final de um produto -->
-
-
-<!-- final do corpo!!! -->
-</div>  
-
-
 
 <script type="text/javascript">
 
@@ -1365,5 +1288,84 @@ return (sa);
 
 
     </script>
+  
+
+
+</head>
+<body id="body" onkeydown="uniKeyCode(event)" > <!-- data-swipe-threshold="10"  --> 
+<div class="elementoPai" id="elementoPaiId" >
+<!-- Inicio do corpo!!! -->
+<a onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;">
+<img data-html2canvas-ignore id="setaDireita"   src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+</a>
+<img data-html2canvas-ignore id="setaEsquerda" onclick="trocarProduto(comando-=1,false)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+
+
+
+<!-- <div id = "modal" class="modalEstilo" style="background-color: white; width: "></div> -->
+<div id ="modalApuracao" class="apuracao" style="display: none;">
+  <h2 class="apuracaoh2">Apuração</h2>
+   <table id="table">
+    <thead>
+        <tr>
+            <th>Gerente</th>
+            <th>Produto</th>
+            <th>Aposta</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+
+    </tbody>
+</table>
+  <button onclick="fnExcelReport()">Baixar (teste)</button>
+</div>
+
+<div id="prod0" class="corpo" style="">
+    <div  id="" class="corpo_detalhes">
+       <div id="referencia">
+        <div >
+          <h4 id="titulo_Peca" style="text-align: center;
+    font-size: xx-large;" >IMPORTAÇÃO DE PRODUTOS</h4>
+    <h4 id="titulo_Peca" style="
+    text-align: center;
+    font-size: x-large;
+    ">Não será visível</h4>
+            <h4 id="tituloDetalhe_Peca"></h4>
+        </div>
+        
+        <h4 id="titulo_Preco"></h4>
+       
+      </div>
+       <div id="imagem">
+       	<h2>S : Print da Tela e download automatico </h2>
+        <h2> ___ </h2>
+       	<h2> P : Tela de historico de apostas </h2>
+        <canvas></canvas>
+
+       </div>
+       
+    </div>
+
+    
+     <input type="file" name="" id="DadosCsv">
+     <button onclick="importarProdutos()" >Importar</button>
+     <!-- <button onclick="printImagem()" >Transformar os produtos em imagem</button> -->
+  </div>
+<!-- final de um produto -->
+
+<div id="prod1" class="corpo" style="display: none;"><div class="corpo_Inicio">LINE REVIEW  
+SS19 PREVIEW
+</div><div class="corpo_avaliacao"></div></div>
+
+<!-- final de um produto -->
+
+
+<!-- final do corpo!!! -->
+</div>  
+
+
+
+
 </body>
 </html>
