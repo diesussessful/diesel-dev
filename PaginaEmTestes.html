@@ -40,7 +40,7 @@ button {
     position: relative;
 }
     </style>
-    <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
+    
 
 
 
@@ -598,7 +598,10 @@ document.addEventListener('swiped-right', function(e) {
     votoGerente = "";
     votoGerenteCor = "";
     prod = parente.parentElement.parentElement.parentElement.parentElement;
+
+    
     prodRef = prod.getElementsByTagName("h4")[0].innerText;
+		
 
     var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
       console.log(prodRef);
@@ -759,7 +762,12 @@ document.addEventListener('swiped-right', function(e) {
     votoGerente = "null";
     votoGerenteCor = "null";
     prod = document.getElementById(index);
-    prodRef = prod.getElementsByTagName("h4")[0].innerText;
+    if(prod.getElementsByTagName("h4")[0]){
+    	prodRef = prod.getElementsByTagName("h4")[0].innerText;
+    }else{
+    	prodRef = "null";
+    }
+    
 
     var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
      console.log(prodRef);
