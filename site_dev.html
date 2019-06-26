@@ -1461,16 +1461,39 @@ return (sa);
 var request = new XMLHttpRequest();
 //se adicionar mais produtos, precisará mudar no final do código importarProduto o if do uIndex
 var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/produtoscs.txt";
-
+var contagem = 1;
 function carregarduasvezes()
 {
 	setTimeout(function(){ 
    	carregar()
    }, 500);
 
-	setTimeout(function(){ 
+setTimeout(function(){ 
+   	SincronizarProdutos()
+   }, 500);
+
+setTimeout(function(){ 
    	carregar()
    }, 500);
+
+setTimeout(function(){ 
+   	SincronizarProdutos()
+   }, 500);
+
+if(contagem < 2){
+
+setTimeout(function(){ 
+   	carregarduasvezes()
+   	contagem += 1;
+   }, 500);
+
+}else
+{
+	contagem = 1;
+	return 0;
+}
+
+
 }
 
 function carregar()
