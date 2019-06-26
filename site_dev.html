@@ -418,7 +418,7 @@ align: middle; }
 
 
 </head>
-<body id="body" onkeydown="uniKeyCode(event)" > <!-- data-swipe-threshold="10"  --> 
+<body id="body" onkeydown="uniKeyCode(event)" onload="SincronizarProdutos()"> <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
 <img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
@@ -874,6 +874,15 @@ console.log(gerentesNom);
   }//fim func
 
 var gerentesNom = []
+
+
+
+
+////////////////////////////////////////////////////////////////////
+
+
+
+
   function importarProdutos()
   {
     var file = document.getElementById("DadosCsv");
@@ -1279,6 +1288,7 @@ var gerentesNom = []
 
  	//console.log("AQUIAAAAA: "+gerentesNom);
     }
+
     apuracaoAtivo = false;
     function uniKeyCode(event)
     {
@@ -1442,9 +1452,350 @@ var linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_tex
 return (sa);
 }
 
-
-
-
     </script>
+
+
+
+    <script type="text/javascript">
+    	/////////////////////////////////////////
+var request = new XMLHttpRequest();
+//se adicionar mais produtos, precisará mudar no final do código importarProduto o if do uIndex
+var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/produtoscs.txt";
+
+function carregar()
+{
+  console.log("O uIndex do CARREGAR está aqui:" + uIndex)
+ //var request = new XMLHttpRequest();
+ request.open('GET',url,true);
+ request.responseType = "blob";
+ request.send();
+ request.addEventListener("load", SincronizarProdutos, false);
+}
+
+//IMPORTAR SOZINHO/////////////////////////////////////////////////////////////
+
+function SincronizarProdutos(evt)
+  {
+
+	if(!evt)
+ 	{
+  		carregar();
+    }else{
+
+
+    var file = document.getElementById("DadosCsv");
+    var reader = new FileReader();
+    reader.readAsBinaryString(request.response);
+    reader.onloadend = function()
+    {
+     var listaProdutos = reader.result;
+     console.log(listaProdutos)
+      produto = [];
+      //Quantidade de colunas que há no produto
+      pos =4;
+      
+      j = 4;
+      // i é a quantidade de produtos na planilha
+      for( var i = 0; i < 100; i++)
+      {
+          for( ; j < pos; j++){
+  
+            produto[[i,j]] = listaProdutos.split(";")[j];
+          }
+        pos = pos+4;
+ 
+        }
+    }
+    console.log(produto)
+    //Criando os produtos
+    var index = 2 //index da div na qual renomeara prod1 -- prod2 -- prod3...
+    var tituloPos = 4;
+    var refPos = 5;
+    var DetalhePos = 6;
+    var precoPos = 7;
+    var cont = 1;
+    var imgVar = 5;
+    //i = quantidade de produtos para criar
+    
+    for(i = 1; i < 100;i++)
+    {
+      if (!produto[[cont,refPos]])
+      {
+      	nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+
+          nodeCorpoFim = document.createElement("button");
+          nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
+          nodeCorpoFim.setAttribute("style","font-size: 60px;");
+          nodeCorpoFim.innerText = "FINALIZAR";
+          nodeCorpoDetalhes.appendChild(nodeCorpoFim);
+
+
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
+        return 0 ;
+      }
+      console.log(produto[[i,refPos]])
+        if(produto[[cont,tituloPos]].replace(/\s+/g, '') == "CATEGORIA")
+        {
+          nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+          nodeCorpoDetalhes.innerText = produto[[cont,refPos]].split("_")[0] + " " +  produto[[cont,refPos]].split("_")[1];
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
+          refPos +=4;
+          cont += 1;
+          precoPos +=4;
+          DetalhePos +=4;
+          tituloPos += 4;  
+          index += 1;
+        }else{
+      //inicio dos corpos
+      nodeCorpoProduto = document.createElement("div");
+      nodeCorpoProduto.setAttribute("id","prod"+index);
+      nodeCorpoProduto.setAttribute("class","corpo");
+      nodeCorpoProduto.setAttribute("style","display:none;");
+      nodeCorpoDetalhes = document.createElement("div");
+      nodeCorpoDetalhes.setAttribute("class","corpo_detalhes");
+      nodeCorpoAvaliacao = document.createElement("div");
+      nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+      //fim dos corpos
+      
+      
+      //inicio da div referencia
+      nodeDivReferencia = document.createElement("div");
+      nodeDivReferencia.setAttribute("id","referencia");
+      //inicio divvazia
+      nodeDivVazia = document.createElement("div");
+      nodeTituloPeca = document.createElement("h4");
+      nodeTituloPeca.setAttribute("id","titulo_Peca");
+      nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]].split("_")[0];
+      nodeTituloDetalhe_Peca = document.createElement("h4");
+      nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+      nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+      nodeDivVazia.appendChild(nodeTituloPeca);
+      nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+      //fim divvazia
+      //preco
+      nodeTituloPreco = document.createElement("h4");
+      nodeTituloPreco.setAttribute("id","titulo_Preco");
+      nodeTituloPreco.innerText = produto[[cont,precoPos]];
+      //fim preco
+      nodeDivReferencia.appendChild(nodeDivVazia);
+      nodeDivReferencia.appendChild(nodeTituloPreco);
+      //Fim da div Referencia
+      nodeCorpoDetalhes.appendChild(nodeDivReferencia);
+      //inicio da div imagem
+      nodeDivImagem = document.createElement("div");
+      nodeDivImagem.setAttribute("id","imagem");
+      if (produto[[i,refPos]])
+        {
+          contx = produto[[i,refPos]].split("_")[1];
+            console.log("CONT: "+contx);
+          ///if (produto[[i,refPos]].length > 22){
+          for(var ii = 1; ii < Number(contx)+1;ii++)
+          {     
+            //criando o elemento
+            nodeImg1 =  document.createElement("img");
+            nodeImg1.setAttribute("class","imagem_1");
+            nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("_")[0]+"_"+ii+".png");
+            //console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("/")[ii]);
+            nodeDivImagem.appendChild(nodeImg1);
+            
+          }
+          
+        }
+        nodeCorpoDetalhes.appendChild(nodeDivImagem);
+          
+      
+      //inicio corpo avaliacao
+      nodeDivAvaliacao = document.createElement("div");
+      nodeDivAvaliacao.setAttribute("id","avaliacao");
+      nodeDivAvaliacao.setAttribute("data-html2canvas-ignore","")
+      
+      //Div do gerente01
+      nodeGerente01 = document.createElement("div");
+      nodeGerente01.setAttribute("id","gerente01");
+      nodeGerente01.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo01 = document.createElement("h2");
+      nodeGerenteTitulo01.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      nodeGerenteTitulo01.innerText = "Gerente 1";
+      nodeGerente01.appendChild(nodeGerenteTitulo01);
+      nodeGerente01.appendChild(nodeAreaVoto);
+      //nodeGerente01.appendChild(nodeAreaVotoPreco);
+      //-----------------gerente 01 fim--------------------------
+      //Div do gerente02
+      nodeGerente02 = document.createElement("div");
+      nodeGerente02.setAttribute("id","gerente02");
+      nodeGerente02.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo02 = document.createElement("h2");
+      nodeGerenteTitulo02.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      nodeGerenteTitulo02.innerText = "Gerente 2";
+      nodeGerente02.appendChild(nodeGerenteTitulo02);
+      nodeGerente02.appendChild(nodeAreaVoto);
+      //nodeGerente02.appendChild(nodeAreaVotoPreco);
+      //----------------fim gerente 02---------------------------
+      //Div do gerente03
+      nodeGerente03 = document.createElement("div");
+      nodeGerente03.setAttribute("id","gerente03");
+      nodeGerente03.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo03 = document.createElement("h2");
+      nodeGerenteTitulo03.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+      
+      
+      nodeGerenteTitulo03.innerText = "Gerente 3";
+      nodeGerente03.appendChild(nodeGerenteTitulo03);
+      nodeGerente03.appendChild(nodeAreaVoto);
+      //nodeGerente03.appendChild(nodeAreaVotoPreco);
+      //-----------------fim gerente 03--------------------------
+      
+      nodeDivAvaliacao.appendChild(nodeGerente01);
+      nodeDivAvaliacao.appendChild(nodeGerente02);
+      nodeDivAvaliacao.appendChild(nodeGerente03);
+      nodeCorpoAvaliacao.appendChild(nodeDivAvaliacao);
+      
+      nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+      nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+      document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+      refPos +=4;
+      cont += 1;
+      precoPos +=4;
+      DetalhePos +=4;
+      tituloPos += 4;  
+      index += 1;
+      }
+    }
+
+   }
+    }
+    </script>
+
 </body>
 </html>
