@@ -391,8 +391,6 @@ align: middle; }
     top: 33%;
     font-size: 12vh;
     }
-
-
     div.apuracao
     {
       width: 100%;
@@ -401,24 +399,22 @@ align: middle; }
       position: absolute;
       z-index: 1;
       text-align: center;
-
     }
     .apuracaoh2
     {
-
     }
-
   </style>
 
   <!--Códigos de Inicialização-->
   <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
   
 
 
 </head>
-<body id="body" onkeydown="uniKeyCode(event)" > <!-- data-swipe-threshold="10"  --> 
+<body id="body" onkeydown="uniKeyCode(event)" onload="carregarduasvezes()"> <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
 <img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
@@ -492,7 +488,6 @@ SS19 PREVIEW
 
 
 <script type="text/javascript">
-
    
       /*!
     }
@@ -583,22 +578,16 @@ SS19 PREVIEW
     document.addEventListener('swiped-left', function(e) {
       document.getElementById("setaDireita").click();
 });
-
-
 document.addEventListener('swiped-right', function(e) {
     
     document.getElementById("setaEsquerda").click();
 });
-
 document.addEventListener('swiped-right', function(e) {
     
     document.getElementById("setaEsquerda").click();
 });
-
 document.addEventListener('swiped-down', function(e) {
-
      apurDownCont += 1;
-
      if (apurDownCont >= 3)
      {
      	if(!apurOpen)
@@ -606,7 +595,6 @@ document.addEventListener('swiped-down', function(e) {
      		document.getElementById("modalApuracao").style.display = "none";
      		apurOpen = true;
      		apurDownCont = 0;
-
      	}else
      	{
      		document.getElementById("modalApuracao").style.display = "block";
@@ -614,16 +602,12 @@ document.addEventListener('swiped-down', function(e) {
      		apurDownCont = 0;
      	}
      }
-
     
 });
-
-
  }
     
 var apurOpen = false;
 var apurDownCont = 0;
-
  
   function votos(elemento,parente) {
     naoIncluir = null;
@@ -631,15 +615,12 @@ var apurDownCont = 0;
     votoGerente = "";
     votoGerenteCor = "";
     prod = parente.parentElement.parentElement.parentElement.parentElement;
-
     
     prodRef = prod.getElementsByTagName("h4")[0].innerText;
 		
-
     var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
       console.log(prodRef);
       //parente.parentElement.getElementsByTagName("h2")[0].innerText PEGAR O NOME DO GERENTE
-
       
        if(elemento.id == "VotoPositivo")
         {
@@ -660,8 +641,6 @@ var apurDownCont = 0;
         elemento.alt = "OK";
         
         }
-
-
         for(var x = cont_i ;x < indiceTabelaApostas;x++){
         	
         	if(nomeGerente == tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[0].innerText){
@@ -674,17 +653,8 @@ var apurDownCont = 0;
         tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].style.backgroundColor = votoGerenteCor; 
         		}
              
-
         
-
     	}
-
-
-
-
-
-
-
       // //------------------------------------------------------------------------------------------
       
       //nodetr = new document.createElement("tr");
@@ -692,9 +662,7 @@ var apurDownCont = 0;
 // for(x = 0; x < tabela.rows.length;x++ )
 // {
 //   comp = document.getElementsByClassName("G_nome")[x].innerText + document.getElementsByClassName("G_ref")[x].innerText +document.getElementsByClassName("G_voto")[x].innerText
-
 //   comp2 = nomeGerente+prodRef+votoGerente;
-
 //   if(comp.replace(/ /g,"") == comp2.replace(/ /g,""))
 //   {
 //     naoIncluir = true;
@@ -703,34 +671,22 @@ var apurDownCont = 0;
 //     naoIncluir = false;
 //   }
 // }
-
 // if(naoIncluir){
-
   }
   //}
-
-
-
-
-
-
-
   var comando = 0;
   var direc = null;  
   var indiceTabelaApostas = 0;
   var cont_i = 0;
-
   function trocarProduto(comando,direc)
   {
   	    index = "prod" + comando;
-
   	    
         
         //indiceApostas = document.getElementById(indiceAtual);
         if(comando <= 1){//2 é o primeiro produto
         	indiceTabelaApostas = 0;
         }
-
         if( document.getElementById(index).getElementsByClassName("gerentesDiv").length > 0){
         	if(direc){
         	 	indiceTabelaApostas += document.getElementById(index).getElementsByClassName("gerentesDiv").length;
@@ -741,15 +697,9 @@ var apurDownCont = 0;
             	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
             }
   	    }
-
   	
   	    console.log("indiceTabelaApostas: "+ indiceTabelaApostas)
   	    console.log("Cont_i: "+cont_i)
-
-
-
-
-
       
        
         antIndex = "prod" + (comando - 1);
@@ -758,10 +708,7 @@ var apurDownCont = 0;
         //console.log("antIndex: " + antIndex);
         //console.log("nexIndex: " + nexIndex);
         if (document.getElementById(index)) {
-
-
       document.getElementById(index).style.display = "inline-block";
-
       if(document.getElementById(antIndex)){
       if(comando > 0){
       document.getElementById(antIndex).style.display = "none";
@@ -772,7 +719,6 @@ var apurDownCont = 0;
       document.getElementById(nexIndex).style.display = "none";
   }
      // console.log(index);
-
       for(var a = 0;a<600;a++)
     {
       if(document.getElementsByTagName("br")[a])
@@ -785,11 +731,7 @@ var apurDownCont = 0;
   {
     index = "prod" + (comando + 1);
   }
-
-
 //criando tabela
-
-
     if(direc){
     
     votoGerente = "null";
@@ -801,12 +743,9 @@ var apurDownCont = 0;
     	prodRef = "null";
     }
     
-
     var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
      console.log(prodRef);
-
      console.log("Tabela rows length: "+ tabela.rows.length)
-
 if(tabela.rows.length > 0){
 for(var tab = 0;tab < tabela.rows.length; tab++)
 {
@@ -821,20 +760,14 @@ for(var tab = 0;tab < tabela.rows.length; tab++)
 	{
 		var naoRepetido = true;
 	}
-
 }
 }else
 {
 	var naoRepetido = true;
 }
-
-
-
 if(naoRepetido){
-
 for(var x = 0; x < indiceTabelaApostas; x++) {
   var nomeGerente = document.getElementById(index).getElementsByClassName("gerentesDiv")[x].getElementsByTagName("h2")[0].innerText   
-
 	var novalinha = tabela.insertRow(tabela.rows.length);
 	for(var i = 0; i  < 3; i++)
 	{
@@ -853,7 +786,6 @@ for(var x = 0; x < indiceTabelaApostas; x++) {
     	  novaCelula.appendChild(texto);
    		  novaCelula.setAttribute("class","G_ref");
         }
-
    //voto(aposta)
    		if(i==2)
    		{
@@ -868,12 +800,9 @@ for(var x = 0; x < indiceTabelaApostas; x++) {
 }
 console.log(gerentesNom);
 }
-
-
-
   }//fim func
-
 var gerentesNom = []
+////////////////////////////////////////////////////////////////////
   function importarProdutos()
   {
     var file = document.getElementById("DadosCsv");
@@ -914,6 +843,46 @@ var gerentesNom = []
     {
       if (!produto[[cont,refPos]])
       {
+      	nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+          nodeCorpoFim = document.createElement("button");
+          nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
+          nodeCorpoFim.setAttribute("style","font-size: 60px;");
+          nodeCorpoFim.innerText = "FINALIZAR";
+          nodeCorpoDetalhes.appendChild(nodeCorpoFim);
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
         return 0 ;
       }
       console.log(produto[[i,refPos]])
@@ -1226,14 +1195,10 @@ var gerentesNom = []
       index += 1;
       }
     }
-
    // for(m = 0; m < document.getElementById("avaliacao").getElementsByTagName("div")[0].getElementsByTagName("h2").length;m++)
  	//{
  	//	 gerentesNom[m] =  document.getElementById("avaliacao").getElementsByTagName("div")[m].getElementsByTagName("h2")[0].innerText
  	//}
-
-
-
  	//console.log("AQUIAAAAA: "+gerentesNom);
     }
     apuracaoAtivo = false;
@@ -1250,7 +1215,6 @@ var gerentesNom = []
         document.getElementById("modalApuracao").style.display = "block";
         apuracaoAtivo = true;
       }
-
       }
       if(event.keyCode == 39)
       {
@@ -1260,15 +1224,11 @@ var gerentesNom = []
       {
         document.getElementById("setaEsquerda").click();
       }
-
       if(event.keyCode == 83)
       {
       	printImagem();
       }
-
-
     }
-
     function printImagem()
     {
       ind = "prod"+comando;
@@ -1280,13 +1240,11 @@ var gerentesNom = []
       html2canvas(document.querySelector("#body"),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
     
     if(document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0]){
-
     		saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
 		}else
 		{
 			saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[0].innerText + '.png');
 		}
-
 });
     }
     function saveAs(uri, filename) {
@@ -1328,7 +1286,6 @@ var gerentesNom = []
     
     
     
-
     
   
   
@@ -1338,7 +1295,6 @@ var gerentesNom = []
  <script type="text/javascript">
  	
  	
-
        function fnExcelReport(){
   var tab_text="<table border='2px'>";
   var textRange; var j=0;
@@ -1374,34 +1330,394 @@ var gerentesNom = []
     sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
   }  
   else {               //other browser not tested on IE 11
-    sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
-
-
-var linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
-    
+   sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
+    var linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
+   
     Email.send({
     SecureToken : "c0edc424-cceb-4b6e-943d-7467cceeb519",
     To : 'wanderson.barros@asteserv.com.br',
     From : "wandersonrnosrednaw@gmail.com",
-    Subject : "Apostas: " ,
-    Body : "Apuracao dos gerentes: ",
+    Subject : "Resultado das apostas",
+    Body : "Este é o email do resultado das apostas do PREVIEW",
     Attachments : [
   {
-    name : "Apuracao.xls",
+    name : "apostas.xls",
     path : linkPlanilha
   }]
 }).then(
   message => alert("Enviado com sucesso.")
 );
-
   
 }
 return (sa);
 }
-
-
-
-
     </script>
+
+
+
+    <script type="text/javascript">
+    	/////////////////////////////////////////
+
+
+var request = new XMLHttpRequest();
+//se adicionar mais produtos, precisará mudar no final do código importarProduto o if do uIndex
+var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/produtoscs.txt";
+var contagem = 1;
+window.onload = function carregarduasvezes()
+{
+	setTimeout(function(){ 
+   	carregar()
+   }, 500);
+setTimeout(function(){ 
+   	SincronizarProdutos()
+   }, 500);
+setTimeout(function(){ 
+   	carregar()
+   }, 500);
+setTimeout(function(){ 
+   	SincronizarProdutos()
+   }, 500);
+if(contagem < 2){
+setTimeout(function(){ 
+   	carregarduasvezes()
+   	contagem += 1;
+   }, 500);
+}else
+{
+	contagem = 1;
+	return 0;
+}
+}
+
+function carregar()
+{
+  
+ //var request = new XMLHttpRequest();
+ 
+   		request.open('GET',url,true);
+ 		request.responseType = "blob";
+ 		request.send();
+  		request.addEventListener("load", SincronizarProdutos, false);
+ 
+}
+//IMPORTAR SOZINHO/////////////////////////////////////////////////////////////
+function SincronizarProdutos(evt)
+  {
+  	console.log(evt)
+	if(!evt)
+ 	{
+ 		
+  		carregar();
+    }else{
+    //var file = document.getElementById("DadosCsv");
+    var reader = new FileReader();
+    reader.readAsBinaryString(request.response);
+    reader.onloadend = function()
+    {
+     var listaProdutos = reader.result;
+     console.log(listaProdutos)
+      produto = [];
+      //Quantidade de colunas que há no produto
+      pos =4;
+      
+      j = 4;
+      // i é a quantidade de produtos na planilha
+      for( var i = 0; i < 100; i++)
+      {
+          for( ; j < pos; j++){
+  
+            produto[[i,j]] = listaProdutos.split(";")[j];
+          }
+        pos = pos+4;
+ 
+        }
+    }
+    console.log(produto)
+    //Criando os produtos
+    var index = 2 //index da div na qual renomeara prod1 -- prod2 -- prod3...
+    var tituloPos = 4;
+    var refPos = 5;
+    var DetalhePos = 6;
+    var precoPos = 7;
+    var cont = 1;
+    var imgVar = 5;
+    //i = quantidade de produtos para criar
+    
+    for(i = 1; i < 100;i++)
+    {
+      if (!produto[[cont,refPos]])
+      {
+      	nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+          nodeCorpoFim = document.createElement("button");
+          nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
+          nodeCorpoFim.setAttribute("style","font-size: 60px;");
+          nodeCorpoFim.innerText = "FINALIZAR";
+          nodeCorpoDetalhes.appendChild(nodeCorpoFim);
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
+        return 0 ;
+      }
+      console.log(produto[[i,refPos]])
+        if(produto[[cont,tituloPos]].replace(/\s+/g, '') == "CATEGORIA")
+        {
+          nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+          nodeCorpoDetalhes.innerText = produto[[cont,refPos]].split("_")[0] + " " +  produto[[cont,refPos]].split("_")[1];
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
+          refPos +=4;
+          cont += 1;
+          precoPos +=4;
+          DetalhePos +=4;
+          tituloPos += 4;  
+          index += 1;
+        }else{
+      //inicio dos corpos
+      nodeCorpoProduto = document.createElement("div");
+      nodeCorpoProduto.setAttribute("id","prod"+index);
+      nodeCorpoProduto.setAttribute("class","corpo");
+      nodeCorpoProduto.setAttribute("style","display:none;");
+      nodeCorpoDetalhes = document.createElement("div");
+      nodeCorpoDetalhes.setAttribute("class","corpo_detalhes");
+      nodeCorpoAvaliacao = document.createElement("div");
+      nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+      //fim dos corpos
+      
+      
+      //inicio da div referencia
+      nodeDivReferencia = document.createElement("div");
+      nodeDivReferencia.setAttribute("id","referencia");
+      //inicio divvazia
+      nodeDivVazia = document.createElement("div");
+      nodeTituloPeca = document.createElement("h4");
+      nodeTituloPeca.setAttribute("id","titulo_Peca");
+      nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]].split("_")[0];
+      nodeTituloDetalhe_Peca = document.createElement("h4");
+      nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+      nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+      nodeDivVazia.appendChild(nodeTituloPeca);
+      nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+      //fim divvazia
+      //preco
+      nodeTituloPreco = document.createElement("h4");
+      nodeTituloPreco.setAttribute("id","titulo_Preco");
+      nodeTituloPreco.innerText = produto[[cont,precoPos]];
+      //fim preco
+      nodeDivReferencia.appendChild(nodeDivVazia);
+      nodeDivReferencia.appendChild(nodeTituloPreco);
+      //Fim da div Referencia
+      nodeCorpoDetalhes.appendChild(nodeDivReferencia);
+      //inicio da div imagem
+      nodeDivImagem = document.createElement("div");
+      nodeDivImagem.setAttribute("id","imagem");
+      if (produto[[i,refPos]])
+        {
+          contx = produto[[i,refPos]].split("_")[1];
+            console.log("CONT: "+contx);
+          ///if (produto[[i,refPos]].length > 22){
+          for(var ii = 1; ii < Number(contx)+1;ii++)
+          {     
+            //criando o elemento
+            nodeImg1 =  document.createElement("img");
+            nodeImg1.setAttribute("class","imagem_1");
+            nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("_")[0]+"_"+ii+".png");
+            //console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("/")[ii]);
+            nodeDivImagem.appendChild(nodeImg1);
+            
+          }
+          
+        }
+        nodeCorpoDetalhes.appendChild(nodeDivImagem);
+          
+      
+      //inicio corpo avaliacao
+      nodeDivAvaliacao = document.createElement("div");
+      nodeDivAvaliacao.setAttribute("id","avaliacao");
+      nodeDivAvaliacao.setAttribute("data-html2canvas-ignore","")
+      
+      //Div do gerente01
+      nodeGerente01 = document.createElement("div");
+      nodeGerente01.setAttribute("id","gerente01");
+      nodeGerente01.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo01 = document.createElement("h2");
+      nodeGerenteTitulo01.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      nodeGerenteTitulo01.innerText = "Gerente 1";
+      nodeGerente01.appendChild(nodeGerenteTitulo01);
+      nodeGerente01.appendChild(nodeAreaVoto);
+      //nodeGerente01.appendChild(nodeAreaVotoPreco);
+      //-----------------gerente 01 fim--------------------------
+      //Div do gerente02
+      nodeGerente02 = document.createElement("div");
+      nodeGerente02.setAttribute("id","gerente02");
+      nodeGerente02.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo02 = document.createElement("h2");
+      nodeGerenteTitulo02.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      nodeGerenteTitulo02.innerText = "Gerente 2";
+      nodeGerente02.appendChild(nodeGerenteTitulo02);
+      nodeGerente02.appendChild(nodeAreaVoto);
+      //nodeGerente02.appendChild(nodeAreaVotoPreco);
+      //----------------fim gerente 02---------------------------
+      //Div do gerente03
+      nodeGerente03 = document.createElement("div");
+      nodeGerente03.setAttribute("id","gerente03");
+      nodeGerente03.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo03 = document.createElement("h2");
+      nodeGerenteTitulo03.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+      
+      
+      nodeGerenteTitulo03.innerText = "Gerente 3";
+      nodeGerente03.appendChild(nodeGerenteTitulo03);
+      nodeGerente03.appendChild(nodeAreaVoto);
+     
+
+      
+      nodeDivAvaliacao.appendChild(nodeGerente01);
+      nodeDivAvaliacao.appendChild(nodeGerente02);
+      nodeDivAvaliacao.appendChild(nodeGerente03);
+      nodeCorpoAvaliacao.appendChild(nodeDivAvaliacao);
+      
+      nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+      nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+      document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+      refPos +=4;
+      cont += 1;
+      precoPos +=4;
+      DetalhePos +=4;
+      tituloPos += 4;  
+      index += 1;
+      }
+    }
+   }
+    }
+    </script>
+
 </body>
 </html>
