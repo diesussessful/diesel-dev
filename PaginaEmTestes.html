@@ -334,6 +334,7 @@ align: middle; }
       margin-left: 0px;
       margin-bottom: 0px;
       width: 266.109px;
+      color:#909090;
     }
     img#setaDireita
     {
@@ -410,11 +411,15 @@ align: middle; }
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+<!-- <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script> -->
+
   
 
 
 </head>
-<body id="body" onkeydown="uniKeyCode(event)" onload="carregarduasvezes()"> <!-- data-swipe-threshold="10"  --> 
+<body id="body" onkeydown="uniKeyCode(event)" onload="//carregarduasvezes()"> <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
 <img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
@@ -427,7 +432,7 @@ align: middle; }
   <h2 class="apuracaoh2">Apuração</h2>
    <table id="table">
     <thead>
-        <tr>
+        <tr><th>Org</th>
             <th>Gerente</th>
             <th>Produto</th>
             <th>Aposta</th>
@@ -438,7 +443,23 @@ align: middle; }
 
     </tbody>
 </table>
+
   <button onclick="fnExcelReport()">Baixar (teste)</button>
+  <button onclick="enviarapostasfunc()">Salvar na planilha</button>
+  <button onclick="fecharApur()">Voltar</button>
+  
+
+
+  <form name="submit-to-google-sheet">
+  <input style="display: none;"  id = "orgid" name="org" type="text" placeholder="org">
+  <input style="display: none;" id = "nomegerenteid" name="nomegerente" type="text" placeholder="Gerente">
+  <input style="display: none;" id = "produtoid" name="produto" type="text" placeholder="Produto">
+  <input style="display: none;" id = "apostaid" name="aposta" type="text" placeholder="Aposta">
+  
+  <button id ="enviarapostas" type="submit">Send</button>
+
+</form>
+
 </div>
 
 <div id="prod0" class="corpo" style="">
@@ -471,12 +492,13 @@ align: middle; }
      <input type="file" name="" id="DadosCsv">
      <button onclick="importarProdutos()" >Importar</button>
      <button onclick="fnExcelReport()">Baixar (teste)</button>
+     <button onclick="abrirApur()">Abrir apuração</button>
      <!-- <button onclick="printImagem()" >Transformar os produtos em imagem</button> -->
   </div>
 <!-- final de um produto -->
 
 <div id="prod1" class="corpo" style="display: none;"><div class="corpo_Inicio">LINE REVIEW  
-SS19 PREVIEW
+SS20 MAIN
 </div><div class="corpo_avaliacao"></div></div>
 
 <!-- final de um produto -->
@@ -488,8 +510,22 @@ SS19 PREVIEW
 
 
 <script type="text/javascript">
+
+   function fecharApur(){ 
+
+      document.getElementById("modalApuracao").style.display = "none";     
+ }
+ function abrirApur(){ 
+    
+      document.getElementById("modalApuracao").style.display = "block";     
+ }
+    
+var apurOpen = false;
+var apurDownCont = 0;
+
    
       /*!
+   }
     }
  * swiped-events.js - v@version@
  * Pure JavaScript swipe events
@@ -643,14 +679,14 @@ var apurDownCont = 0;
         }
         for(var x = cont_i ;x < indiceTabelaApostas;x++){
         	
-        	if(nomeGerente == tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[0].innerText){
+        	if(nomeGerente == tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText){
         		
-        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[0].innerText = nomeGerente;
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText = nomeGerente;
         		
-        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText = prodRef;
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].innerText = prodRef;
         		
-        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].innerText = votoGerente;
-        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].style.backgroundColor = votoGerenteCor; 
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[3].innerText = votoGerente;
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[3].style.backgroundColor = votoGerenteCor; 
         		}
              
         
@@ -674,133 +710,7 @@ var apurDownCont = 0;
 // if(naoIncluir){
   }
   //}
-  var comando = 0;
-  var direc = null;  
-  var indiceTabelaApostas = 0;
-  var cont_i = 0;
-  function trocarProduto(comando,direc)
-  {
-  	    index = "prod" + comando;
-  	    
-        
-        //indiceApostas = document.getElementById(indiceAtual);
-        if(comando <= 1){//2 é o primeiro produto
-        	indiceTabelaApostas = 0;
-        }
-        if( document.getElementById(index).getElementsByClassName("gerentesDiv").length > 0){
-        	if(direc){
-        	 	indiceTabelaApostas += document.getElementById(index).getElementsByClassName("gerentesDiv").length;
-        	 	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
-            }else
-            {
-            	indiceTabelaApostas -= document.getElementById(index).getElementsByClassName("gerentesDiv").length;
-            	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
-            }
-  	    }
-  	
-  	    console.log("indiceTabelaApostas: "+ indiceTabelaApostas)
-  	    console.log("Cont_i: "+cont_i)
-      
-       
-        antIndex = "prod" + (comando - 1);
-        nexIndex = "prod" + (comando + 1);
-        console.log("index: " + index);
-        //console.log("antIndex: " + antIndex);
-        //console.log("nexIndex: " + nexIndex);
-        if (document.getElementById(index)) {
-      document.getElementById(index).style.display = "inline-block";
-      if(document.getElementById(antIndex)){
-      if(comando > 0){
-      document.getElementById(antIndex).style.display = "none";
-        }
-    }
-    if (document.getElementById(nexIndex)) {
-        
-      document.getElementById(nexIndex).style.display = "none";
-  }
-     // console.log(index);
-      for(var a = 0;a<600;a++)
-    {
-      if(document.getElementsByTagName("br")[a])
-      {
-        document.getElementsByTagName("br")[a].remove();
-      }
-      
-    }
-  }else
-  {
-    index = "prod" + (comando + 1);
-  }
-//criando tabela
-    if(direc){
-    
-    votoGerente = "null";
-    votoGerenteCor = "null";
-    prod = document.getElementById(index);
-    if(prod.getElementsByTagName("h4")[0]){
-    	prodRef = prod.getElementsByTagName("h4")[0].innerText;
-    }else{
-    	prodRef = "null";
-    }
-    
-    var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
-     console.log(prodRef);
-     console.log("Tabela rows length: "+ tabela.rows.length)
-if(tabela.rows.length > 0){
-for(var tab = 0;tab < tabela.rows.length; tab++)
-{
-	comp1 = tabela.getElementsByClassName("G_ref")[tab].innerText.replace(/ /g,"");
-	
-	console.log("AQUI: "+comp1)
-	if(comp1 ==  prodRef.replace(/ /g,""))
-	{
-		var naoRepetido = false;
-		return 0;
-	}else
-	{
-		var naoRepetido = true;
-	}
-}
-}else
-{
-	var naoRepetido = true;
-}
-if(naoRepetido){
-for(var x = 0; x < indiceTabelaApostas; x++) {
-  var nomeGerente = document.getElementById(index).getElementsByClassName("gerentesDiv")[x].getElementsByTagName("h2")[0].innerText   
-	var novalinha = tabela.insertRow(tabela.rows.length);
-	for(var i = 0; i  < 3; i++)
-	{
-  	 	var novaCelula = novalinha.insertCell(i);
-   		if(i == 0){
-    //nome
-   		var texto = document.createTextNode(nomeGerente);
-   		novaCelula.appendChild(texto);
-   		novaCelula.setAttribute("class","G_nome");
-   		gerentesNom[i] += nomeGerente;
-   		}
-   //ref
-    	if(i==1)
-   		{
-    	  var texto = document.createTextNode(prodRef);
-    	  novaCelula.appendChild(texto);
-   		  novaCelula.setAttribute("class","G_ref");
-        }
-   //voto(aposta)
-   		if(i==2)
-   		{
-    	  var texto = document.createTextNode(votoGerente);
-    	  novaCelula.appendChild(texto);
-    	  novaCelula.setAttribute("style","background-color: "+votoGerenteCor+";");
-    	  novaCelula.setAttribute("class","G_voto");
-   		}
-	}
-   
-}
-}
-console.log(gerentesNom);
-}
-  }//fim func
+  
 var gerentesNom = []
 ////////////////////////////////////////////////////////////////////
   function importarProdutos()
@@ -818,7 +728,7 @@ var gerentesNom = []
       
       j = 4;
       // i é a quantidade de produtos na planilha
-      for( var i = 0; i < 100; i++)
+      for( var i = 0; i < 900; i++)
       {
           for( ; j < pos; j++){
   
@@ -839,7 +749,7 @@ var gerentesNom = []
     var imgVar = 5;
     //i = quantidade de produtos para criar
     
-    for(i = 1; i < 100;i++)
+    for(i = 1; i < 900;i++)
     {
       if (!produto[[cont,refPos]])
       {
@@ -979,7 +889,7 @@ var gerentesNom = []
             //criando o elemento
             nodeImg1 =  document.createElement("img");
             nodeImg1.setAttribute("class","imagem_1");
-            nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("_")[0]+"_"+ii+".png");
+            nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("_")[0]+"_"+ii+".PNG");
             //console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("/")[ii]);
             nodeDivImagem.appendChild(nodeImg1);
             
@@ -1039,28 +949,7 @@ var gerentesNom = []
       nodeAreaVoto.appendChild(nodeVotoTitulo);
       nodeAreaVoto.appendChild(nodeVotoPositivo);
       nodeAreaVoto.appendChild(nodeVotoNegativo);
-      //fim area de voto 1: aposta
-     //area de voto 2, preco:
-        //nodeAreaVotoPreco = document.createElement("div");
-      //nodeAreaVotoPreco.setAttribute("id","areaVoto");
-      //nodeVotoTituloPreco = document.createElement("h2");
-      //nodeVotoTituloPreco.setAttribute("class","votoTitulo");
-      //nodeVotoTituloPreco.innerText = "Preço";
-      //nodeVotoPositivoPreco = document.createElement("img");
-      //nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
-      //nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
-      //nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
-      //nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-      //nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-      //nodeVotoNegativoPreco = document.createElement("img");
-      //nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
-      //nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
-      //nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
-      //nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-      //nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-      //nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
-      //nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
-      //nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
+     
       //fim area de voto preco
       nodeGerenteTitulo01.innerText = "Gerente 1";
       nodeGerente01.appendChild(nodeGerenteTitulo01);
@@ -1094,29 +983,7 @@ var gerentesNom = []
       nodeAreaVoto.appendChild(nodeVotoTitulo);
       nodeAreaVoto.appendChild(nodeVotoPositivo);
       nodeAreaVoto.appendChild(nodeVotoNegativo);
-      //fim area de voto 1: aposta
-     //area de voto 2, preco:
-        //nodeAreaVotoPreco = document.createElement("div");
-      //nodeAreaVotoPreco.setAttribute("id","areaVoto");
-      //nodeVotoTituloPreco = document.createElement("h2");
-      //nodeVotoTituloPreco.setAttribute("class","votoTitulo");
-      //nodeVotoTituloPreco.innerText = "Preço";
-      //nodeVotoPositivoPreco = document.createElement("img");
-      //nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
-      //nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
-      //nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
-      //nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-      //nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-      //nodeVotoNegativoPreco = document.createElement("img");
-      //nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
-      //nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
-      //nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
-      //nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-      //nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-      //nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
-      //nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
-      //nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
-      //fim area de voto preco
+     
       nodeGerenteTitulo02.innerText = "Gerente 2";
       nodeGerente02.appendChild(nodeGerenteTitulo02);
       nodeGerente02.appendChild(nodeAreaVoto);
@@ -1149,39 +1016,54 @@ var gerentesNom = []
       nodeAreaVoto.appendChild(nodeVotoTitulo);
       nodeAreaVoto.appendChild(nodeVotoPositivo);
       nodeAreaVoto.appendChild(nodeVotoNegativo);
-      //fim area de voto 1: aposta
-     //area de voto 2, preco:
-       // nodeAreaVotoPreco = document.createElement("div");
-      //nodeAreaVotoPreco.setAttribute("id","areaVoto");
-      //nodeVotoTituloPreco = document.createElement("h2");
-      //nodeVotoTituloPreco.setAttribute("class","votoTitulo");
-      //nodeVotoTituloPreco.innerText = "Preço";
-      //nodeVotoPositivoPreco = document.createElement("img");
-      //nodeVotoPositivoPreco.setAttribute("class","areaVotoPreco");
-      //nodeVotoPositivoPreco.setAttribute("style","cursor:pointer;");
-      //nodeVotoPositivoPreco.setAttribute("id","VotoPrecoPositivo");
-      //nodeVotoPositivoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-      //nodeVotoPositivoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-      //nodeVotoNegativoPreco = document.createElement("img");
-      //nodeVotoNegativoPreco.setAttribute("class","areaVotoPreco");
-      //nodeVotoNegativoPreco.setAttribute("style","cursor:pointer;");
-      //nodeVotoNegativoPreco.setAttribute("id","VotoPrecoNegativo");
-      //nodeVotoNegativoPreco.setAttribute("onclick","votos(this,this.parentElement)");
-      //nodeVotoNegativoPreco.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
-      //nodeAreaVotoPreco.appendChild(nodeVotoTituloPreco);
-      //nodeAreaVotoPreco.appendChild(nodeVotoPositivoPreco);
-      //nodeAreaVotoPreco.appendChild(nodeVotoNegativoPreco);
-      //fim area de voto preco
+     
       
       nodeGerenteTitulo03.innerText = "Gerente 3";
       nodeGerente03.appendChild(nodeGerenteTitulo03);
       nodeGerente03.appendChild(nodeAreaVoto);
       //nodeGerente03.appendChild(nodeAreaVotoPreco);
       //-----------------fim gerente 03--------------------------
+
+      //------------------getente 04----------------
+      // nodeGerente04 = document.createElement("div");
+      // nodeGerente04.setAttribute("id","gerente04");
+      // nodeGerente04.setAttribute("class","gerentesDiv");
+      // nodeGerenteTitulo04 = document.createElement("h2");
+      // nodeGerenteTitulo04.setAttribute("class","nodeDivAvaliacao");
+      // //area de voto 1: aposta
+      // nodeAreaVoto = document.createElement("div");
+      // nodeAreaVoto.setAttribute("id","areaVoto");
+      // nodeVotoTitulo = document.createElement("h2");
+      // nodeVotoTitulo.setAttribute("class","votoTitulo");
+      // nodeVotoTitulo.innerText = "Aposta?";
+      // nodeVotoPositivo = document.createElement("img");
+      // nodeVotoPositivo.setAttribute("class","areaVoto");
+      // nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      // nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      // nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      // nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      // nodeVotoNegativo = document.createElement("img");
+      // nodeVotoNegativo.setAttribute("class","areaVoto");
+      // nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      // nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      // nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      // nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      // nodeAreaVoto.appendChild(nodeVotoTitulo);
+      // nodeAreaVoto.appendChild(nodeVotoPositivo);
+      // nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      // //fim area de voto preco
+      // nodeGerenteTitulo04.innerText = "Gerente 4";
+      // nodeGerente04.appendChild(nodeGerenteTitulo04);
+      // nodeGerente04.appendChild(nodeAreaVoto);
+
+      //fimGerente04
       
       nodeDivAvaliacao.appendChild(nodeGerente01);
       nodeDivAvaliacao.appendChild(nodeGerente02);
       nodeDivAvaliacao.appendChild(nodeGerente03);
+      //opcional
+      //nodeDivAvaliacao.appendChild(nodeGerente04);
       nodeCorpoAvaliacao.appendChild(nodeDivAvaliacao);
       
       nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
@@ -1294,7 +1176,7 @@ var gerentesNom = []
 
  <script type="text/javascript">
  	
- 	
+ 	var linkPlanilha =  undefined;
        function fnExcelReport(){
   var tab_text="<table border='2px'>";
   var textRange; var j=0;
@@ -1331,40 +1213,263 @@ var gerentesNom = []
   }  
   else {               //other browser not tested on IE 11
    sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
-    var linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
+    linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
+    console.log(linkPlanilha)
    
-    Email.send({
-    SecureToken : "c0edc424-cceb-4b6e-943d-7467cceeb519",
-    To : 'wanderson.barros@asteserv.com.br',
-    From : "wandersonrnosrednaw@gmail.com",
-    Subject : "Resultado das apostas",
-    Body : "Este é o email do resultado das apostas do PREVIEW",
-    Attachments : [
-  {
-    name : "apostas.xls",
-    path : linkPlanilha
-  }]
-}).then(
-  message => alert("Enviado com sucesso.")
-);
   
 }
+
 return (sa);
 }
+
+
+
+ const scriptURL = 'https://script.google.com/macros/s/AKfycbysrgaQ4zNLRH5_HIa5NUiQNeNbMzJFyDgS3nOA1Xd0kiAnUD0/exec'
+
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+
+  })
+
+
+  var response;
+
+  function enviarapostasfunc(permiss)
+  {
+  	console.log("contagemdeenvios: " + contagemdeenvios)
+  	console.log("indexdacontagem: " + indexdacontagem)
+
+ if(permiss){
+   if(contagemdeenvios == indexdacontagem){
+
+ 	contagemdeenvios += 1;
+   // indexdacontagem += 1;	
+
+    submitbutton = document.getElementById("enviarapostas");
+
+    tabela = document.getElementById("table");
+    inputorg = document.getElementById("orgid");
+    inputNomeGerente = document.getElementById("nomegerenteid");
+    inputNomeProduto = document.getElementById("produtoid");
+    inputAposta = document.getElementById("apostaid");
+
+    quantidadeGerentes = document.getElementById(index).getElementsByClassName("gerentesDiv").length
+    contagemGerenteEnvio +=  quantidadeGerentes;
+
+    
+    for(var i = indexAtual; i < contagemGerenteEnvio ;i++){
+
+    	
+   		inputorg.value =  tabela.getElementsByClassName("G_org")[i].innerText;
+        inputNomeGerente.value = tabela.getElementsByClassName("G_nome")[i].innerText;
+      	inputNomeProduto.value = tabela.getElementsByClassName("G_ref")[i].innerText;
+      	inputAposta.value = tabela.getElementsByClassName("G_voto")[i].innerText; 	
+
+      	submitbutton.click();
+    
+  }
+ 
+ indexAtual += quantidadeGerentes;
+  
+  }
+
+  }
+}
+
+
+var indexdacontagem = 0;
+var contagemdeenvios = 0;
+var permiss2 = true;
+var contagemGerenteEnvio = 0;
+var indexAtual = 0;
+
+var comando = 0;
+  var direc = null;  
+  var indiceTabelaApostas = 0;
+  var cont_i = 0;
+  var org = 0;
+  var index = "";
+  var clickCont = 0;
+
+  function trocarProduto(comando,direc)
+  {
+  	    index = "prod" + comando;
+  	    
+        
+        //indiceApostas = document.getElementById(indiceAtual);
+        if(comando <= 1){//2 é o primeiro produto
+        	indiceTabelaApostas = 0;
+        }
+        if( document.getElementById(index).getElementsByClassName("gerentesDiv").length > 0){
+        	if(direc){
+        	 	indiceTabelaApostas += document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+        	 	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+
+            }else
+            {
+            	indiceTabelaApostas -= document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            }
+  	    }
+  	
+  	    console.log("indiceTabelaApostas: "+ indiceTabelaApostas)
+  	    console.log("Cont_i: "+cont_i)
+      
+       
+        antIndex = "prod" + (comando - 1);
+        nexIndex = "prod" + (comando + 1);
+        console.log("index: " + index);
+        //console.log("antIndex: " + antIndex);
+        //console.log("nexIndex: " + nexIndex);
+        if (document.getElementById(index)) {
+      document.getElementById(index).style.display = "inline-block";
+      if(document.getElementById(antIndex)){
+      if(comando > 0){
+      document.getElementById(antIndex).style.display = "none";
+        }
+    }
+    if (document.getElementById(nexIndex)) {
+        
+      document.getElementById(nexIndex).style.display = "none";
+  }
+     // console.log(index);
+      for(var a = 0;a<900;a++)
+    {
+      if(document.getElementsByTagName("br")[a])
+      {
+        document.getElementsByTagName("br")[a].remove();
+      }
+      
+    }
+  }else
+  {
+    index = "prod" + (comando + 1);
+  }
+//criando tabela
+    if(direc){
+    
+    votoGerente = "null";
+    votoGerenteCor = "null";
+    prod = document.getElementById(index);
+    if(prod.getElementsByTagName("h4")[0]){
+    	prodRef = prod.getElementsByTagName("h4")[0].innerText;
+    }else{
+    	prodRef = "null";
+    }
+    
+    
+    var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
+     console.log(prodRef);
+     console.log("Tabela rows length: "+ tabela.rows.length)
+if(tabela.rows.length > 0){
+	enviarapostasfunc(true)////////////////////////////////////////
+	indexdacontagem += 1;
+for(var tab = 0;tab < tabela.rows.length; tab++)
+{
+	comp1 = tabela.getElementsByClassName("G_ref")[tab].innerText.replace(/ /g,"");
+	
+	console.log("AQUI: "+comp1)
+	if(comp1 ==  prodRef.replace(/ /g,""))
+	{
+		
+		var naoRepetido = false;
+		return 0;
+	}else
+	{
+		
+		var naoRepetido = true;
+
+	}
+}
+
+}else
+{
+
+	var naoRepetido = true;
+	
+}
+
+if(naoRepetido){
+
+for(var x = 0; x < indiceTabelaApostas; x++) {
+  var nomeGerente = document.getElementById(index).getElementsByClassName("gerentesDiv")[x].getElementsByTagName("h2")[0].innerText   
+	var novalinha = tabela.insertRow(tabela.rows.length);
+
+	for(var i = 0; i  < 4; i++)
+	{
+  	 	var novaCelula = novalinha.insertCell(i);
+
+
+      if(i == 0){
+    //org
+      org += 1;
+      
+      var texto = document.createTextNode(org);
+      novaCelula.appendChild(texto);
+      novaCelula.setAttribute("class","G_org");
+      
+      }
+
+   		if(i == 1){
+    //nome
+   		var texto = document.createTextNode(nomeGerente);
+   		novaCelula.appendChild(texto);
+   		novaCelula.setAttribute("class","G_nome");
+   		gerentesNom[i] += nomeGerente;
+   		}
+   //ref
+    	if(i==2)
+   		{
+    	  var texto = document.createTextNode(prodRef);
+    	  novaCelula.appendChild(texto);
+   		  novaCelula.setAttribute("class","G_ref");
+        }
+   //voto(aposta)
+   		if(i==3)
+   		{
+    	  var texto = document.createTextNode(votoGerente);
+    	  novaCelula.appendChild(texto);
+    	  novaCelula.setAttribute("style","background-color: "+votoGerenteCor+";");
+    	  novaCelula.setAttribute("class","G_voto");
+   		}
+	}
+
+   
+}
+clickCont += 1;
+}
+console.log(gerentesNom);
+}else{
+	
+   enviarapostasfunc(false)
+   indexdacontagem -= 1;
+	
+}
+  }//fim func
+
+
+
     </script>
+
+   
 
 
 
     <script type="text/javascript">
     	/////////////////////////////////////////
-
-
 var request = new XMLHttpRequest();
 //se adicionar mais produtos, precisará mudar no final do código importarProduto o if do uIndex
 var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/produtoscs.txt";
 var contagem = 1;
 var feito = false;
-window.onload = function carregarduasvezes()
+//window.onload = 
+function carregarduasvezes()
 {
 	setTimeout(function(){ 
    	carregar()
@@ -1389,7 +1494,6 @@ setTimeout(function(){
 	return 0;
 }
 }
-
 function carregar()
 {
   
@@ -1424,7 +1528,7 @@ function SincronizarProdutos(evt)
       
       j = 4;
       // i é a quantidade de produtos na planilha
-      for( var i = 0; i < 100; i++)
+      for( var i = 0; i < 900; i++)
       {
           for( ; j < pos; j++){
   
@@ -1445,7 +1549,7 @@ function SincronizarProdutos(evt)
     var imgVar = 5;
     //i = quantidade de produtos para criar
     
-    for(i = 1; i < 100;i++)
+    for(i = 1; i < 900;i++)
     {
       if (!produto[[cont,refPos]])
       {
@@ -1456,9 +1560,9 @@ function SincronizarProdutos(evt)
           nodeCorpoDetalhes = document.createElement("div");
           nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
           nodeCorpoFim = document.createElement("button");
-          nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
+          nodeCorpoFim.setAttribute("onclick","");
           nodeCorpoFim.setAttribute("style","font-size: 60px;");
-          nodeCorpoFim.innerText = "FINALIZAR";
+          nodeCorpoFim.innerText = "FIM";
           nodeCorpoDetalhes.appendChild(nodeCorpoFim);
           nodeCorpoAvaliacao = document.createElement("div");
           nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
@@ -1698,12 +1802,49 @@ function SincronizarProdutos(evt)
       nodeGerenteTitulo03.innerText = "Gerente 3";
       nodeGerente03.appendChild(nodeGerenteTitulo03);
       nodeGerente03.appendChild(nodeAreaVoto);
-     
+      //fim gerente 03
 
+      //------------------getente 04----------------
+      // nodeGerente04 = document.createElement("div");
+      // nodeGerente04.setAttribute("id","gerente04");
+      // nodeGerente04.setAttribute("class","gerentesDiv");
+      // nodeGerenteTitulo04 = document.createElement("h2");
+      // nodeGerenteTitulo04.setAttribute("class","nodeDivAvaliacao");
+      // //area de voto 1: aposta
+      // nodeAreaVoto = document.createElement("div");
+      // nodeAreaVoto.setAttribute("id","areaVoto");
+      // nodeVotoTitulo = document.createElement("h2");
+      // nodeVotoTitulo.setAttribute("class","votoTitulo");
+      // nodeVotoTitulo.innerText = "Aposta?";
+      // nodeVotoPositivo = document.createElement("img");
+      // nodeVotoPositivo.setAttribute("class","areaVoto");
+      // nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      // nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      // nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      // nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      // nodeVotoNegativo = document.createElement("img");
+      // nodeVotoNegativo.setAttribute("class","areaVoto");
+      // nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      // nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      // nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      // nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      // nodeAreaVoto.appendChild(nodeVotoTitulo);
+      // nodeAreaVoto.appendChild(nodeVotoPositivo);
+      // nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      // //fim area de voto preco
+      // nodeGerenteTitulo04.innerText = "Gerente 4";
+      // nodeGerente04.appendChild(nodeGerenteTitulo04);
+      // nodeGerente04.appendChild(nodeAreaVoto);
+      
+      //fimGerente04
+     
       
       nodeDivAvaliacao.appendChild(nodeGerente01);
       nodeDivAvaliacao.appendChild(nodeGerente02);
       nodeDivAvaliacao.appendChild(nodeGerente03);
+      //opcional
+      //nodeDivAvaliacao.appendChild(nodeGerente04);
       nodeCorpoAvaliacao.appendChild(nodeDivAvaliacao);
       
       nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
