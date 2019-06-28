@@ -391,8 +391,6 @@ align: middle; }
     top: 33%;
     font-size: 12vh;
     }
-
-
     div.apuracao
     {
       width: 100%;
@@ -401,19 +399,21 @@ align: middle; }
       position: absolute;
       z-index: 1;
       text-align: center;
-
     }
     .apuracaoh2
     {
-
     }
-
   </style>
 
   <!--Códigos de Inicialização-->
   <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+
   
 
 
@@ -431,7 +431,7 @@ align: middle; }
   <h2 class="apuracaoh2">Apuração</h2>
    <table id="table">
     <thead>
-        <tr>
+        <tr><th>Org</th>
             <th>Gerente</th>
             <th>Produto</th>
             <th>Aposta</th>
@@ -442,7 +442,21 @@ align: middle; }
 
     </tbody>
 </table>
+
   <button onclick="fnExcelReport()">Baixar (teste)</button>
+  <button onclick="enviarapostasfunc()">Salvar na planilha</button>
+  
+
+
+  <form name="submit-to-google-sheet">
+  <input  id = "orgid" name="org" type="text" placeholder="org">
+  <input  id = "nomegerenteid" name="nomegerente" type="text" placeholder="Gerente">
+  <input id = "produtoid" name="produto" type="text" placeholder="Produto">
+  <input id = "apostaid" name="aposta" type="text" placeholder="Aposta">
+  
+  <button id ="enviarapostas" type="submit">Send</button>
+</form>
+
 </div>
 
 <div id="prod0" class="corpo" style="">
@@ -492,7 +506,6 @@ SS19 PREVIEW
 
 
 <script type="text/javascript">
-
    
       /*!
     }
@@ -583,22 +596,16 @@ SS19 PREVIEW
     document.addEventListener('swiped-left', function(e) {
       document.getElementById("setaDireita").click();
 });
-
-
 document.addEventListener('swiped-right', function(e) {
     
     document.getElementById("setaEsquerda").click();
 });
-
 document.addEventListener('swiped-right', function(e) {
     
     document.getElementById("setaEsquerda").click();
 });
-
 document.addEventListener('swiped-down', function(e) {
-
      apurDownCont += 1;
-
      if (apurDownCont >= 3)
      {
      	if(!apurOpen)
@@ -606,7 +613,6 @@ document.addEventListener('swiped-down', function(e) {
      		document.getElementById("modalApuracao").style.display = "none";
      		apurOpen = true;
      		apurDownCont = 0;
-
      	}else
      	{
      		document.getElementById("modalApuracao").style.display = "block";
@@ -614,16 +620,12 @@ document.addEventListener('swiped-down', function(e) {
      		apurDownCont = 0;
      	}
      }
-
     
 });
-
-
  }
     
 var apurOpen = false;
 var apurDownCont = 0;
-
  
   function votos(elemento,parente) {
     naoIncluir = null;
@@ -631,15 +633,12 @@ var apurDownCont = 0;
     votoGerente = "";
     votoGerenteCor = "";
     prod = parente.parentElement.parentElement.parentElement.parentElement;
-
     
     prodRef = prod.getElementsByTagName("h4")[0].innerText;
 		
-
     var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
       console.log(prodRef);
       //parente.parentElement.getElementsByTagName("h2")[0].innerText PEGAR O NOME DO GERENTE
-
       
        if(elemento.id == "VotoPositivo")
         {
@@ -660,31 +659,20 @@ var apurDownCont = 0;
         elemento.alt = "OK";
         
         }
-
-
         for(var x = cont_i ;x < indiceTabelaApostas;x++){
         	
-        	if(nomeGerente == tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[0].innerText){
+        	if(nomeGerente == tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText){
         		
-        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[0].innerText = nomeGerente;
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText = nomeGerente;
         		
-        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText = prodRef;
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].innerText = prodRef;
         		
-        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].innerText = votoGerente;
-        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].style.backgroundColor = votoGerenteCor; 
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[3].innerText = votoGerente;
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[3].style.backgroundColor = votoGerenteCor; 
         		}
              
-
         
-
     	}
-
-
-
-
-
-
-
       // //------------------------------------------------------------------------------------------
       
       //nodetr = new document.createElement("tr");
@@ -692,9 +680,7 @@ var apurDownCont = 0;
 // for(x = 0; x < tabela.rows.length;x++ )
 // {
 //   comp = document.getElementsByClassName("G_nome")[x].innerText + document.getElementsByClassName("G_ref")[x].innerText +document.getElementsByClassName("G_voto")[x].innerText
-
 //   comp2 = nomeGerente+prodRef+votoGerente;
-
 //   if(comp.replace(/ /g,"") == comp2.replace(/ /g,""))
 //   {
 //     naoIncluir = true;
@@ -703,34 +689,23 @@ var apurDownCont = 0;
 //     naoIncluir = false;
 //   }
 // }
-
 // if(naoIncluir){
-
   }
   //}
-
-
-
-
-
-
-
   var comando = 0;
   var direc = null;  
   var indiceTabelaApostas = 0;
   var cont_i = 0;
-
+  var org = 0;
   function trocarProduto(comando,direc)
   {
   	    index = "prod" + comando;
-
   	    
         
         //indiceApostas = document.getElementById(indiceAtual);
         if(comando <= 1){//2 é o primeiro produto
         	indiceTabelaApostas = 0;
         }
-
         if( document.getElementById(index).getElementsByClassName("gerentesDiv").length > 0){
         	if(direc){
         	 	indiceTabelaApostas += document.getElementById(index).getElementsByClassName("gerentesDiv").length;
@@ -741,15 +716,9 @@ var apurDownCont = 0;
             	cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
             }
   	    }
-
   	
   	    console.log("indiceTabelaApostas: "+ indiceTabelaApostas)
   	    console.log("Cont_i: "+cont_i)
-
-
-
-
-
       
        
         antIndex = "prod" + (comando - 1);
@@ -758,10 +727,7 @@ var apurDownCont = 0;
         //console.log("antIndex: " + antIndex);
         //console.log("nexIndex: " + nexIndex);
         if (document.getElementById(index)) {
-
-
       document.getElementById(index).style.display = "inline-block";
-
       if(document.getElementById(antIndex)){
       if(comando > 0){
       document.getElementById(antIndex).style.display = "none";
@@ -772,7 +738,6 @@ var apurDownCont = 0;
       document.getElementById(nexIndex).style.display = "none";
   }
      // console.log(index);
-
       for(var a = 0;a<600;a++)
     {
       if(document.getElementsByTagName("br")[a])
@@ -785,11 +750,7 @@ var apurDownCont = 0;
   {
     index = "prod" + (comando + 1);
   }
-
-
 //criando tabela
-
-
     if(direc){
     
     votoGerente = "null";
@@ -801,12 +762,9 @@ var apurDownCont = 0;
     	prodRef = "null";
     }
     
-
     var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
      console.log(prodRef);
-
      console.log("Tabela rows length: "+ tabela.rows.length)
-
 if(tabela.rows.length > 0){
 for(var tab = 0;tab < tabela.rows.length; tab++)
 {
@@ -821,25 +779,32 @@ for(var tab = 0;tab < tabela.rows.length; tab++)
 	{
 		var naoRepetido = true;
 	}
-
 }
 }else
 {
 	var naoRepetido = true;
 }
-
-
-
 if(naoRepetido){
-
 for(var x = 0; x < indiceTabelaApostas; x++) {
   var nomeGerente = document.getElementById(index).getElementsByClassName("gerentesDiv")[x].getElementsByTagName("h2")[0].innerText   
-
 	var novalinha = tabela.insertRow(tabela.rows.length);
-	for(var i = 0; i  < 3; i++)
+
+	for(var i = 0; i  < 4; i++)
 	{
   	 	var novaCelula = novalinha.insertCell(i);
-   		if(i == 0){
+
+
+      if(i == 0){
+    //org
+      org += 1;
+
+      var texto = document.createTextNode(org);
+      novaCelula.appendChild(texto);
+      novaCelula.setAttribute("class","G_org");
+      
+      }
+
+   		if(i == 1){
     //nome
    		var texto = document.createTextNode(nomeGerente);
    		novaCelula.appendChild(texto);
@@ -847,15 +812,14 @@ for(var x = 0; x < indiceTabelaApostas; x++) {
    		gerentesNom[i] += nomeGerente;
    		}
    //ref
-    	if(i==1)
+    	if(i==2)
    		{
     	  var texto = document.createTextNode(prodRef);
     	  novaCelula.appendChild(texto);
    		  novaCelula.setAttribute("class","G_ref");
         }
-
    //voto(aposta)
-   		if(i==2)
+   		if(i==3)
    		{
     	  var texto = document.createTextNode(votoGerente);
     	  novaCelula.appendChild(texto);
@@ -868,21 +832,9 @@ for(var x = 0; x < indiceTabelaApostas; x++) {
 }
 console.log(gerentesNom);
 }
-
-
-
   }//fim func
-
 var gerentesNom = []
-
-
-
-
 ////////////////////////////////////////////////////////////////////
-
-
-
-
   function importarProdutos()
   {
     var file = document.getElementById("DadosCsv");
@@ -929,14 +881,11 @@ var gerentesNom = []
           nodeCorpoProduto.setAttribute("style","display:none;");
           nodeCorpoDetalhes = document.createElement("div");
           nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
-
           nodeCorpoFim = document.createElement("button");
           nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
           nodeCorpoFim.setAttribute("style","font-size: 60px;");
           nodeCorpoFim.innerText = "FINALIZAR";
           nodeCorpoDetalhes.appendChild(nodeCorpoFim);
-
-
           nodeCorpoAvaliacao = document.createElement("div");
           nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
           
@@ -1278,17 +1227,12 @@ var gerentesNom = []
       index += 1;
       }
     }
-
    // for(m = 0; m < document.getElementById("avaliacao").getElementsByTagName("div")[0].getElementsByTagName("h2").length;m++)
  	//{
  	//	 gerentesNom[m] =  document.getElementById("avaliacao").getElementsByTagName("div")[m].getElementsByTagName("h2")[0].innerText
  	//}
-
-
-
  	//console.log("AQUIAAAAA: "+gerentesNom);
     }
-
     apuracaoAtivo = false;
     function uniKeyCode(event)
     {
@@ -1303,7 +1247,6 @@ var gerentesNom = []
         document.getElementById("modalApuracao").style.display = "block";
         apuracaoAtivo = true;
       }
-
       }
       if(event.keyCode == 39)
       {
@@ -1313,15 +1256,11 @@ var gerentesNom = []
       {
         document.getElementById("setaEsquerda").click();
       }
-
       if(event.keyCode == 83)
       {
       	printImagem();
       }
-
-
     }
-
     function printImagem()
     {
       ind = "prod"+comando;
@@ -1333,13 +1272,11 @@ var gerentesNom = []
       html2canvas(document.querySelector("#body"),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
     
     if(document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0]){
-
     		saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
 		}else
 		{
 			saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[0].innerText + '.png');
 		}
-
 });
     }
     function saveAs(uri, filename) {
@@ -1381,7 +1318,6 @@ var gerentesNom = []
     
     
     
-
     
   
   
@@ -1390,8 +1326,7 @@ var gerentesNom = []
 
  <script type="text/javascript">
  	
- 	
-
+ 	var linkPlanilha =  undefined;
        function fnExcelReport(){
   var tab_text="<table border='2px'>";
   var textRange; var j=0;
@@ -1427,32 +1362,54 @@ var gerentesNom = []
     sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
   }  
   else {               //other browser not tested on IE 11
-    sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
-
-
-var linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
-    
-    Email.send({
-    SecureToken : "c0edc424-cceb-4b6e-943d-7467cceeb519",
-    To : 'wanderson.barros@asteserv.com.br',
-    From : "wandersonrnosrednaw@gmail.com",
-    Subject : "Apostas: " ,
-    Body : "Apuracao dos gerentes: ",
-    Attachments : [
-  {
-    name : "Apuracao.xls",
-    path : linkPlanilha
-  }]
-}).then(
-  message => alert("Enviado com sucesso.")
-);
-
+   sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
+    linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
+    console.log(linkPlanilha)
+   
   
 }
+
 return (sa);
 }
 
+
+
+ const scriptURL = 'https://script.google.com/macros/s/AKfycbysrgaQ4zNLRH5_HIa5NUiQNeNbMzJFyDgS3nOA1Xd0kiAnUD0/exec'
+
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+
+  })
+
+  function enviarapostasfunc()
+  {
+    submitbutton = document.getElementById("enviarapostas");
+
+    tabela = document.getElementById("table");
+    inputorg = document.getElementById("orgid");
+    inputNomeGerente = document.getElementById("nomegerenteid");
+    inputNomeProduto = document.getElementById("produtoid");
+    inputAposta = document.getElementById("apostaid");
+    
+    for(var i = 0; i < tabela.rows.length;i++){
+      inputorg.value =  tabela.getElementsByClassName("G_org")[i].innerText;
+      inputNomeGerente.value = tabela.getElementsByClassName("G_nome")[i].innerText;
+      inputNomeProduto.value = tabela.getElementsByClassName("G_ref")[i].innerText;
+      inputAposta.value = tabela.getElementsByClassName("G_voto")[i].innerText;
+
+      submitbutton.click();
+  }
+
+  }
     </script>
+
+   
 
 
 
@@ -1462,40 +1419,32 @@ var request = new XMLHttpRequest();
 //se adicionar mais produtos, precisará mudar no final do código importarProduto o if do uIndex
 var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/produtoscs.txt";
 var contagem = 1;
+var feito = false;
 window.onload = function carregarduasvezes()
 {
 	setTimeout(function(){ 
    	carregar()
    }, 500);
-
 setTimeout(function(){ 
    	SincronizarProdutos()
    }, 500);
-
 setTimeout(function(){ 
    	carregar()
    }, 500);
-
 setTimeout(function(){ 
    	SincronizarProdutos()
    }, 500);
-
 if(contagem < 2){
-
 setTimeout(function(){ 
    	carregarduasvezes()
    	contagem += 1;
    }, 500);
-
 }else
 {
 	contagem = 1;
 	return 0;
 }
-
-
 }
-
 function carregar()
 {
   
@@ -1507,9 +1456,7 @@ function carregar()
   		request.addEventListener("load", SincronizarProdutos, false);
  
 }
-
 //IMPORTAR SOZINHO/////////////////////////////////////////////////////////////
-
 function SincronizarProdutos(evt)
   {
   	console.log(evt)
@@ -1518,9 +1465,8 @@ function SincronizarProdutos(evt)
  		
   		carregar();
     }else{
-
-
     //var file = document.getElementById("DadosCsv");
+    if(!feito){
     var reader = new FileReader();
     reader.readAsBinaryString(request.response);
     reader.onloadend = function()
@@ -1564,14 +1510,11 @@ function SincronizarProdutos(evt)
           nodeCorpoProduto.setAttribute("style","display:none;");
           nodeCorpoDetalhes = document.createElement("div");
           nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
-
           nodeCorpoFim = document.createElement("button");
           nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
           nodeCorpoFim.setAttribute("style","font-size: 60px;");
           nodeCorpoFim.innerText = "FINALIZAR";
           nodeCorpoDetalhes.appendChild(nodeCorpoFim);
-
-
           nodeCorpoAvaliacao = document.createElement("div");
           nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
           
@@ -1810,8 +1753,7 @@ function SincronizarProdutos(evt)
       nodeGerenteTitulo03.innerText = "Gerente 3";
       nodeGerente03.appendChild(nodeGerenteTitulo03);
       nodeGerente03.appendChild(nodeAreaVoto);
-      //nodeGerente03.appendChild(nodeAreaVotoPreco);
-      //-----------------fim gerente 03--------------------------
+     
       
       nodeDivAvaliacao.appendChild(nodeGerente01);
       nodeDivAvaliacao.appendChild(nodeGerente02);
@@ -1827,10 +1769,14 @@ function SincronizarProdutos(evt)
       DetalhePos +=4;
       tituloPos += 4;  
       index += 1;
+      feito = true;
       }
     }
-
-   }
+   }else
+{
+	console.log("Já Feito")
+}
+}
     }
     </script>
 
