@@ -410,9 +410,9 @@ align: middle; }
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<!-- <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
 <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
-<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script> -->
 
   
 
@@ -450,12 +450,13 @@ align: middle; }
 
 
   <form name="submit-to-google-sheet">
-  <input  id = "orgid" name="org" type="text" placeholder="org">
-  <input  id = "nomegerenteid" name="nomegerente" type="text" placeholder="Gerente">
-  <input id = "produtoid" name="produto" type="text" placeholder="Produto">
-  <input id = "apostaid" name="aposta" type="text" placeholder="Aposta">
+  <input style="display: none;"  id = "orgid" name="org" type="text" placeholder="org">
+  <input style="display: none;" id = "nomegerenteid" name="nomegerente" type="text" placeholder="Gerente">
+  <input style="display: none;" id = "produtoid" name="produto" type="text" placeholder="Produto">
+  <input style="display: none;" id = "apostaid" name="aposta" type="text" placeholder="Aposta">
   
   <button id ="enviarapostas" type="submit">Send</button>
+  
 </form>
 
 </div>
@@ -1527,7 +1528,7 @@ function SincronizarProdutos(evt)
           nodeCorpoDetalhes = document.createElement("div");
           nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
           nodeCorpoFim = document.createElement("button");
-          nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
+          nodeCorpoFim.setAttribute("onclick","enviarapostasfunc()");
           nodeCorpoFim.setAttribute("style","font-size: 60px;");
           nodeCorpoFim.innerText = "FINALIZAR";
           nodeCorpoDetalhes.appendChild(nodeCorpoFim);
