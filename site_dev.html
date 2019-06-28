@@ -445,6 +445,7 @@ align: middle; }
 
   <button onclick="fnExcelReport()">Baixar (teste)</button>
   <button onclick="enviarapostasfunc()">Salvar na planilha</button>
+  <button onclick="fecharApur()">Voltar</button>
   
 
 
@@ -489,6 +490,7 @@ align: middle; }
      <input type="file" name="" id="DadosCsv">
      <button onclick="importarProdutos()" >Importar</button>
      <button onclick="fnExcelReport()">Baixar (teste)</button>
+     <button onclick="abrirApur()">Abrir apuração</button>
      <!-- <button onclick="printImagem()" >Transformar os produtos em imagem</button> -->
   </div>
 <!-- final de um produto -->
@@ -506,8 +508,22 @@ SS19 PREVIEW
 
 
 <script type="text/javascript">
+
+   function fecharApur(){ 
+
+      document.getElementById("modalApuracao").style.display = "none";     
+ }
+ function abrirApur(){ 
+    
+      document.getElementById("modalApuracao").style.display = "block";     
+ }
+    
+var apurOpen = false;
+var apurDownCont = 0;
+
    
       /*!
+   }
     }
  * swiped-events.js - v@version@
  * Pure JavaScript swipe events
