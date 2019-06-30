@@ -1,182 +1,381 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Git Login App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="upload.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="upload.js"></script>
-    <style type="text/css">
-      #progress-wrp {
-    border: 1px solid #0099CC;
-    padding: 1px;
-    position: relative;
-    height: 30px;
-    border-radius: 3px;
-    margin: 10px;
-    text-align: left;
-    background: #fff;
-    box-shadow: inset 1px 3px 6px rgba(0, 0, 0, 0.12);
-  }
-  
-  #progress-wrp .progress-bar {
-    height: 100%;
-    border-radius: 3px;
-    background-color: #f39ac7;
-    width: 0;
-    box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.11);
-  }
-  
-  #progress-wrp .status {
-    top: 3px;
-    left: 50%;
-    position: absolute;
-    display: inline-block;
-    color: #000000;
-  }
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <style>
+    #drop_zone {
+      border: 2px dashed #bbb;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      padding: 25px;
+      text-align: center;
+      font: 20pt bold 'Helvetica';
+      color: #bbb;
+    }
     </style>
-</head>
-<body>
-   <div>
-     <input id="files" type="file" name="files[]" multiple/>
-     <button id="upload">Upload</button>
-     <div id="progress-wrp">
-        <div class="progress-bar"></div>
-        <div class="status">0%</div>
-    </div>
-   </div> 
-   <div id="result">
+  </head>
+  <body>
+      <span id="signin">
+        <span
+          class="g-signin"
+          data-callback="signinCallback"
+          data-clientid="692008307570.apps.googleusercontent.com"
+          data-cookiepolicy="single_host_origin"
+          data-scope="https://www.googleapis.com/auth/drive.file">
+        </span>
+      </span>
+
+      <div id="drop_zone" style="display:block;">Drop files here</div>
+
+     <!-- <input id="arquivo" type="file" name="">
+     <button onclick="enviarArquivo()" >Enviar!</button> -->
+
+     <div id="results"/>
+     <script src="upload.js"></script>
+     <script type="text/javascript">
+     
+       var accessToken = 'ya29.Gls3B6ix2zQ4Ae-7pNf4StTbusoMvjov4zgparHvctZmfvIgR6TwGEsQzx90mqnClqaCt22Q87WQofkVSHnM8oYoBGgPXg2IKpe9MuaZFXTgwLIIrPETzq5pnUNV';
        
-   </div>
-
-   <script type="text/javascript">
-
- $(document).ready(function(){
-    
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    const redirect_uri = "http://localhost:8000/Desktop/TESTE_ENVIO_DRIVE.html" // replace with your redirect_uri;
-    const client_secret = "F2G6R1SKwj3Q_K38ofnvd1mZ"; // replace with your client secret
-    const scope = "https://www.googleapis.com/auth/drive";
-    var access_token= "ya29.Gls3Bx8EjS0Dny2KtyHpd4pHZ4RmKcSccoKig9isMwNR_IJUsbrhhj2WU3oaRr0oTpc9ZX0XVcXC9arGDGgu1qcsJXBw-9mmU4hyKBUaE9y_129uMKZLtQj-fWsv";
-    var client_id = "979521732847-ok4nfvn6p6mn0r24alalih2057lqritb.apps.googleusercontent.com"// replace it with your client id;
-    
-
-    $.ajax({
-        type: 'POST',
-        url: "https://www.googleapis.com/oauth2/v4/token",
-        data: {code:code
-            ,redirect_uri:redirect_uri,
-            client_secret:client_secret,
-        client_id:client_id,
-        scope:scope,
-        grant_type:"authorization_code"},
-        dataType: "json",
-        success: function(resultData) {
-           
-            
-           localStorage.setItem("accessToken",resultData.access_token);
-           localStorage.setItem("refreshToken",resultData.refreshToken);
-           localStorage.setItem("expires_in",resultData.expires_in);
-           window.history.pushState({}, document.title, "/GitLoginApp/" + "upload.html");
-           
-           
-           
-           
-        }
-  });
-
-    function stripQueryStringAndHashFromPath(url) {
-        return url.split("?")[0].split("#")[0];
-    }   
-
-    var Upload = function (file) {
-        this.file = file;
-    };
-    
-    Upload.prototype.getType = function() {
-        localStorage.setItem("type",this.file.type);
-        return this.file.type;
-    };
-    Upload.prototype.getSize = function() {
-        localStorage.setItem("size",this.file.size);
-        return this.file.size;
-    };
-    Upload.prototype.getName = function() {
-        return this.file.name;
-    };
-    Upload.prototype.doUpload = function () {
-        var that = this;
-        var formData = new FormData();
-    
-        // add assoc key values, this will be posts values
-        formData.append("file", this.file, this.getName());
-        formData.append("upload_file", true);
-    
-        $.ajax({
-            type: "POST",
-            beforeSend: function(request) {
-                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-                
-            },
-            url: "https://www.googleapis.com/upload/drive/v2/files",
-            data:{
-                uploadType:"media"
-            },
-            xhr: function () {
-                var myXhr = $.ajaxSettings.xhr();
-                if (myXhr.upload) {
-                    myXhr.upload.addEventListener('progress', that.progressHandling, false);
-                }
-                return myXhr;
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (error) {
-                console.log(error);
-            },
-            async: true,
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 60000
-        });
-    };
-    
-    Upload.prototype.progressHandling = function (event) {
-        var percent = 0;
-        var position = event.loaded || event.position;
-        var total = event.total;
-        var progress_bar_id = "#progress-wrp";
-        if (event.lengthComputable) {
-            percent = Math.ceil(position / total * 100);
-        }
-        // update progressbars classes so it fits your code
-        $(progress_bar_id + " .progress-bar").css("width", +percent + "%");
-        $(progress_bar_id + " .status").text(percent + "%");
-    };
-
-    $("#upload").on("click", function (e) {
-        var file = $("#files")[0].files[0];
-        var upload = new Upload(file);
-    
-        // maby check size or type here with upload.getSize() and upload.getType()
-    
-        // execute upload
-        upload.doUpload();
-    });
+       /**
+        * Callback for G+ Sign-in. Swaps views if login successful.
+        */
+       function signinCallback(result) {
+           if(result.access_token) {
+               accessToken = result.access_token;
+               document.getElementById('signin').style.display = 'none';
+               document.getElementById('drop_zone').style.display = null;
+           }
+       }
+ 
+       /**
+        * Called when files are dropped on to the drop target. For each file,
+        * uploads the content to Drive & displays the results when complete.
+        */
+       function handleFileSelect(evt) {
+         evt.stopPropagation();
+         evt.preventDefault();
+         var files = evt.dataTransfer.files; // FileList object.
+         
+         var output = [];
+         for (var i = 0, f; f = files[i]; i++) {
+             var uploader = new MediaUploader({
+                 file: f,
+                 token: accessToken,
+                 onComplete: function(data) {
+                     var element = document.createElement("pre");
+                     element.appendChild(document.createTextNode(data));
+                     document.getElementById('results').appendChild(element);
+                 }
+             });
+             uploader.upload();
+         }
+       }
 
 
 
-    
-});</script>
-</body>
+       // function enviarArquivo() {
+         
+       //   var files = document.getElementById("arquivo").files; // FileList object.
+         
+       //   var output = [];
+       //   for (var i = 0, f; f = files[i]; i++) {
+       //       var uploader = new MediaUploader({
+       //           file: f,
+       //           token: accessToken,
+       //           onComplete: function(data) {
+       //               var element = document.createElement("pre");
+       //               element.appendChild(document.createTextNode(data));
+       //               document.getElementById('results').appendChild(element);
+       //           }
+       //       });
+       //       uploader.upload();
+       //   }
+       // }
+       /**
+        * Dragover handler to set the drop effect.
+        */
+       function handleDragOver(evt) {
+         evt.stopPropagation();
+         evt.preventDefault();
+         evt.dataTransfer.dropEffect = 'copy'; 
+       }
+       /**
+        * Wire up drag & drop listeners once page loads
+        */
+       document.addEventListener('DOMContentLoaded', function () {
+           var dropZone = document.getElementById('drop_zone');
+           dropZone.addEventListener('dragover', handleDragOver, false);
+           dropZone.addEventListener('drop', handleFileSelect, false);
+       });
+     </script>
+     <script src="https://apis.google.com/js/client:plusone.js"></script>
+     <script type="text/javascript">
+         /**
+ * Helper for implementing retries with backoff. Initial retry
+ * delay is 1 second, increasing by 2x (+jitter) for subsequent retries
+ *
+ * @constructor
+ */
+var RetryHandler = function() {
+  this.interval = 1000; // Start at one second
+  this.maxInterval = 60 * 1000; // Don't wait longer than a minute 
+};
+
+/**
+ * Invoke the function after waiting
+ *
+ * @param {function} fn Function to invoke
+ */
+RetryHandler.prototype.retry = function(fn) {
+  setTimeout(fn, this.interval);
+  this.interval = this.nextInterval_();
+};
+
+/**
+ * Reset the counter (e.g. after successful request.)
+ */
+RetryHandler.prototype.reset = function() {
+  this.interval = 1000;
+};
+
+/**
+ * Calculate the next wait time.
+ * @return {number} Next wait interval, in milliseconds
+ *
+ * @private
+ */
+RetryHandler.prototype.nextInterval_ = function() {
+  var interval = this.interval * 2 + this.getRandomInt_(0, 1000);
+  return Math.min(interval, this.maxInterval);
+};
+
+/**
+ * Get a random int in the range of min to max. Used to add jitter to wait times.
+ *
+ * @param {number} min Lower bounds
+ * @param {number} max Upper bounds
+ * @private
+ */
+RetryHandler.prototype.getRandomInt_ = function(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 
 
+/**
+ * Helper class for resumable uploads using XHR/CORS. Can upload any Blob-like item, whether
+ * files or in-memory constructs.
+ *
+ * @example
+ * var content = new Blob(["Hello world"], {"type": "text/plain"});
+ * var uploader = new MediaUploader({
+ *   file: content,
+ *   token: accessToken,
+ *   onComplete: function(data) { ... }
+ *   onError: function(data) { ... }
+ * });
+ * uploader.upload();
+ *
+ * @constructor
+ * @param {object} options Hash of options
+ * @param {string} options.token Access token
+ * @param {blob} options.file Blob-like item to upload
+ * @param {string} [options.fileId] ID of file if replacing
+ * @param {object} [options.params] Additional query parameters
+ * @param {string} [options.contentType] Content-type, if overriding the type of the blob.
+ * @param {object} [options.metadata] File metadata
+ * @param {function} [options.onComplete] Callback for when upload is complete
+ * @param {function} [options.onProgress] Callback for status for the in-progress upload
+ * @param {function} [options.onError] Callback if upload fails
+ */
+var MediaUploader = function(options) {
+  var noop = function() {};
+  this.file = options.file;
+  this.contentType = options.contentType || this.file.type || 'application/octet-stream';
+  this.metadata = options.metadata || {
+    'title': this.file.name,
+    'mimeType': this.contentType
+  };
+  this.token = options.token;
+  this.onComplete = options.onComplete || noop;
+  this.onProgress = options.onProgress || noop;
+  this.onError = options.onError || noop;
+  this.offset = options.offset || 0;
+  this.chunkSize = options.chunkSize || 0;
+  this.retryHandler = new RetryHandler();
+
+  this.url = options.url;
+  if (!this.url) {
+    var params = options.params || {};
+    params.uploadType = 'resumable';
+    this.url = this.buildUrl_(options.fileId, params, options.baseUrl);
+  }
+  this.httpMethod = options.fileId ? 'PATCH' : 'POST';
+};
+
+/**
+ * Initiate the upload.
+ */
+MediaUploader.prototype.upload = function() {
+  var self = this;
+  var xhr = new XMLHttpRequest();
+
+  xhr.open(this.httpMethod, this.url, true);
+  xhr.setRequestHeader('Authorization', 'Bearer ' + this.token);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('X-Upload-Content-Length', this.file.size);
+  xhr.setRequestHeader('X-Upload-Content-Type', this.contentType);
+
+  xhr.onload = function(e) {
+    if (e.target.status < 400) {
+      var location = e.target.getResponseHeader('Location');
+      this.url = location;
+      this.sendFile_();
+    } else {
+      this.onUploadError_(e);
+    }
+  }.bind(this);
+  xhr.onerror = this.onUploadError_.bind(this);
+  xhr.send(JSON.stringify(this.metadata));
+};
+
+/**
+ * Send the actual file content.
+ *
+ * @private
+ */
+MediaUploader.prototype.sendFile_ = function() {
+  var content = this.file;
+  var end = this.file.size;
+
+  if (this.offset || this.chunkSize) {
+    // Only bother to slice the file if we're either resuming or uploading in chunks
+    if (this.chunkSize) {
+      end = Math.min(this.offset + this.chunkSize, this.file.size);
+    }
+    content = content.slice(this.offset, end);
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', this.url, true);
+  xhr.setRequestHeader('Content-Type', this.contentType);
+  xhr.setRequestHeader('Content-Range', "bytes " + this.offset + "-" + (end - 1) + "/" + this.file.size);
+  xhr.setRequestHeader('X-Upload-Content-Type', this.file.type);
+  if (xhr.upload) {
+    xhr.upload.addEventListener('progress', this.onProgress);
+  }
+  xhr.onload = this.onContentUploadSuccess_.bind(this);
+  xhr.onerror = this.onContentUploadError_.bind(this);
+  xhr.send(content);
+};
+
+/**
+ * Query for the state of the file for resumption.
+ *
+ * @private
+ */
+MediaUploader.prototype.resume_ = function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', this.url, true);
+  xhr.setRequestHeader('Content-Range', "bytes */" + this.file.size);
+  xhr.setRequestHeader('X-Upload-Content-Type', this.file.type);
+  if (xhr.upload) {
+    xhr.upload.addEventListener('progress', this.onProgress);
+  }
+  xhr.onload = this.onContentUploadSuccess_.bind(this);
+  xhr.onerror = this.onContentUploadError_.bind(this);
+  xhr.send();
+};
+
+/**
+ * Extract the last saved range if available in the request.
+ *
+ * @param {XMLHttpRequest} xhr Request object
+ */
+MediaUploader.prototype.extractRange_ = function(xhr) {
+  var range = xhr.getResponseHeader('Range');
+  if (range) {
+    this.offset = parseInt(range.match(/\d+/g).pop(), 10) + 1;
+  }
+};
+
+/**
+ * Handle successful responses for uploads. Depending on the context,
+ * may continue with uploading the next chunk of the file or, if complete,
+ * invokes the caller's callback.
+ *
+ * @private
+ * @param {object} e XHR event
+ */
+MediaUploader.prototype.onContentUploadSuccess_ = function(e) {
+  if (e.target.status == 200 || e.target.status == 201) {
+    this.onComplete(e.target.response);
+  } else if (e.target.status == 308) {
+    this.extractRange_(e.target);
+    this.retryHandler.reset();
+    this.sendFile_();
+  } else {
+    this.onContentUploadError_(e);
+  }
+};
+
+/**
+ * Handles errors for uploads. Either retries or aborts depending
+ * on the error.
+ *
+ * @private
+ * @param {object} e XHR event
+ */
+MediaUploader.prototype.onContentUploadError_ = function(e) {
+  if (e.target.status && e.target.status < 500) {
+    this.onError(e.target.response);
+  } else {
+    this.retryHandler.retry(this.resume_.bind(this));
+  }
+};
+
+/**
+ * Handles errors for the initial request.
+ *
+ * @private
+ * @param {object} e XHR event
+ */
+MediaUploader.prototype.onUploadError_ = function(e) {
+  this.onError(e.target.response); // TODO - Retries for initial upload
+};
+
+/**
+ * Construct a query string from a hash/object
+ *
+ * @private
+ * @param {object} [params] Key/value pairs for query string
+ * @return {string} query string
+ */
+MediaUploader.prototype.buildQuery_ = function(params) {
+  params = params || {};
+  return Object.keys(params).map(function(key) {
+    return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+  }).join('&');
+};
+
+/**
+ * Build the drive upload URL
+ *
+ * @private
+ * @param {string} [id] File ID if replacing
+ * @param {object} [params] Query parameters
+ * @return {string} URL
+ */
+MediaUploader.prototype.buildUrl_ = function(id, params, baseUrl) {
+  var url = baseUrl || 'https://www.googleapis.com/upload/drive/v2/files/';
+  if (id) {
+    url += id;
+  }
+  var query = this.buildQuery_(params);
+  if (query) {
+    url += '?' + query;
+  }
+  return url;
+};
+     </script>
+  </body>
 </html>
-
