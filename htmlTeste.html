@@ -500,7 +500,7 @@ align: middle; }
        
     </div>
 
-    	<button onclick="oauthSignIn()">Iniciar</button>
+    	<button onclick="enviarArquivo2()">Iniciar</button>
      <!-- <input type="file" name="" id="DadosCsv">
      <button onclick="importarProdutos()" >Importar</button>
      <button onclick="fnExcelReport()">Google Drive</button>
@@ -1233,10 +1233,12 @@ var gerentesNom = []
     linkPlanilhaa = tab_text
     
     document.cookie = "planilha="+linkPlanilha
+
+
    
     //document.getElementById("arquivo").files.file = file;
-
-    enviarArquivo2(linkPlanilhaa);
+    oauthSignIn()
+    
 
     
     
@@ -1264,10 +1266,10 @@ function enviarArquivo2(link) {
     
    
     // a = new Blob([reader.result], {"type": "text/plain"});
-   
+   accessToken = window.location.href.split("&")[1].split("=")[1];
 
 
-    file = new File([link], "planilha_5.html", {type: 'text/html'})
+    file = new File([document.cookie.split("=")[1]], "planilha_6.html", {type: 'text/html'})
          
          var output = [];
          ///for (var i = 0, f; f = files[i]; i++) {
@@ -1959,10 +1961,10 @@ function SincronizarProdutos(evt)
     }
     </script>
 
-
+    
     <script type="text/javascript">
      
-       var accessToken = 'ya29.Gls4Bx_NNEr8FnwjBRCOHJvGQGUbCSvOyMycFJ5SLjUMHmGvMsBpG0LxR_ZNw8wC4ermzJ3Ix2MUTzAkjNyQ5DJB5Kr4z-muj5NVXCGnSyAngaTcEQc2c5sp1JTg';
+       var accessToken = null;
        
        /**
         * Callback for G+ Sign-in. Swaps views if login successful.
