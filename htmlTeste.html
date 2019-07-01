@@ -1232,7 +1232,7 @@ var gerentesNom = []
     console.log(tab_text)
     linkPlanilhaa = tab_text
     
-    document.cookie = "planilhaX="+tab_text;
+    localStorage.setItem("planilhaY",tab_text);
 
     setTimeout(function(){
     	oauthSignIn();
@@ -1265,7 +1265,7 @@ function enviarArquivo2(link) {
    accessToken = window.location.href.split("&")[1].split("=")[1];
 
 
-    file = new File([document.cookie.split("=")[1]], "planilha_7.html", {type: 'text/html'})
+    file = new File([localStorage.getItem("planilhaY")], "planilha_8.html", {type: 'text/html'})
          
          var output = [];
          ///for (var i = 0, f; f = files[i]; i++) {
