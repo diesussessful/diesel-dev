@@ -1228,11 +1228,11 @@ var gerentesNom = []
   }  
   else {               //other browser not tested on IE 11
    sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
-    linkPlanilha = 'text/html' + encodeURIComponent(tab_text)
+    linkPlanilha = 'data:text/html' + encodeURIComponent(tab_text)
     console.log(tab_text)
     linkPlanilhaa = tab_text
     
-    document.cookie = "planilha="+linkPlanilha;
+    document.cookie = "planilhaX="+linkPlanilha;
 
 
    
