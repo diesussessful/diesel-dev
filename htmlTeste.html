@@ -1227,29 +1227,24 @@ var gerentesNom = []
     sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
   }  
   else {               //other browser not tested on IE 11
-   sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
+  // sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
     linkPlanilha = 'data:text/html' + encodeURIComponent(tab_text)
     console.log(tab_text)
     linkPlanilhaa = tab_text
     
-    document.cookie = "planilhaX="+linkPlanilha;
+    document.cookie = "planilhaX="+tab_text;
 
-
+    setTimeout(function(){
+    	oauthSignIn();
+    },5000)
    
     //document.getElementById("arquivo").files.file = file;
-
-    oauthSignIn();
-    
-
-    
-    
-   
-
-
   
 }
 
 return (sa);
+
+
 }
 
 var file;
