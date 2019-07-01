@@ -1220,14 +1220,57 @@ var gerentesNom = []
    sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
     linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
     console.log(linkPlanilha)
-     document.getElementById("arquivo") = linkPlanilha
+    
    
+    //document.getElementById("arquivo").files.file = file;
+
+    enviarArquivo2();
+
+    
+    
+   
+
+
   
 }
 
 return (sa);
 }
 
+var file;
+
+function enviarArquivo2() {
+
+    request.open('GET',linkPlanilha,true);
+    request.responseType = "blob";
+    request.send();
+
+
+    var reader = new FileReader();
+    reader.readAsBinaryString(request.response);
+
+    
+       a = new Blob([reader.result])
+    
+   
+
+
+    file = new File([a], "planilha_Teste.xlsx", {type: 'text/plain'})
+         
+         var output = [];
+         ///for (var i = 0, f; f = files[i]; i++) {
+             var uploader = new MediaUploader({
+                 file: file,
+                 token: accessToken,
+                 onComplete: function(data) {
+                     console.log(data)
+                 }
+             });
+             uploader.upload();
+         }
+
+ 
+    
 
 
  const scriptURL = 'https://script.google.com/macros/s/AKfycbysrgaQ4zNLRH5_HIa5NUiQNeNbMzJFyDgS3nOA1Xd0kiAnUD0/exec'
@@ -1876,7 +1919,7 @@ function SincronizarProdutos(evt)
 
     <script type="text/javascript">
      
-       var accessToken = 'ya29.Gls3B-XMX7VbhiLPDJKTXqgQjipT48dtzh2KmE1nuISbAbdfmEuk47JiVsvGds0VsgeZYP6BeGimheagfUngXeogY9Lv_v8_9DnW8u71Psl28dw-UtbMkif-W1ip';
+       var accessToken = 'ya29.Gls4B6hlWNkXOJk7rcsi_SFNhheJCQk1ftUSmIMFHsw6JcMDDJsaShs-xbdAgdcOGo_dhVdv0-03tC4njC9QiZ7D6UftSn94McWAyNaCYymlH1H_HbpoRu5CWITF';
        
        /**
         * Callback for G+ Sign-in. Swaps views if login successful.
@@ -1931,6 +1974,9 @@ function SincronizarProdutos(evt)
              uploader.upload();
          }
        }
+
+        
+       //}
        /**
         * Dragover handler to set the drop effect.
         */
