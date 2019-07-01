@@ -405,6 +405,13 @@ align: middle; }
     .apuracaoh2
     {
     }
+
+    h4#tituloComposi_Peca {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #a80000;
+    font-size: 14px;
+}
   </style>
 
   <!--Códigos de Inicialização-->
@@ -467,7 +474,7 @@ align: middle; }
 
 </div>
 
-<div id="prod0" class="corpo" style="">
+<div id="prod0" class="corpo" style="display: inline-block;">
     <div  id="" class="corpo_detalhes">
        <div id="referencia">
         <div >
@@ -1116,6 +1123,7 @@ var gerentesNom = []
         printImagem();
       }
     }
+    var contagemFotos = 0;
     function printImagem()
     {
       ind = "prod"+comando;
@@ -1124,13 +1132,15 @@ var gerentesNom = []
       //document.getElementById("setaDireita").click();
       //document.querySelector("#"+ind).crossOrigin = null
       console.log("indind: "+ind)
-      html2canvas(document.querySelector("#"+ind),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
+      html2canvas(document.querySelector("#body"),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
     
     if(document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0]){
-        saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
+        saveAs(canvas.toDataURL(), contagemFotos +" "+ document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
+        contagemFotos += 1 
     }else
     {
-      saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[0].innerText + '.png');
+      saveAs(canvas.toDataURL(), contagemFotos +" "+document.getElementById(ind).getElementsByTagName("div")[0].innerText + '.png');
+      contagemFotos += 1
     }
 });
     }
@@ -1222,6 +1232,7 @@ var gerentesNom = []
     console.log(tab_text)
     linkPlanilhaa = tab_text
     
+    document.cookie = linkPlanilha
    
     //document.getElementById("arquivo").files.file = file;
 
@@ -1350,7 +1361,27 @@ var comando = 0;
   function trocarProduto(comando,direc)
   {
         index = "prod" + comando;
-        
+        console.log(index)
+        antIndex = "prod" + (comando - 1);
+        nexIndex = "prod" + (comando + 1);
+
+        if(document.getElementById(index).getElementsByClassName("imagem_1")){
+        contImg = document.getElementById(index).getElementsByClassName("imagem_1").length
+        for(var m = 0; m < contImg; m++)
+        {
+        	document.getElementById(index).getElementsByClassName("imagem_1")[m].removeAttribute("data-html2canvas-ignore")
+        }
+    }
+
+    if(document.getElementById(antIndex).getElementsByClassName("imagem_1")){
+        contImg = document.getElementById(antIndex).getElementsByClassName("imagem_1").length
+        for(var m = 0; m < contImg; m++)
+        {
+        	document.getElementById(antIndex).getElementsByClassName("imagem_1")[m].setAttribute("data-html2canvas-ignore","")
+        }
+    }
+
+
         
         //indiceApostas = document.getElementById(indiceAtual);
         if(comando <= 1){//2 é o primeiro produto
@@ -1372,14 +1403,14 @@ var comando = 0;
         console.log("Cont_i: "+cont_i)
       
        
-        antIndex = "prod" + (comando - 1);
-        nexIndex = "prod" + (comando + 1);
+        
         console.log("index: " + index);
         //console.log("antIndex: " + antIndex);
         //console.log("nexIndex: " + nexIndex);
         if (document.getElementById(index)) {
       document.getElementById(index).style.display = "inline-block";
       document.getElementById(index).removeAttribute("data-html2canvas-ignore");
+       document.getElementById(index).getElementsByClassName("imagem_1")
       if(document.getElementById(antIndex)){
       if(comando > 0){
       document.getElementById(antIndex).style.display = "none";
@@ -1518,7 +1549,7 @@ console.log(gerentesNom);
       /////////////////////////////////////////
 var request = new XMLHttpRequest();
 //se adicionar mais produtos, precisará mudar no final do código importarProduto o if do uIndex
-var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/definitivo_workshop_de_produto_2019_produtoscsv.csv";
+var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/02definitivo_workshop_de_produto_2019_produtoscsv%20-%20Copia.csv";
 var contagem = 1;
 var feito = false;
 window.onload = 
@@ -1577,7 +1608,7 @@ function SincronizarProdutos(evt)
      console.log(listaProdutos)
       produto = [];
       //Quantidade de colunas que há no produto
-      pos =4;
+      pos =5;
       
       j = 4;
       // i é a quantidade de produtos na planilha
@@ -1587,19 +1618,19 @@ function SincronizarProdutos(evt)
   
             produto[[i,j]] = listaProdutos.split(";")[j];
           }
-        pos = pos+4;
+        pos = pos+5;
  
         }
     }
     console.log(produto)
     //Criando os produtos
-    var index = 2 //index da div na qual renomeara prod1 -- prod2 -- prod3...
-    var tituloPos = 4;
-    var refPos = 5;
-    var DetalhePos = 6;
-    var precoPos = 7;
+    var indexx = 2 //index da div na qual renomeara prod1 -- prod2 -- prod3...
+    var tituloPos = 5;
+    var refPos = 6;
+    var DetalhePos = 7;
+    var precoPos = 8;
     var cont = 1;
-    var imgVar = 5;
+    var imgVar = 6;
     //i = quantidade de produtos para criar
     
     for(i = 1; i < 900;i++)
@@ -1607,7 +1638,7 @@ function SincronizarProdutos(evt)
       if (!produto[[cont,refPos]])
       {
         nodeCorpoProduto = document.createElement("div");
-          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("id","prod"+indexx);
           nodeCorpoProduto.setAttribute("class","corpo");
           nodeCorpoProduto.setAttribute("data-html2canvas-ignore","")
           nodeCorpoProduto.setAttribute("style","display:none;");
@@ -1653,7 +1684,7 @@ function SincronizarProdutos(evt)
         if(produto[[cont,tituloPos]].replace(/\s+/g, '') == "CATEGORIA")
         {
           nodeCorpoProduto = document.createElement("div");
-          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("id","prod"+indexx);
           nodeCorpoProduto.setAttribute("class","corpo");
           nodeCorpoProduto.setAttribute("style","display:none;");
           nodeCorpoDetalhes = document.createElement("div");
@@ -1688,16 +1719,16 @@ function SincronizarProdutos(evt)
           nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
           document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
           console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
-          refPos +=4;
+          refPos +=5;
           cont += 1;
-          precoPos +=4;
-          DetalhePos +=4;
-          tituloPos += 4;  
-          index += 1;
+          precoPos +=5;
+          DetalhePos +=5;
+          tituloPos += 5;  
+          indexx += 1;
         }else{
       //inicio dos corpos
       nodeCorpoProduto = document.createElement("div");
-      nodeCorpoProduto.setAttribute("id","prod"+index);
+      nodeCorpoProduto.setAttribute("id","prod"+indexx);
       nodeCorpoProduto.setAttribute("class","corpo");
       nodeCorpoProduto.setAttribute("style","display:none;");
       nodeCorpoDetalhes = document.createElement("div");
@@ -1718,8 +1749,14 @@ function SincronizarProdutos(evt)
       nodeTituloDetalhe_Peca = document.createElement("h4");
       nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
       nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+
+      nodeTituloDetalhe_composi = document.createElement("h4");
+      nodeTituloDetalhe_composi.setAttribute("id","tituloComposi_Peca");
+      nodeTituloDetalhe_composi.innerText = produto[[cont,precoPos+1]];
+
       nodeDivVazia.appendChild(nodeTituloPeca);
       nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+      nodeDivVazia.appendChild(nodeTituloDetalhe_composi);
       //fim divvazia
       //preco
       nodeTituloPreco = document.createElement("h4");
@@ -1743,6 +1780,7 @@ function SincronizarProdutos(evt)
             //criando o elemento
             nodeImg1 =  document.createElement("img");
             nodeImg1.setAttribute("class","imagem_1");
+            nodeImg1.setAttribute("data-html2canvas-ignore","")
             nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("_")[0]+"_"+ii+".PNG");
             //console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("/")[ii]);
             nodeDivImagem.appendChild(nodeImg1);
@@ -1904,12 +1942,12 @@ function SincronizarProdutos(evt)
       nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
       nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
       document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
-      refPos +=4;
+      refPos +=5;
       cont += 1;
-      precoPos +=4;
-      DetalhePos +=4;
-      tituloPos += 4;  
-      index += 1;
+      precoPos +=5;
+      DetalhePos +=5;
+      tituloPos += 5;  
+      indexx += 1;
       feito = true;
       }
     }
