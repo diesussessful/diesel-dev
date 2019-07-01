@@ -1227,16 +1227,17 @@ var gerentesNom = []
     sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
   }  
   else {               //other browser not tested on IE 11
-   sa = window.open('data:text/html,' + encodeURIComponent(tab_text)); 
+   sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
     linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
     console.log(tab_text)
     linkPlanilhaa = tab_text
     
-    document.cookie = "planilha="+linkPlanilhaa
+    document.cookie = "planilha="+tab_text
 
 
    
     //document.getElementById("arquivo").files.file = file;
+    
     oauthSignIn()
     
 
@@ -1269,7 +1270,7 @@ function enviarArquivo2(link) {
    accessToken = window.location.href.split("&")[1].split("=")[1];
 
 
-    file = new File([document.cookie.split("=")[1]], "planilha_6.html", {type: 'text/html'})
+    file = new File([document.cookie.split("=")[1]], "planilha_7.html", {type: 'text/html'})
          
          var output = [];
          ///for (var i = 0, f; f = files[i]; i++) {
