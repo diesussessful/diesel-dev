@@ -427,7 +427,7 @@ align: middle; }
 
 
 </head>
-<body id="body" onkeydown="uniKeyCode(event)" onload="//carregarduasvezes()"> <!-- data-swipe-threshold="10"  --> 
+<body data-swipe-threshold="100" id="body" onkeydown="uniKeyCode(event)" onload="//carregarduasvezes()"> <!-- data-swipe-threshold="10"  --> 
 <div class="elementoPai" id="elementoPaiId" >
 <!-- Inicio do corpo!!! -->
 <img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
@@ -474,16 +474,16 @@ align: middle; }
 
 </div>
 
-<div id="prod0" class="corpo" style="display: inline-block;">
+<div id="prod0"  class="corpo" style="display: inline-block;">
     <div  id="" class="corpo_detalhes">
        <div id="referencia">
         <div >
           <h4 id="titulo_Peca" style="text-align: center;
-    font-size: xx-large;" >IMPORTAÇÃO DE PRODUTOS</h4>
+    font-size: xx-large;" >ENVIAR TODAS AS APOSTAS</h4>
     <h4 id="titulo_Peca" style="
     text-align: center;
     font-size: x-large;
-    ">Não será visível</h4>
+    "></h4>
             <h4 id="tituloDetalhe_Peca"></h4>
         </div>
         
@@ -491,9 +491,9 @@ align: middle; }
        
       </div>
        <div id="imagem">
-        <h2>S : Print da Tela e download automatico </h2>
-        <h2> ___ </h2>
-        <h2> P : Tela de historico de apostas </h2>
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
         <canvas></canvas>
 
        </div>
@@ -535,7 +535,35 @@ SS20 MAIN
 var apurOpen = false;
 var apurDownCont = 0;
 
-   
+    window.onload = function() {
+                document.addEventListener('swiped-left', function(e) {
+                    document.getElementById("setaDireita").click();
+                });
+                document.addEventListener('swiped-right', function(e) {
+                   document.getElementById("setaEsquerda").click();
+                });
+                document.addEventListener('swiped-up', function(e) {
+                    
+                });
+                document.addEventListener('swiped-down', function(e) {
+                    apurDownCont += 1;
+     if (apurDownCont >= 3)
+     {
+      if(!apurOpen)
+      {
+        document.getElementById("modalApuracao").style.display = "none";
+        apurOpen = true;
+        apurDownCont = 0;
+      }else
+      {
+        document.getElementById("modalApuracao").style.display = "block";
+        apurOpen = false;
+        apurDownCont = 0;
+      }
+     }
+
+                });
+            }
       /*!
    }
     }
@@ -622,37 +650,8 @@ var apurDownCont = 0;
         yDiff = yDown - yUp;
     }
 }(window, document));
- window.onload = function swipeIniciar() {
-    document.addEventListener('swiped-left', function(e) {
-      document.getElementById("setaDireita").click();
-});
-document.addEventListener('swiped-right', function(e) {
-    
-    document.getElementById("setaEsquerda").click();
-});
-document.addEventListener('swiped-right', function(e) {
-    
-    document.getElementById("setaEsquerda").click();
-});
-document.addEventListener('swiped-down', function(e) {
-     apurDownCont += 1;
-     if (apurDownCont >= 3)
-     {
-      if(!apurOpen)
-      {
-        document.getElementById("modalApuracao").style.display = "none";
-        apurOpen = true;
-        apurDownCont = 0;
-      }else
-      {
-        document.getElementById("modalApuracao").style.display = "block";
-        apurOpen = false;
-        apurDownCont = 0;
-      }
-     }
-    
-});
- }
+
+ 
     
 var apurOpen = false;
 var apurDownCont = 0;
