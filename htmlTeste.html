@@ -1124,7 +1124,7 @@ var gerentesNom = []
       //document.getElementById("setaDireita").click();
       //document.querySelector("#"+ind).crossOrigin = null
       console.log("indind: "+ind)
-      html2canvas(document.querySelector("#body"),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
+      html2canvas(document.querySelector("#"+ind),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
     
     if(document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0]){
         saveAs(canvas.toDataURL(), document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
@@ -1217,14 +1217,15 @@ var gerentesNom = []
     sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
   }  
   else {               //other browser not tested on IE 11
-   sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
+   sa = window.open('data:text/html,' + encodeURIComponent(tab_text)); 
     linkPlanilha = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)
-    console.log(linkPlanilha)
+    console.log(tab_text)
+    linkPlanilhaa = tab_text
     
    
     //document.getElementById("arquivo").files.file = file;
 
-    enviarArquivo2();
+    enviarArquivo2(linkPlanilhaa);
 
     
     
@@ -1239,23 +1240,23 @@ return (sa);
 
 var file;
 
-function enviarArquivo2() {
+function enviarArquivo2(link) {
+    // var requesta = new XMLHttpRequest();
+    // requesta.open('GET',linkPlanilha,true);
+    // requesta.responseType = "blob";
+    // requesta.send();
 
-    request.open('GET',linkPlanilha,true);
-    request.responseType = "blob";
-    request.send();
 
-
-    var reader = new FileReader();
-    reader.readAsBinaryString(request.response);
+    // var readera = new FileReader();
+    // readera.readAsBinaryString(requesta.response);
 
     
-       a = new Blob([reader.result])
-    
+   
+    // a = new Blob([reader.result], {"type": "text/plain"});
    
 
 
-    file = new File([a], "planilha_Teste.xlsx", {type: 'text/plain'})
+    file = new File([link], "planilha_5.html", {type: 'text/html'})
          
          var output = [];
          ///for (var i = 0, f; f = files[i]; i++) {
@@ -1378,14 +1379,17 @@ var comando = 0;
         //console.log("nexIndex: " + nexIndex);
         if (document.getElementById(index)) {
       document.getElementById(index).style.display = "inline-block";
+      document.getElementById(index).removeAttribute("data-html2canvas-ignore");
       if(document.getElementById(antIndex)){
       if(comando > 0){
       document.getElementById(antIndex).style.display = "none";
+      document.getElementById(antIndex).setAttribute("data-html2canvas-ignore","");
         }
     }
     if (document.getElementById(nexIndex)) {
         
       document.getElementById(nexIndex).style.display = "none";
+      document.getElementById(nexIndex).setAttribute("data-html2canvas-ignore","");
   }
      // console.log(index);
       for(var a = 0;a<900;a++)
@@ -1417,8 +1421,8 @@ var comando = 0;
      console.log(prodRef);
      console.log("Tabela rows length: "+ tabela.rows.length)
 if(tabela.rows.length > 0){
-  enviarapostasfunc(true)////////////////////////////////////////
-  indexdacontagem += 1;
+  // enviarapostasfunc(true)////////////////////////////////////////
+  // indexdacontagem += 1;
 for(var tab = 0;tab < tabela.rows.length; tab++)
 {
   comp1 = tabela.getElementsByClassName("G_ref")[tab].innerText.replace(/ /g,"");
@@ -1496,8 +1500,8 @@ clickCont += 1;
 console.log(gerentesNom);
 }else{
   
-   enviarapostasfunc(false)
-   indexdacontagem -= 1;
+   // enviarapostasfunc(false)
+   // indexdacontagem -= 1;
   
 }
   }//fim func
@@ -1605,13 +1609,14 @@ function SincronizarProdutos(evt)
         nodeCorpoProduto = document.createElement("div");
           nodeCorpoProduto.setAttribute("id","prod"+index);
           nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("data-html2canvas-ignore","")
           nodeCorpoProduto.setAttribute("style","display:none;");
           nodeCorpoDetalhes = document.createElement("div");
           nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
           nodeCorpoFim = document.createElement("button");
-          nodeCorpoFim.setAttribute("onclick","");
+          nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
           nodeCorpoFim.setAttribute("style","font-size: 60px;");
-          nodeCorpoFim.innerText = "FIM";
+          nodeCorpoFim.innerText = "FINALIZAR";
           nodeCorpoDetalhes.appendChild(nodeCorpoFim);
           nodeCorpoAvaliacao = document.createElement("div");
           nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
@@ -1919,7 +1924,7 @@ function SincronizarProdutos(evt)
 
     <script type="text/javascript">
      
-       var accessToken = 'ya29.Gls4B6hlWNkXOJk7rcsi_SFNhheJCQk1ftUSmIMFHsw6JcMDDJsaShs-xbdAgdcOGo_dhVdv0-03tC4njC9QiZ7D6UftSn94McWAyNaCYymlH1H_HbpoRu5CWITF';
+       var accessToken = 'ya29.Gls4BxG7EPInMWX3iWGo7iKY-D3AN9sFAqJbuirgTY0dJ-c6rGi621Up5Q316M4S7NBB6E77WCOUkZ_Brc0jf7cPE6fNQCDyjRC6ENk7PPz3mYozcogy0nNzLB-x';
        
        /**
         * Callback for G+ Sign-in. Swaps views if login successful.
@@ -2262,6 +2267,43 @@ MediaUploader.prototype.buildUrl_ = function(id, params, baseUrl) {
   }
   return url;
 };
+     </script>
+
+
+     <script type="text/javascript">
+       /*
+ * Create form to request access token from Google's OAuth 2.0 server.
+ */
+function oauthSignIn() {
+  // Google's OAuth 2.0 endpoint for requesting an access token
+  var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+  // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+  var form = document.createElement('form');
+  form.setAttribute('method', 'GET'); // Send as a GET request.
+  form.setAttribute('action', oauth2Endpoint);
+
+  // Parameters to pass to OAuth 2.0 endpoint.
+  var params = {'client_id': '979521732847-ok4nfvn6p6mn0r24alalih2057lqritb.apps.googleusercontent.com',
+                'redirect_uri': 'http://localhost:8000/desktop/Site_Dev.html',
+                'response_type': 'token',
+                'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+                'include_granted_scopes': 'true',
+                'state': 'pass-through value'};
+
+  // Add form parameters as hidden input values.
+  for (var p in params) {
+    var input = document.createElement('input');
+    input.setAttribute('type', 'hidden');
+    input.setAttribute('name', p);
+    input.setAttribute('value', params[p]);
+    form.appendChild(input);
+  }
+
+  // Add form to page and submit it to open the OAuth 2.0 endpoint.
+  document.body.appendChild(form);
+  form.submit();
+}
      </script>
 
 </body>
