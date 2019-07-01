@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LINE REVIEW SS20 MAIN</title>
+  <!-- Estilos e Formatação-->
+
+    <style>
+table {
+  margin: 0 auto;
+  color: black;
+    
+}
+table thead {
+  background: #2d2d2d;
+  color: #FFF;
+}
+table thead tr th {
+  width: 140px;
+}
+table td {
+    color: black;
+    text-transform: uppercase;
+    font-size: 9px;
+    text-align: center;
+}
+table tr:nth-child(2n+0) td {
+    
+}
+button {
+    background: #2d2d2d;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 30px;
+    margin: auto;
+    text-transform: uppercase;
+    right: 3px;
+    position: relative;
+}
+    </style>
+    
+
+
+
+    <style type="text/css">.as-console-wrapper { position: fixed; bottom: 0; left: 
+0; right: 0; max-height: 150px; overflow-y: scroll; overflow-x: hidden; border-top: 1px solid #000; display: none; }
+.as-console { background: #e9e9e9; border: 1px solid #ccc; display: table; width: 100%; border-collapse: collapse; }
+.as-console-row { display: table-row; font-family: monospace; font-size: 13px; }
+.as-console-row:after { display: table-cell; padding: 3px 6px; color: rgba(0,0,0,.35); border: 1px solid #ccc; content: attr(data-date); vertical-align: 
+top; }
+.as-console-row + .as-console-row > * { border: 1px solid #ccc; }
+.as-console-row-code { width: 100%; white-space: pre-wrap; padding: 3px 5px; display: table-cell; font-family: monospace; font-size: 13px; vertical-
+align: middle; }
+.as-console-error:before { content: 'Error: '; color: #f00; }
+.as-console-assert:before { content: 'Assertion failed: '; color: #f00; }
+.as-console-info:before { content: 'Info: '; color: #00f; }
+.as-console-warning:before { content: 'Warning: '; color: #e90 }
+@-webkit-keyframes flash { 0% { background: rgba(255,240,0,.25); } 100% { background: none; } }
+@-moz-keyframes flash { 0% { background: rgba(255,240,0,.25); } 100% { background: none; } }
+@-ms-keyframes flash { 0% { background: rgba(255,240,0,.25); } 100% { background: none; } }
+@keyframes flash { 0% { background: rgba(255,240,0,.25); } 100% { background: none; } }
+.as-console-row-code, .as-console-row:after { -webkit-animation: flash 1s; -moz-animation: flash 1s; -ms-animation: flash 1s; animation: flash 1s; }
+</style>
+
+
+
+
+
+
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:300,400,500,700,900');
+    body
+    {
+      margin: 0;
+    }
+    div.elementoPai
+    {
+      position: absolute;
+        height: 100%;
+        width: 100%;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        right: 0px;
+        left: 0px;
+        bottom: 0px;
+        top: 0px;
+        margin-left: 0px;
+        margin-top: 0px;
+        display: flex;
+    }
+    div.corpo
+    {
+      
+        display: inline-block;
+        margin-top: 8px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        top: 10px;
+        width: 95%;
+        position: absolute;
+        height: 95%;
+        margin: 0 auto;
+        
+    }
+    @media only screen and (max-height: 400px) {
+  .corpo {
+        display: inline-block;
+        margin-top: 8px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        top: 10px;
+        width: 95%;
+        position: absolute;
+        height: 95%;
+        margin: 0 auto;
+        zoom:75%;
+  }
+}
+@media only screen and (max-height: 250px) {
+  .corpo {
+        display: inline-block;
+        margin-top: 8px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        top: 10px;
+        width: 95%;
+        position: absolute;
+        height: 95%;
+        margin: 0 auto;
+            zoom: 55%;
+  }
+}
+    div.corpo_detalhes
+    {
+      
+      width: 100%;
+      height: 72%;
+    }
+    div.corpo_avaliacao
+    {
+          text-align: center;
+          width: 100%;
+          
+    }
+    div#referencia
+    {
+      
+      /*box-shadow: 0 0 0 1px black; */
+        display: flex;
+        text-align: left;
+        height: 40px;
+        width: 100%;
+        position: relative;
+        left: 0%;
+        height: 12%;
+        font-family: 'Roboto Condensed',sans-serif;
+    }
+    div#imagem
+    {
+      /*box-shadow: 0 0 0 1px black; */
+        width: 100%;
+        height: 80%;
+        text-align: center;
+        
+        top: 22px;
+        position: relative;
+        display: flex;
+    overflow-x: auto;
+    }
+::-webkit-scrollbar {
+    background-color: #ffffff;
+    height: 6px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #d4d4d4;
+   
+    
+    }
+    ::-webkit-scrollbar-track {
+    background-color: #ffffff;
+    width: 6px;
+}
+    img.imagem_1 
+    {
+        /*box-shadow: 0 0 0 1px black; */
+        height: 100%;
+        /*margin-left: 20px;*/
+        margin:0 auto;
+       object-fit: contain;
+    
+    }
+    img.imagem_2
+    {
+        /*box-shadow: 0 0 0 1px black; */
+        height: 100%;
+        margin-left: 2px;
+    
+    }
+    div#detalhes
+    {
+      /*box-shadow: 0 0 0 1px black; */
+         width: 100%;
+             top: 23px;
+         height: 29.4%;
+         position: relative;
+        margin-top: 0px;
+        padding-left: 0px;
+        padding-top: 0px;
+        display: inline-table;
+    }
+    .item_descricao
+    {
+      margin-top: 3px;
+        margin-bottom: 0px;
+        background-color: #d8dceb;
+        border-radius: 12px;
+        width: max-content;
+        color: #36313e;
+        padding-right: 8px;
+        padding-top: 2px;
+        padding-left: 8px;
+        margin-top: 3px;
+        text-align: center;
+        padding-bottom: 2px;
+        /* font-family: "lato"; */
+        font-family: 'Roboto Condensed',sans-serif;
+        margin-left: 22px;
+        display: inline-table;
+    }
+    .descricao_titulo
+    {
+      font-family: 'Roboto Condensed',sans-serif;
+      margin-bottom: 0px;
+        margin-top: 0px;
+      margin-left: 10px;
+            padding-top: 30px;
+    }
+    div#avaliacao
+    {
+      /*box-shadow: 0 0 0 1px black; */
+        width: 100%;
+        height: 100%;
+        display: inline-flex;
+        text-align: center;
+        font-size: xx-small;
+      
+    }
+    h4#titulo_Peca{
+      margin-bottom: 0px;
+        margin-top: 0px;
+        font-size: 115%;
+      padding-top: 5px;
+      width: 120%;
+      text-align: left;
+    }
+    h4#titulo_Preco{
+      margin-bottom: 0px;
+        margin-top: 0px;
+        font-size: 160%;
+      padding-top: 5px;
+      width: 50%;
+      text-align: right;
+      position: absolute;
+      right: 0%;
+    }
+    h4#ref_Peca{
+      margin-bottom: 0px;
+        margin-top: 0px;
+        font-size: 90%;
+        color: #676767;
+    } 
+    img.areaVoto
+    {
+          width: 7%;
+    cursor: pointer;
+    background-color: #efefef;
+    border-radius: 80px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+    object-fit: cover;
+    padding-bottom: 5px;
+    }
+    img.areaVotoPreco
+    {
+      
+          width: 7%;
+              cursor: pointer;
+    background-color: #efefef;
+    border-radius: 80px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 5px;
+    object-fit: cover;
+    padding-bottom: 5px;
+    }
+    #areaVoto
+    {
+          width:100%;
+    }
+    #areaVotoPreco
+    {
+      
+              width: 100%;
+    }
+    img#VotoNegativo
+    {
+        transform: rotate(180deg);
+    }
+    img#VotoPrecoNegativo
+    {
+        transform: rotate(180deg);
+    }
+    h4#tituloDetalhe_Peca
+    {
+      font-size: 80% ; 
+      text-align: left;
+      margin-top: 0px;
+      position: relative;
+      margin-left: 0px;
+      margin-bottom: 0px;
+      width: 266.109px;
+      color:#909090;
+    }
+    img#setaDireita
+    {
+      float: right;
+      position: absolute;
+      right: 0%;
+      top: 40%;
+      
+      z-index: 1;
+      width: 4%;
+    }
+    img#setaEsquerda
+    {
+      float: left;
+      position: absolute;
+      
+      top: 40%;
+      
+      z-index: 1;
+      width: 4%;
+      transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+    }
+    div.gerentesDiv
+    {
+      font-family: 'Roboto Condensed',sans-serif;
+          margin: 0 auto;
+    }
+    h2.gerentesDivTitulo
+    {
+    }
+    .corpo_Categoria
+    {
+      text-align: center;
+      font-family: 'Roboto Condensed',sans-serif;
+      text-align: center;
+    font-family: 'Roboto Condensed',sans-serif;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    top: 33%;
+    font-size: 12vh;
+    }
+    .corpo_Inicio
+    {
+      text-align: center;
+      font-family: 'Roboto Condensed',sans-serif;
+      text-align: center;
+    font-family: 'Roboto Condensed',sans-serif;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    top: 33%;
+    font-size: 12vh;
+    }
+    div.apuracao
+    {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      position: absolute;
+      z-index: 1;
+      text-align: center;
+    }
+    .apuracaoh2
+    {
+    }
+
+    h4#tituloComposi_Peca {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #a80000;
+    font-size: 14px;
+}
+  </style>
+
+  <!--Códigos de Inicialização-->
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+<script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+<script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script> -->
+
+  
+
+
+</head>
+<body data-swipe-threshold="100" id="body" onkeydown="uniKeyCode(event)" onload="//carregarduasvezes()"> <!-- data-swipe-threshold="10"  --> 
+<div class="elementoPai" id="elementoPaiId" >
+<!-- Inicio do corpo!!! -->
+<img data-html2canvas-ignore id="setaDireita" onclick="trocarProduto(comando+=1,true);" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+<img data-html2canvas-ignore id="setaEsquerda" onclick="trocarProduto(comando-=1,false)" style = "cursor: pointer;" src="https://github.com/diesussessful/diesel-dev/raw/master/right.png">
+
+
+
+<!-- <div id = "modal" class="modalEstilo" style="background-color: white; width: "></div> -->
+<div id ="modalApuracao" class="apuracao" style="display: none;">
+  <h2 class="apuracaoh2">Apuração</h2>
+   <table id="table">
+    <thead>
+        <tr><th>Org</th>
+            <th>Gerente</th>
+            <th>Produto</th>
+            <th>Aposta</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+
+    </tbody>
+</table>
+
+  <button onclick="fnExcelReport()">Baixar (teste)</button>
+  <button onclick="enviarapostasfunc()">Salvar na planilha</button>
+  <button onclick="fecharApur()">Voltar</button>
+
+   <input id="arquivo" type="file" name="">
+    <button onclick="enviarArquivo()" >Enviar!</button>
+    <button onclick="fnExcelReport()" ></button>
+  
+
+
+  <form name="submit-to-google-sheet">
+  <input style="display: none;"  id = "orgid" name="org" type="text" placeholder="org">
+  <input style="display: none;" id = "nomegerenteid" name="nomegerente" type="text" placeholder="Gerente">
+  <input style="display: none;" id = "produtoid" name="produto" type="text" placeholder="Produto">
+  <input style="display: none;" id = "apostaid" name="aposta" type="text" placeholder="Aposta">
+  
+  <button id ="enviarapostas" type="submit">Send</button>
+
+</form>
+
+</div>
+
+<div id="prod0"  class="corpo" style="display: inline-block;">
+    <div  id="" class="corpo_detalhes">
+       <div id="referencia">
+        <div >
+          <h4 id="titulo_Peca" style="text-align: center;
+    font-size: xx-large;" >ENVIAR TODAS AS APOSTAS</h4>
+    <h4 id="titulo_Peca" style="
+    text-align: center;
+    font-size: x-large;
+    "></h4>
+            <h4 id="tituloDetalhe_Peca"></h4>
+        </div>
+        
+        <h4 id="titulo_Preco"></h4>
+       
+      </div>
+       <div id="imagem">
+        <h2></h2>
+        <h2></h2>
+        <h2></h2>
+        <canvas></canvas>
+
+       </div>
+       
+    </div>
+
+    	<button onclick="enviarArquivo2()">Enviar planilha com resultados</button>
+     <!-- <input type="file" name="" id="DadosCsv">
+     <button onclick="importarProdutos()" >Importar</button>
+     <button onclick="fnExcelReport()">Google Drive</button>
+     <button onclick="abrirApur()">Abrir apuração</button> -->
+     <!-- <button onclick="printImagem()" >Transformar os produtos em imagem</button> -->
+  </div>
+<!-- final de um produto -->
+
+<div id="prod1" class="corpo" style="display: none;"><div class="corpo_Inicio">LINE REVIEW  
+SS20 MAIN
+</div><div class="corpo_avaliacao"></div></div>
+
+<!-- final de um produto -->
+
+
+<!-- final do corpo!!! -->
+</div>  
+
+
+
+<script type="text/javascript">
+
+   function fecharApur(){ 
+
+      document.getElementById("modalApuracao").style.display = "none";     
+ }
+ function abrirApur(){ 
+    
+      document.getElementById("modalApuracao").style.display = "block";     
+ }
+    
+var apurOpen = false;
+var apurDownCont = 0;
+
+    window.onload = function() {
+                document.addEventListener('swiped-left', function(e) {
+                    document.getElementById("setaDireita").click();
+                });
+                document.addEventListener('swiped-right', function(e) {
+                   document.getElementById("setaEsquerda").click();
+                });
+                document.addEventListener('swiped-up', function(e) {
+                    
+                });
+                document.addEventListener('swiped-down', function(e) {
+                    apurDownCont += 1;
+     if (apurDownCont >= 3)
+     {
+      if(!apurOpen)
+      {
+        document.getElementById("modalApuracao").style.display = "none";
+        apurOpen = true;
+        apurDownCont = 0;
+      }else
+      {
+        document.getElementById("modalApuracao").style.display = "block";
+        apurOpen = false;
+        apurDownCont = 0;
+      }
+     }
+
+                });
+            }
+      /*!
+   }
+    }
+ * swiped-events.js - v@version@
+ * Pure JavaScript swipe events
+ * https://github.com/john-doherty/swiped-events
+ * @inspiration https://stackoverflow.com/questions/16348031/disable-scrolling-when-touch-moving-certain-element
+ * @author John Doherty <www.johndoherty.info>
+ * @license MIT
+ */
+(function (window, document) {
+    'use strict';
+    // patch CustomEvent to allow constructor creation (IE/Chrome)
+    if (typeof window.CustomEvent !== 'function') {
+        window.CustomEvent = function (event, params) {
+            params = params || { bubbles: false, cancelable: false, detail: undefined };
+            var evt = document.createEvent('CustomEvent');
+            evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+            return evt;
+        };
+        window.CustomEvent.prototype = window.Event.prototype;
+    }
+    document.addEventListener('touchstart', handleTouchStart, false);
+    document.addEventListener('touchmove', handleTouchMove, false);
+    document.addEventListener('touchend', handleTouchEnd, false);
+    var xDown = null;
+    var yDown = null;
+    var xDiff = null;
+    var yDiff = null;
+    var timeDown = null;
+    var startEl = null;
+    function handleTouchEnd(e) {
+        // if the user released on a different target, cancel!
+        if (startEl !== e.target) return;
+        var swipeThreshold = parseInt(startEl.getAttribute('data-swipe-threshold') || '20', 10);    // default 10px
+        var swipeTimeout = parseInt(startEl.getAttribute('data-swipe-timeout') || '500', 10);      // default 1000ms
+        var timeDiff = Date.now() - timeDown;
+        var eventType = '';
+        if (Math.abs(xDiff) > Math.abs(yDiff)) { // most significant
+            if (Math.abs(xDiff) > swipeThreshold && timeDiff < swipeTimeout) {
+                if (xDiff > 0) {
+                    eventType = 'swiped-left';
+                }
+                else {
+                    eventType = 'swiped-right';
+                }
+            }
+        }
+        else {
+            if (Math.abs(yDiff) > swipeThreshold && timeDiff < swipeTimeout) {
+                if (yDiff > 0) {
+                    eventType = 'swiped-up';
+                }
+                else {
+                    eventType = 'swiped-down';
+                }
+            }
+        }
+        if (eventType !== '') {
+            // fire event on the element that started the swipe
+            startEl.dispatchEvent(new CustomEvent(eventType, { bubbles: true, cancelable: true }));
+            // if (console && console.log) console.log(eventType + ' fired on ' + startEl.tagName);
+        }
+        // reset values
+        xDown = null;
+        yDown = null;
+        timeDown = null;
+    }
+    function handleTouchStart(e) {
+        // if the element has data-swipe-ignore="true" we stop listening for swipe events
+        if (e.target.getAttribute('data-swipe-ignore') === 'true') return;
+        startEl = e.target;
+        timeDown = Date.now();
+        xDown = e.touches[0].clientX;
+        yDown = e.touches[0].clientY;
+        xDiff = 0;
+        yDiff = 0;
+    }
+    function handleTouchMove(e) {
+        if (!xDown || !yDown) return;
+        var xUp = e.touches[0].clientX;
+        var yUp = e.touches[0].clientY;
+        xDiff = xDown - xUp;
+        yDiff = yDown - yUp;
+    }
+}(window, document));
+
+ 
+    
+var apurOpen = false;
+var apurDownCont = 0;
+ 
+  function votos(elemento,parente) {
+    naoIncluir = null;
+    nomeGerente = parente.parentElement.getElementsByTagName("h2")[0].innerText;
+    votoGerente = "";
+    votoGerenteCor = "";
+    prod = parente.parentElement.parentElement.parentElement.parentElement;
+    
+    prodRef = prod.getElementsByTagName("h4")[0].innerText;
+    
+    var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
+      console.log(prodRef);
+      //parente.parentElement.getElementsByTagName("h2")[0].innerText PEGAR O NOME DO GERENTE
+      
+       if(elemento.id == "VotoPositivo")
+        {
+          votoGerente = "Sim";
+          votoGerenteCor = "rgb(88, 198, 88)"
+          parente.getElementsByTagName("img")[0].style.backgroundColor = "rgb(88, 198, 88)";
+        
+        parente.getElementsByTagName("img")[1].style.backgroundColor = "#efefef";
+        elemento.alt = "OK";
+        }
+       if(elemento.id == "VotoNegativo")
+        {
+          votoGerente = "Nao";
+          votoGerenteCor = "rgb(244, 67, 54)"
+          parente.getElementsByTagName("img")[1].style.backgroundColor = "rgb(244, 67, 54)";
+        
+        parente.getElementsByTagName("img")[0].style.backgroundColor = "#efefef";
+        elemento.alt = "OK";
+        
+        }
+        for(var x = cont_i ;x < indiceTabelaApostas;x++){
+          
+          if(nomeGerente == tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText){
+            
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[1].innerText = nomeGerente;
+            
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[2].innerText = prodRef;
+            
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[3].innerText = votoGerente;
+        tabela.getElementsByTagName("tr")[x].getElementsByTagName("td")[3].style.backgroundColor = votoGerenteCor; 
+            }
+             
+        
+      }
+      // //------------------------------------------------------------------------------------------
+      
+      //nodetr = new document.createElement("tr");
+     // nodetd = new document.createElement("td");
+// for(x = 0; x < tabela.rows.length;x++ )
+// {
+//   comp = document.getElementsByClassName("G_nome")[x].innerText + document.getElementsByClassName("G_ref")[x].innerText +document.getElementsByClassName("G_voto")[x].innerText
+//   comp2 = nomeGerente+prodRef+votoGerente;
+//   if(comp.replace(/ /g,"") == comp2.replace(/ /g,""))
+//   {
+//     naoIncluir = true;
+//   }else
+//   {
+//     naoIncluir = false;
+//   }
+// }
+// if(naoIncluir){
+  }
+  //}
+  
+var gerentesNom = []
+////////////////////////////////////////////////////////////////////
+  function importarProdutos()
+  {
+    var file = document.getElementById("DadosCsv");
+    var reader = new FileReader();
+    reader.readAsBinaryString(file.files[0]);
+    reader.onloadend = function()
+    {
+     var listaProdutos = reader.result;
+     console.log(listaProdutos)
+      produto = [];
+      //Quantidade de colunas que há no produto
+      pos =4;
+      
+      j = 4;
+      // i é a quantidade de produtos na planilha
+      for( var i = 0; i < 900; i++)
+      {
+          for( ; j < pos; j++){
+  
+            produto[[i,j]] = listaProdutos.split(";")[j];
+          }
+        pos = pos+4;
+ 
+        }
+    }
+    console.log(produto)
+    //Criando os produtos
+    var index = 2 //index da div na qual renomeara prod1 -- prod2 -- prod3...
+    var tituloPos = 4;
+    var refPos = 5;
+    var DetalhePos = 6;
+    var precoPos = 7;
+    var cont = 1;
+    var imgVar = 5;
+    //i = quantidade de produtos para criar
+    
+    for(i = 1; i < 900;i++)
+    {
+      if (!produto[[cont,refPos]])
+      {
+        nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+          nodeCorpoFim = document.createElement("button");
+          nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
+          nodeCorpoFim.setAttribute("style","font-size: 60px;");
+          nodeCorpoFim.innerText = "FINALIZAR";
+          nodeCorpoDetalhes.appendChild(nodeCorpoFim);
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
+        return 0 ;
+      }
+      console.log(produto[[i,refPos]])
+        if(produto[[cont,tituloPos]].replace(/\s+/g, '') == "CATEGORIA")
+        {
+          nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+index);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+          nodeCorpoDetalhes.innerText = produto[[cont,refPos]].split("_")[0] + " " +  produto[[cont,refPos]].split("_")[1];
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
+          refPos +=4;
+          cont += 1;
+          precoPos +=4;
+          DetalhePos +=4;
+          tituloPos += 4;  
+          index += 1;
+        }else{
+      //inicio dos corpos
+      nodeCorpoProduto = document.createElement("div");
+      nodeCorpoProduto.setAttribute("id","prod"+index);
+      nodeCorpoProduto.setAttribute("class","corpo");
+      nodeCorpoProduto.setAttribute("style","display:none;");
+      nodeCorpoDetalhes = document.createElement("div");
+      nodeCorpoDetalhes.setAttribute("class","corpo_detalhes");
+      nodeCorpoAvaliacao = document.createElement("div");
+      nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+      //fim dos corpos
+      
+      
+      //inicio da div referencia
+      nodeDivReferencia = document.createElement("div");
+      nodeDivReferencia.setAttribute("id","referencia");
+      //inicio divvazia
+      nodeDivVazia = document.createElement("div");
+      nodeTituloPeca = document.createElement("h4");
+      nodeTituloPeca.setAttribute("id","titulo_Peca");
+      nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]].split("_")[0];
+      nodeTituloDetalhe_Peca = document.createElement("h4");
+      nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+      nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+      nodeDivVazia.appendChild(nodeTituloPeca);
+      nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+      //fim divvazia
+      //preco
+      nodeTituloPreco = document.createElement("h4");
+      nodeTituloPreco.setAttribute("id","titulo_Preco");
+      nodeTituloPreco.innerText = produto[[cont,precoPos]];
+      //fim preco
+      nodeDivReferencia.appendChild(nodeDivVazia);
+      nodeDivReferencia.appendChild(nodeTituloPreco);
+      //Fim da div Referencia
+      nodeCorpoDetalhes.appendChild(nodeDivReferencia);
+      //inicio da div imagem
+      nodeDivImagem = document.createElement("div");
+      nodeDivImagem.setAttribute("id","imagem");
+      if (produto[[i,refPos]])
+        {
+          contx = produto[[i,refPos]].split("_")[1];
+            console.log("CONT: "+contx);
+          ///if (produto[[i,refPos]].length > 22){
+          for(var ii = 1; ii < Number(contx)+1;ii++)
+          {     
+            //criando o elemento
+            nodeImg1 =  document.createElement("img");
+            nodeImg1.setAttribute("class","imagem_1");
+            nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("_")[0]+"_"+ii+".PNG");
+            //console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("/")[ii]);
+            nodeDivImagem.appendChild(nodeImg1);
+            
+          }
+          
+        }
+        nodeCorpoDetalhes.appendChild(nodeDivImagem);
+          
+        //}
+      
+      //fim da div imagem
+      
+    //else
+    ///{
+    //  nodeDivImagem = document.createElement("div");
+    //  nodeDivImagem.setAttribute("id","imagem")
+    //  nodeImg1 = document.createElement("img");
+    /// nodeImg1.setAttribute("class","imagem_1");
+    /// nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+ produto[[i,refPos]] +".png");
+      
+    //  nodeDivImagem.appendChild(nodeImg1);
+    //  nodeCorpoDetalhes.appendChild(nodeDivImagem);
+    //}
+  //}
+  
+      //fim do corpo detalhes
+      
+      //inicio corpo avaliacao
+      nodeDivAvaliacao = document.createElement("div");
+      nodeDivAvaliacao.setAttribute("id","avaliacao");
+      nodeDivAvaliacao.setAttribute("data-html2canvas-ignore","")
+      
+      //Div do gerente01
+      nodeGerente01 = document.createElement("div");
+      nodeGerente01.setAttribute("id","gerente01");
+      nodeGerente01.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo01 = document.createElement("h2");
+      nodeGerenteTitulo01.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      //fim area de voto preco
+      nodeGerenteTitulo01.innerText = "Gerente 1";
+      nodeGerente01.appendChild(nodeGerenteTitulo01);
+      nodeGerente01.appendChild(nodeAreaVoto);
+      //nodeGerente01.appendChild(nodeAreaVotoPreco);
+      //-----------------gerente 01 fim--------------------------
+      //Div do gerente02
+      nodeGerente02 = document.createElement("div");
+      nodeGerente02.setAttribute("id","gerente02");
+      nodeGerente02.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo02 = document.createElement("h2");
+      nodeGerenteTitulo02.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      nodeGerenteTitulo02.innerText = "Gerente 2";
+      nodeGerente02.appendChild(nodeGerenteTitulo02);
+      nodeGerente02.appendChild(nodeAreaVoto);
+      //nodeGerente02.appendChild(nodeAreaVotoPreco);
+      //----------------fim gerente 02---------------------------
+      //Div do gerente03
+      nodeGerente03 = document.createElement("div");
+      nodeGerente03.setAttribute("id","gerente03");
+      nodeGerente03.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo03 = document.createElement("h2");
+      nodeGerenteTitulo03.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      
+      nodeGerenteTitulo03.innerText = "Gerente 3";
+      nodeGerente03.appendChild(nodeGerenteTitulo03);
+      nodeGerente03.appendChild(nodeAreaVoto);
+      //nodeGerente03.appendChild(nodeAreaVotoPreco);
+      //-----------------fim gerente 03--------------------------
+
+      //------------------getente 04----------------
+      // nodeGerente04 = document.createElement("div");
+      // nodeGerente04.setAttribute("id","gerente04");
+      // nodeGerente04.setAttribute("class","gerentesDiv");
+      // nodeGerenteTitulo04 = document.createElement("h2");
+      // nodeGerenteTitulo04.setAttribute("class","nodeDivAvaliacao");
+      // //area de voto 1: aposta
+      // nodeAreaVoto = document.createElement("div");
+      // nodeAreaVoto.setAttribute("id","areaVoto");
+      // nodeVotoTitulo = document.createElement("h2");
+      // nodeVotoTitulo.setAttribute("class","votoTitulo");
+      // nodeVotoTitulo.innerText = "Aposta?";
+      // nodeVotoPositivo = document.createElement("img");
+      // nodeVotoPositivo.setAttribute("class","areaVoto");
+      // nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      // nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      // nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      // nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      // nodeVotoNegativo = document.createElement("img");
+      // nodeVotoNegativo.setAttribute("class","areaVoto");
+      // nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      // nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      // nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      // nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      // nodeAreaVoto.appendChild(nodeVotoTitulo);
+      // nodeAreaVoto.appendChild(nodeVotoPositivo);
+      // nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      // //fim area de voto preco
+      // nodeGerenteTitulo04.innerText = "Gerente 4";
+      // nodeGerente04.appendChild(nodeGerenteTitulo04);
+      // nodeGerente04.appendChild(nodeAreaVoto);
+
+      //fimGerente04
+      
+      nodeDivAvaliacao.appendChild(nodeGerente01);
+      nodeDivAvaliacao.appendChild(nodeGerente02);
+      nodeDivAvaliacao.appendChild(nodeGerente03);
+      //opcional
+      //nodeDivAvaliacao.appendChild(nodeGerente04);
+      nodeCorpoAvaliacao.appendChild(nodeDivAvaliacao);
+      
+      nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+      nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+      document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+      refPos +=4;
+      cont += 1;
+      precoPos +=4;
+      DetalhePos +=4;
+      tituloPos += 4;  
+      index += 1;
+      }
+    }
+   // for(m = 0; m < document.getElementById("avaliacao").getElementsByTagName("div")[0].getElementsByTagName("h2").length;m++)
+  //{
+  //   gerentesNom[m] =  document.getElementById("avaliacao").getElementsByTagName("div")[m].getElementsByTagName("h2")[0].innerText
+  //}
+  //console.log("AQUIAAAAA: "+gerentesNom);
+    }
+    apuracaoAtivo = false;
+    function uniKeyCode(event)
+    {
+      console.log(event.keyCode);
+      if(event.keyCode == 80)
+      {
+        if(apuracaoAtivo == true){
+        document.getElementById("modalApuracao").style.display = "none";
+        apuracaoAtivo = false;
+      }else
+      {
+        document.getElementById("modalApuracao").style.display = "block";
+        apuracaoAtivo = true;
+      }
+      }
+      if(event.keyCode == 39)
+      {
+        document.getElementById("setaDireita").click();
+      }
+      if(event.keyCode == 37)
+      {
+        document.getElementById("setaEsquerda").click();
+      }
+      if(event.keyCode == 83)
+      {
+        printImagem();
+      }
+    }
+    var contagemFotos = 0;
+    function printImagem()
+    {
+      ind = "prod"+comando;
+      
+      //for(i = 0;i < 3; i++){
+      //document.getElementById("setaDireita").click();
+      //document.querySelector("#"+ind).crossOrigin = null
+      console.log("indind: "+ind)
+      html2canvas(document.querySelector("#body"),{ logging: true, letterRendering: 1, allowTaint: true,useCORS: false,imageTimeout: 0}).then(canvas => {
+    
+    if(document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0]){
+        saveAs(canvas.toDataURL(), contagemFotos +" "+ document.getElementById(ind).getElementsByTagName("div")[1].getElementsByTagName("h4")[0].innerText + '.png');
+        contagemFotos += 1 
+    }else
+    {
+      saveAs(canvas.toDataURL(), contagemFotos +" "+document.getElementById(ind).getElementsByTagName("div")[0].innerText + '.png');
+      contagemFotos += 1
+    }
+});
+    }
+    function saveAs(uri, filename) {
+    var link = document.createElement('a');
+    if (typeof link.download === 'string') {
+        link.href = uri;
+        link.download = filename;
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+        //simulate click
+        link.click();
+        //remove the link when done
+        document.body.removeChild(link);
+    } else {
+        window.open(uri);
+    }
+}
+  //}
+    
+      async function  makeScreenshot(selector="#prod1") 
+      {
+         return new Promise((resolve, reject) => {  
+         let node = document.querySelector(selector);
+    
+         html2canvas(node, { onrendered: (canvas) => {
+           let pngUrl = canvas.toDataURL();      
+           resolve("Aqui: " +pngUrl);
+            
+       }});  
+       });
+      }
+      async function report() {
+          let screenshot = await makeScreenshot(); // png dataUrl
+         let img = document.querySelector(".img");
+         img.src = screenshot; 
+      
+}
+      
+    
+    
+    
+    
+  
+  
+</script>
+
+
+ <script type="text/javascript">
+  
+  var linkPlanilha =  undefined;
+       function fnExcelReport(){
+  var tab_text="<table border='2px'>";
+  var textRange; var j=0;
+  tab = document.getElementById('table').cloneNode(true);
+  
+  for(j = 0 ; j < tab.rows.length ; j++) 
+  {
+    var row = tab.rows[j];
+    var numberOfCells = row.cells.length;
+    // Altere o número 4 pelo número de colunas no TBODY
+    // A cada linha de registro na tabela, sera excluído as duas ultimas colunas,
+    // pois a coluna ACAO no THEAD ta setado o atributo 'colspan=2'
+    if (numberOfCells === 7) {
+      
+    } else {
+      // Remove a coluna ACAO
+      //row.deleteCell(-1);
+    }
+    tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+  }
+  tab_text=tab_text+"</table>";
+  tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+  tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+  tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+  var ua = window.navigator.userAgent;
+  var msie = ua.indexOf("MSIE "); 
+  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+  {
+    txtArea1.document.open("txt/html","replace");
+    txtArea1.document.write(tab_text);
+    txtArea1.document.close();
+    txtArea1.focus(); 
+    sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+  }  
+  else {               //other browser not tested on IE 11
+  // sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text)); 
+    linkPlanilha = 'data:text/html' + encodeURIComponent(tab_text)
+    console.log(tab_text)
+    linkPlanilhaa = tab_text
+    
+    localStorage.setItem("planilhaY",tab_text);
+
+    setTimeout(function(){
+    	oauthSignIn();
+    },5000)
+   
+    //document.getElementById("arquivo").files.file = file;
+  
+}
+
+return (sa);
+
+
+}
+
+var file;
+
+function enviarArquivo2(link) {
+    // var requesta = new XMLHttpRequest();
+    // requesta.open('GET',linkPlanilha,true);
+    // requesta.responseType = "blob";
+    // requesta.send();
+
+
+    // var readera = new FileReader();
+    // readera.readAsBinaryString(requesta.response);
+
+    
+   
+    // a = new Blob([reader.result], {"type": "text/plain"});
+   accessToken = window.location.href.split("&")[1].split("=")[1];
+
+
+    file = new File([localStorage.getItem("planilhaY")], "planilha_8.html", {type: 'text/html'})
+         
+         var output = [];
+         ///for (var i = 0, f; f = files[i]; i++) {
+             var uploader = new MediaUploader({
+                 file: file,
+                 token: accessToken,
+                 onComplete: function(data) {
+                     console.log(data)
+                 }
+             });
+             uploader.upload();
+         }
+
+ 
+    
+
+
+ const scriptURL = 'https://script.google.com/macros/s/AKfycbysrgaQ4zNLRH5_HIa5NUiQNeNbMzJFyDgS3nOA1Xd0kiAnUD0/exec'
+
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+
+  })
+
+
+  var response;
+
+  function enviarapostasfunc(permiss)
+  {
+    console.log("contagemdeenvios: " + contagemdeenvios)
+    console.log("indexdacontagem: " + indexdacontagem)
+
+ if(permiss){
+   if(contagemdeenvios == indexdacontagem){
+
+  contagemdeenvios += 1;
+   // indexdacontagem += 1; 
+
+    submitbutton = document.getElementById("enviarapostas");
+
+    tabela = document.getElementById("table");
+    inputorg = document.getElementById("orgid");
+    inputNomeGerente = document.getElementById("nomegerenteid");
+    inputNomeProduto = document.getElementById("produtoid");
+    inputAposta = document.getElementById("apostaid");
+
+    quantidadeGerentes = document.getElementById(index).getElementsByClassName("gerentesDiv").length
+    contagemGerenteEnvio +=  quantidadeGerentes;
+
+    
+    for(var i = indexAtual; i < contagemGerenteEnvio ;i++){
+
+      
+      inputorg.value =  tabela.getElementsByClassName("G_org")[i].innerText;
+        inputNomeGerente.value = tabela.getElementsByClassName("G_nome")[i].innerText;
+        inputNomeProduto.value = tabela.getElementsByClassName("G_ref")[i].innerText;
+        inputAposta.value = tabela.getElementsByClassName("G_voto")[i].innerText;   
+
+        submitbutton.click();
+    
+  }
+ 
+ indexAtual += quantidadeGerentes;
+  
+  }
+
+  }
+}
+
+
+var indexdacontagem = 0;
+var contagemdeenvios = 0;
+var permiss2 = true;
+var contagemGerenteEnvio = 0;
+var indexAtual = 0;
+
+var comando = 0;
+  var direc = null;  
+  var indiceTabelaApostas = 0;
+  var cont_i = 0;
+  var org = 0;
+  var index = "";
+  var clickCont = 0;
+
+  function trocarProduto(comando,direc)
+  {
+        index = "prod" + comando;
+        console.log(index)
+        antIndex = "prod" + (comando - 1);
+        nexIndex = "prod" + (comando + 1);
+
+        if(document.getElementById(index).getElementsByClassName("imagem_1")){
+        contImg = document.getElementById(index).getElementsByClassName("imagem_1").length
+        for(var m = 0; m < contImg; m++)
+        {
+        	document.getElementById(index).getElementsByClassName("imagem_1")[m].removeAttribute("data-html2canvas-ignore")
+        }
+    }
+
+    if(document.getElementById(antIndex).getElementsByClassName("imagem_1")){
+        contImg = document.getElementById(antIndex).getElementsByClassName("imagem_1").length
+        for(var m = 0; m < contImg; m++)
+        {
+        	document.getElementById(antIndex).getElementsByClassName("imagem_1")[m].setAttribute("data-html2canvas-ignore","")
+        }
+    }
+
+
+        
+        //indiceApostas = document.getElementById(indiceAtual);
+        if(comando <= 1){//2 é o primeiro produto
+          indiceTabelaApostas = 0;
+        }
+        if( document.getElementById(index).getElementsByClassName("gerentesDiv").length > 0){
+          if(direc){
+            indiceTabelaApostas += document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+
+            }else
+            {
+              indiceTabelaApostas -= document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+              cont_i = indiceTabelaApostas - document.getElementById(index).getElementsByClassName("gerentesDiv").length;
+            }
+        }
+    
+        console.log("indiceTabelaApostas: "+ indiceTabelaApostas)
+        console.log("Cont_i: "+cont_i)
+      
+       
+        
+        console.log("index: " + index);
+        //console.log("antIndex: " + antIndex);
+        //console.log("nexIndex: " + nexIndex);
+        if (document.getElementById(index)) {
+      document.getElementById(index).style.display = "inline-block";
+      document.getElementById(index).removeAttribute("data-html2canvas-ignore");
+       document.getElementById(index).getElementsByClassName("imagem_1")
+      if(document.getElementById(antIndex)){
+      if(comando > 0){
+      document.getElementById(antIndex).style.display = "none";
+      document.getElementById(antIndex).setAttribute("data-html2canvas-ignore","");
+        }
+    }
+    if (document.getElementById(nexIndex)) {
+        
+      document.getElementById(nexIndex).style.display = "none";
+      document.getElementById(nexIndex).setAttribute("data-html2canvas-ignore","");
+  }
+     // console.log(index);
+      for(var a = 0;a<900;a++)
+    {
+      if(document.getElementsByTagName("br")[a])
+      {
+        document.getElementsByTagName("br")[a].remove();
+      }
+      
+    }
+  }else
+  {
+    index = "prod" + (comando + 1);
+  }
+//criando tabela
+    if(direc){
+    
+    votoGerente = "null";
+    votoGerenteCor = "null";
+    prod = document.getElementById(index);
+    if(prod.getElementsByTagName("h4")[0]){
+      prodRef = prod.getElementsByTagName("h4")[0].innerText;
+    }else{
+      prodRef = "null";
+    }
+    
+    
+    var tabela = document.getElementById("table").getElementsByTagName("tbody").item(0);
+     console.log(prodRef);
+     console.log("Tabela rows length: "+ tabela.rows.length)
+if(tabela.rows.length > 0){
+  // enviarapostasfunc(true)////////////////////////////////////////
+  // indexdacontagem += 1;
+for(var tab = 0;tab < tabela.rows.length; tab++)
+{
+  comp1 = tabela.getElementsByClassName("G_ref")[tab].innerText.replace(/ /g,"");
+  
+  console.log("AQUI: "+comp1)
+  if(comp1 ==  prodRef.replace(/ /g,""))
+  {
+    
+    var naoRepetido = false;
+    return 0;
+  }else
+  {
+    
+    var naoRepetido = true;
+
+  }
+}
+
+}else
+{
+
+  var naoRepetido = true;
+  
+}
+
+if(naoRepetido){
+
+for(var x = 0; x < indiceTabelaApostas; x++) {
+  var nomeGerente = document.getElementById(index).getElementsByClassName("gerentesDiv")[x].getElementsByTagName("h2")[0].innerText   
+  var novalinha = tabela.insertRow(tabela.rows.length);
+
+  for(var i = 0; i  < 4; i++)
+  {
+      var novaCelula = novalinha.insertCell(i);
+
+
+      if(i == 0){
+    //org
+      org += 1;
+      
+      var texto = document.createTextNode(org);
+      novaCelula.appendChild(texto);
+      novaCelula.setAttribute("class","G_org");
+      
+      }
+
+      if(i == 1){
+    //nome
+      var texto = document.createTextNode(nomeGerente);
+      novaCelula.appendChild(texto);
+      novaCelula.setAttribute("class","G_nome");
+      gerentesNom[i] += nomeGerente;
+      }
+   //ref
+      if(i==2)
+      {
+        var texto = document.createTextNode(prodRef);
+        novaCelula.appendChild(texto);
+        novaCelula.setAttribute("class","G_ref");
+        }
+   //voto(aposta)
+      if(i==3)
+      {
+        var texto = document.createTextNode(votoGerente);
+        novaCelula.appendChild(texto);
+        novaCelula.setAttribute("style","background-color: "+votoGerenteCor+";");
+        novaCelula.setAttribute("class","G_voto");
+      }
+  }
+
+   
+}
+clickCont += 1;
+}
+console.log(gerentesNom);
+}else{
+  
+   // enviarapostasfunc(false)
+   // indexdacontagem -= 1;
+  
+}
+  }//fim func
+
+
+
+    </script>
+
+   
+
+
+
+    <script type="text/javascript">
+      /////////////////////////////////////////
+var request = new XMLHttpRequest();
+//se adicionar mais produtos, precisará mudar no final do código importarProduto o if do uIndex
+var url = "https://raw.githubusercontent.com/diesussessful/diesel-dev/master/02definitivo_workshop_de_produto_2019_produtoscsv%20-%20Copia.csv";
+var contagem = 1;
+var feito = false;
+window.onload = 
+function carregarduasvezes()
+{
+  setTimeout(function(){ 
+    carregar()
+   }, 500);
+setTimeout(function(){ 
+    SincronizarProdutos()
+   }, 500);
+setTimeout(function(){ 
+    carregar()
+   }, 500);
+setTimeout(function(){ 
+    SincronizarProdutos()
+   }, 500);
+if(contagem < 2){
+setTimeout(function(){ 
+    carregarduasvezes()
+    contagem += 1;
+   }, 500);
+}else
+{
+  contagem = 1;
+  return 0;
+}
+}
+function carregar()
+{
+  
+ //var request = new XMLHttpRequest();
+ 
+      request.open('GET',url,true);
+    request.responseType = "blob";
+    request.send();
+      request.addEventListener("load", SincronizarProdutos, false);
+ 
+}
+//IMPORTAR SOZINHO/////////////////////////////////////////////////////////////
+function SincronizarProdutos(evt)
+  {
+    console.log(evt)
+  if(!evt)
+  {
+    
+      carregar();
+    }else{
+    //var file = document.getElementById("DadosCsv");
+    if(!feito){
+    var reader = new FileReader();
+    reader.readAsBinaryString(request.response);
+    reader.onloadend = function()
+    {
+     var listaProdutos = reader.result;
+     console.log(listaProdutos)
+      produto = [];
+      //Quantidade de colunas que há no produto
+      pos =5;
+      
+      j = 4;
+      // i é a quantidade de produtos na planilha
+      for( var i = 0; i < 900; i++)
+      {
+          for( ; j < pos; j++){
+  
+            produto[[i,j]] = listaProdutos.split(";")[j];
+          }
+        pos = pos+5;
+ 
+        }
+    }
+    console.log(produto)
+    //Criando os produtos
+    var indexx = 2 //index da div na qual renomeara prod1 -- prod2 -- prod3...
+    var tituloPos = 5;
+    var refPos = 6;
+    var DetalhePos = 7;
+    var precoPos = 8;
+    var cont = 1;
+    var imgVar = 6;
+    //i = quantidade de produtos para criar
+    
+    for(i = 1; i < 900;i++)
+    {
+      if (!produto[[cont,refPos]])
+      {
+        nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+indexx);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("data-html2canvas-ignore","")
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+          nodeCorpoFim = document.createElement("button");
+          nodeCorpoFim.setAttribute("onclick","fnExcelReport()");
+          nodeCorpoFim.setAttribute("style","font-size: 60px;");
+          nodeCorpoFim.innerText = "FINALIZAR";
+          nodeCorpoDetalhes.appendChild(nodeCorpoFim);
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
+        return 0 ;
+      }
+      console.log(produto[[i,refPos]])
+        if(produto[[cont,tituloPos]].replace(/\s+/g, '') == "CATEGORIA")
+        {
+          nodeCorpoProduto = document.createElement("div");
+          nodeCorpoProduto.setAttribute("id","prod"+indexx);
+          nodeCorpoProduto.setAttribute("class","corpo");
+          nodeCorpoProduto.setAttribute("style","display:none;");
+          nodeCorpoDetalhes = document.createElement("div");
+          nodeCorpoDetalhes.setAttribute("class","corpo_Categoria");
+          nodeCorpoDetalhes.innerText = produto[[cont,refPos]].split("_")[0] + " " +  produto[[cont,refPos]].split("_")[1];
+          nodeCorpoAvaliacao = document.createElement("div");
+          nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+          
+          //inicio da div referencia
+          nodeDivReferencia = document.createElement("div");
+          nodeDivReferencia.setAttribute("id","referencia");
+          //inicio divvazia
+          nodeDivVazia = document.createElement("div");
+          nodeTituloPeca = document.createElement("h4");
+          nodeTituloPeca.setAttribute("id","titulo_Peca");
+          nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]] ;
+          nodeTituloDetalhe_Peca = document.createElement("h4");
+          nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+          nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+          nodeDivVazia.appendChild(nodeTituloPeca);
+          nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+          //fim divvazia
+          //preco
+          nodeTituloPreco = document.createElement("h4");
+          nodeTituloPreco.setAttribute("id","titulo_Preco");
+          nodeTituloPreco.innerText = produto[[cont,precoPos]];
+          //fim preco
+          nodeDivReferencia.appendChild(nodeDivVazia);
+          nodeDivReferencia.appendChild(nodeTituloPreco);
+          //Fim da div Referencia
+          nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+          nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+          document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+          console.log("SIM, categoria: " + produto[[cont,tituloPos]].replace(/\s+/g, '') )
+          refPos +=5;
+          cont += 1;
+          precoPos +=5;
+          DetalhePos +=5;
+          tituloPos += 5;  
+          indexx += 1;
+        }else{
+      //inicio dos corpos
+      nodeCorpoProduto = document.createElement("div");
+      nodeCorpoProduto.setAttribute("id","prod"+indexx);
+      nodeCorpoProduto.setAttribute("class","corpo");
+      nodeCorpoProduto.setAttribute("style","display:none;");
+      nodeCorpoDetalhes = document.createElement("div");
+      nodeCorpoDetalhes.setAttribute("class","corpo_detalhes");
+      nodeCorpoAvaliacao = document.createElement("div");
+      nodeCorpoAvaliacao.setAttribute("class","corpo_avaliacao");
+      //fim dos corpos
+      
+      
+      //inicio da div referencia
+      nodeDivReferencia = document.createElement("div");
+      nodeDivReferencia.setAttribute("id","referencia");
+      //inicio divvazia
+      nodeDivVazia = document.createElement("div");
+      nodeTituloPeca = document.createElement("h4");
+      nodeTituloPeca.setAttribute("id","titulo_Peca");
+      nodeTituloPeca.innerText = produto[[cont, tituloPos]] + " " + produto[[cont, refPos]].split("_")[0];
+      nodeTituloDetalhe_Peca = document.createElement("h4");
+      nodeTituloDetalhe_Peca.setAttribute("id","tituloDetalhe_Peca");
+      nodeTituloDetalhe_Peca.innerText = produto[[cont,DetalhePos]];
+
+      nodeTituloDetalhe_composi = document.createElement("h4");
+      nodeTituloDetalhe_composi.setAttribute("id","tituloComposi_Peca");
+      nodeTituloDetalhe_composi.innerText = produto[[cont,precoPos+1]];
+
+      nodeDivVazia.appendChild(nodeTituloPeca);
+      nodeDivVazia.appendChild(nodeTituloDetalhe_Peca);
+      nodeDivVazia.appendChild(nodeTituloDetalhe_composi);
+      //fim divvazia
+      //preco
+      nodeTituloPreco = document.createElement("h4");
+      nodeTituloPreco.setAttribute("id","titulo_Preco");
+      nodeTituloPreco.innerText = produto[[cont,precoPos]];
+      //fim preco
+      nodeDivReferencia.appendChild(nodeDivVazia);
+      nodeDivReferencia.appendChild(nodeTituloPreco);
+      //Fim da div Referencia
+      nodeCorpoDetalhes.appendChild(nodeDivReferencia);
+      //inicio da div imagem
+      nodeDivImagem = document.createElement("div");
+      nodeDivImagem.setAttribute("id","imagem");
+      if (produto[[i,refPos]])
+        {
+          contx = produto[[i,refPos]].split("_")[1];
+            console.log("CONT: "+contx);
+          ///if (produto[[i,refPos]].length > 22){
+          for(var ii = 1; ii < Number(contx)+1;ii++)
+          {     
+            //criando o elemento
+            nodeImg1 =  document.createElement("img");
+            nodeImg1.setAttribute("class","imagem_1");
+            nodeImg1.setAttribute("data-html2canvas-ignore","")
+            nodeImg1.setAttribute("src","https://github.com/diesussessful/diesel-dev/raw/master/imagens/"+produto[[i,refPos]].split("_")[0]+"_"+ii+".PNG");
+            //console.log("i: " + (i) + " refPos:  "+ refPos + " src: "+ produto[[i,refPos]].split("/")[ii]);
+            nodeDivImagem.appendChild(nodeImg1);
+            
+          }
+          
+        }
+        nodeCorpoDetalhes.appendChild(nodeDivImagem);
+          
+      
+      //inicio corpo avaliacao
+      nodeDivAvaliacao = document.createElement("div");
+      nodeDivAvaliacao.setAttribute("id","avaliacao");
+      nodeDivAvaliacao.setAttribute("data-html2canvas-ignore","")
+      
+      //Div do gerente01
+      nodeGerente01 = document.createElement("div");
+      nodeGerente01.setAttribute("id","gerente01");
+      nodeGerente01.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo01 = document.createElement("h2");
+      nodeGerenteTitulo01.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      nodeGerenteTitulo01.innerText = "JK IGUATEMI";
+      nodeGerente01.appendChild(nodeGerenteTitulo01);
+      nodeGerente01.appendChild(nodeAreaVoto);
+      //nodeGerente01.appendChild(nodeAreaVotoPreco);
+      //-----------------gerente 01 fim--------------------------
+      //Div do gerente02
+      nodeGerente02 = document.createElement("div");
+      nodeGerente02.setAttribute("id","gerente02");
+      nodeGerente02.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo02 = document.createElement("h2");
+      nodeGerenteTitulo02.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      nodeGerenteTitulo02.innerText = "MANAUS";
+      nodeGerente02.appendChild(nodeGerenteTitulo02);
+      nodeGerente02.appendChild(nodeAreaVoto);
+      //nodeGerente02.appendChild(nodeAreaVotoPreco);
+      //----------------fim gerente 02---------------------------
+      //Div do gerente03
+      nodeGerente03 = document.createElement("div");
+      nodeGerente03.setAttribute("id","gerente03");
+      nodeGerente03.setAttribute("class","gerentesDiv");
+      nodeGerenteTitulo03 = document.createElement("h2");
+      nodeGerenteTitulo03.setAttribute("class","nodeDivAvaliacao");
+      //area de voto 1: aposta
+      nodeAreaVoto = document.createElement("div");
+      nodeAreaVoto.setAttribute("id","areaVoto");
+      nodeVotoTitulo = document.createElement("h2");
+      nodeVotoTitulo.setAttribute("class","votoTitulo");
+      nodeVotoTitulo.innerText = "Aposta?";
+      nodeVotoPositivo = document.createElement("img");
+      nodeVotoPositivo.setAttribute("class","areaVoto");
+      nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeVotoNegativo = document.createElement("img");
+      nodeVotoNegativo.setAttribute("class","areaVoto");
+      nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      nodeAreaVoto.appendChild(nodeVotoTitulo);
+      nodeAreaVoto.appendChild(nodeVotoPositivo);
+      nodeAreaVoto.appendChild(nodeVotoNegativo);
+      
+      
+      nodeGerenteTitulo03.innerText = "PORTO ALEGRE";
+      nodeGerente03.appendChild(nodeGerenteTitulo03);
+      nodeGerente03.appendChild(nodeAreaVoto);
+      //fim gerente 03
+
+      //------------------getente 04----------------
+      // nodeGerente04 = document.createElement("div");
+      // nodeGerente04.setAttribute("id","gerente04");
+      // nodeGerente04.setAttribute("class","gerentesDiv");
+      // nodeGerenteTitulo04 = document.createElement("h2");
+      // nodeGerenteTitulo04.setAttribute("class","nodeDivAvaliacao");
+      // //area de voto 1: aposta
+      // nodeAreaVoto = document.createElement("div");
+      // nodeAreaVoto.setAttribute("id","areaVoto");
+      // nodeVotoTitulo = document.createElement("h2");
+      // nodeVotoTitulo.setAttribute("class","votoTitulo");
+      // nodeVotoTitulo.innerText = "Aposta?";
+      // nodeVotoPositivo = document.createElement("img");
+      // nodeVotoPositivo.setAttribute("class","areaVoto");
+      // nodeVotoPositivo.setAttribute("style","cursor:pointer;");
+      // nodeVotoPositivo.setAttribute("id","VotoPositivo");
+      // nodeVotoPositivo.setAttribute("onclick","votos(this,this.parentElement)");
+      // nodeVotoPositivo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      // nodeVotoNegativo = document.createElement("img");
+      // nodeVotoNegativo.setAttribute("class","areaVoto");
+      // nodeVotoNegativo.setAttribute("style","cursor:pointer;");
+      // nodeVotoNegativo.setAttribute("id","VotoNegativo");
+      // nodeVotoNegativo.setAttribute("onclick","votos(this,this.parentElement)");
+      // nodeVotoNegativo.setAttribute("src","https://github.com/Darkosheen/ProjetoVotos/raw/master/images/like.png");
+      // nodeAreaVoto.appendChild(nodeVotoTitulo);
+      // nodeAreaVoto.appendChild(nodeVotoPositivo);
+      // nodeAreaVoto.appendChild(nodeVotoNegativo);
+     
+      // //fim area de voto preco
+      // nodeGerenteTitulo04.innerText = "Gerente 4";
+      // nodeGerente04.appendChild(nodeGerenteTitulo04);
+      // nodeGerente04.appendChild(nodeAreaVoto);
+      
+      //fimGerente04
+     
+      
+      nodeDivAvaliacao.appendChild(nodeGerente01);
+      nodeDivAvaliacao.appendChild(nodeGerente02);
+      nodeDivAvaliacao.appendChild(nodeGerente03);
+      //opcional
+      //nodeDivAvaliacao.appendChild(nodeGerente04);
+      nodeCorpoAvaliacao.appendChild(nodeDivAvaliacao);
+      
+      nodeCorpoProduto.appendChild(nodeCorpoDetalhes);
+      nodeCorpoProduto.appendChild(nodeCorpoAvaliacao);
+      document.getElementById("elementoPaiId").appendChild(nodeCorpoProduto);
+      refPos +=5;
+      cont += 1;
+      precoPos +=5;
+      DetalhePos +=5;
+      tituloPos += 5;  
+      indexx += 1;
+      feito = true;
+      }
+    }
+   }else
+{
+  console.log("Já Feito")
+}
+}
+    }
+    </script>
+
+    
+    <script type="text/javascript">
+     
+       var accessToken = null;
+       
+       /**
+        * Callback for G+ Sign-in. Swaps views if login successful.
+        */
+       function signinCallback(result) {
+           if(result.access_token) {
+               accessToken = result.access_token;
+               document.getElementById('signin').style.display = 'none';
+               document.getElementById('drop_zone').style.display = null;
+           }
+       }
+ 
+       /**
+        * Called when files are dropped on to the drop target. For each file,
+        * uploads the content to Drive & displays the results when complete.
+        */
+       function handleFileSelect(evt) {
+         evt.stopPropagation();
+         evt.preventDefault();
+         var files = evt.dataTransfer.files; // FileList object.
+         
+         var output = [];
+         for (var i = 0, f; f = files[i]; i++) {
+             var uploader = new MediaUploader({
+                 file: f,
+                 token: accessToken,
+                 onComplete: function(data) {
+                     var element = document.createElement("pre");
+                     element.appendChild(document.createTextNode(data));
+                     document.getElementById('results').appendChild(element);
+                 }
+             });
+             uploader.upload();
+         }
+       }
+
+
+
+       function enviarArquivo() {
+         
+         var files = document.getElementById("arquivo").files; // FileList object.
+         
+         var output = [];
+         for (var i = 0, f; f = files[i]; i++) {
+             var uploader = new MediaUploader({
+                 file: f,
+                 token: accessToken,
+                 onComplete: function(data) {
+                     console.log(data)
+                 }
+             });
+             uploader.upload();
+         }
+       }
+
+        
+       //}
+       /**
+        * Dragover handler to set the drop effect.
+        */
+       function handleDragOver(evt) {
+         evt.stopPropagation();
+         evt.preventDefault();
+         evt.dataTransfer.dropEffect = 'copy'; 
+       }
+       /**
+        * Wire up drag & drop listeners once page loads
+        */
+       document.addEventListener('DOMContentLoaded', function () {
+           var dropZone = document.getElementById('drop_zone');
+           dropZone.addEventListener('dragover', handleDragOver, false);
+           dropZone.addEventListener('drop', handleFileSelect, false);
+       });
+     </script>
+     <script src="https://apis.google.com/js/client:plusone.js"></script>
+     <script type="text/javascript">
+         /**
+ * Helper for implementing retries with backoff. Initial retry
+ * delay is 1 second, increasing by 2x (+jitter) for subsequent retries
+ *
+ * @constructor
+ */
+var RetryHandler = function() {
+  this.interval = 1000; // Start at one second
+  this.maxInterval = 60 * 1000; // Don't wait longer than a minute 
+};
+
+/**
+ * Invoke the function after waiting
+ *
+ * @param {function} fn Function to invoke
+ */
+RetryHandler.prototype.retry = function(fn) {
+  setTimeout(fn, this.interval);
+  this.interval = this.nextInterval_();
+};
+
+/**
+ * Reset the counter (e.g. after successful request.)
+ */
+RetryHandler.prototype.reset = function() {
+  this.interval = 1000;
+};
+
+/**
+ * Calculate the next wait time.
+ * @return {number} Next wait interval, in milliseconds
+ *
+ * @private
+ */
+RetryHandler.prototype.nextInterval_ = function() {
+  var interval = this.interval * 2 + this.getRandomInt_(0, 1000);
+  return Math.min(interval, this.maxInterval);
+};
+
+/**
+ * Get a random int in the range of min to max. Used to add jitter to wait times.
+ *
+ * @param {number} min Lower bounds
+ * @param {number} max Upper bounds
+ * @private
+ */
+RetryHandler.prototype.getRandomInt_ = function(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+
+/**
+ * Helper class for resumable uploads using XHR/CORS. Can upload any Blob-like item, whether
+ * files or in-memory constructs.
+ *
+ * @example
+ * var content = new Blob(["Hello world"], {"type": "text/plain"});
+ * var uploader = new MediaUploader({
+ *   file: content,
+ *   token: accessToken,
+ *   onComplete: function(data) { ... }
+ *   onError: function(data) { ... }
+ * });
+ * uploader.upload();
+ *
+ * @constructor
+ * @param {object} options Hash of options
+ * @param {string} options.token Access token
+ * @param {blob} options.file Blob-like item to upload
+ * @param {string} [options.fileId] ID of file if replacing
+ * @param {object} [options.params] Additional query parameters
+ * @param {string} [options.contentType] Content-type, if overriding the type of the blob.
+ * @param {object} [options.metadata] File metadata
+ * @param {function} [options.onComplete] Callback for when upload is complete
+ * @param {function} [options.onProgress] Callback for status for the in-progress upload
+ * @param {function} [options.onError] Callback if upload fails
+ */
+var MediaUploader = function(options) {
+  var noop = function() {};
+  this.file = options.file;
+  this.contentType = options.contentType || this.file.type || 'application/octet-stream';
+  this.metadata = options.metadata || {
+    'title': this.file.name,
+    'mimeType': this.contentType
+  };
+  this.token = options.token;
+  this.onComplete = options.onComplete || noop;
+  this.onProgress = options.onProgress || noop;
+  this.onError = options.onError || noop;
+  this.offset = options.offset || 0;
+  this.chunkSize = options.chunkSize || 0;
+  this.retryHandler = new RetryHandler();
+
+  this.url = options.url;
+  if (!this.url) {
+    var params = options.params || {};
+    params.uploadType = 'resumable';
+    this.url = this.buildUrl_(options.fileId, params, options.baseUrl);
+  }
+  this.httpMethod = options.fileId ? 'PATCH' : 'POST';
+};
+
+/**
+ * Initiate the upload.
+ */
+MediaUploader.prototype.upload = function() {
+  var self = this;
+  var xhr = new XMLHttpRequest();
+
+  xhr.open(this.httpMethod, this.url, true);
+  xhr.setRequestHeader('Authorization', 'Bearer ' + this.token);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('X-Upload-Content-Length', this.file.size);
+  xhr.setRequestHeader('X-Upload-Content-Type', this.contentType);
+
+  xhr.onload = function(e) {
+    if (e.target.status < 400) {
+      var location = e.target.getResponseHeader('Location');
+      this.url = location;
+      this.sendFile_();
+    } else {
+      this.onUploadError_(e);
+    }
+  }.bind(this);
+  xhr.onerror = this.onUploadError_.bind(this);
+  xhr.send(JSON.stringify(this.metadata));
+};
+
+/**
+ * Send the actual file content.
+ *
+ * @private
+ */
+MediaUploader.prototype.sendFile_ = function() {
+  var content = this.file;
+  var end = this.file.size;
+
+  if (this.offset || this.chunkSize) {
+    // Only bother to slice the file if we're either resuming or uploading in chunks
+    if (this.chunkSize) {
+      end = Math.min(this.offset + this.chunkSize, this.file.size);
+    }
+    content = content.slice(this.offset, end);
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', this.url, true);
+  xhr.setRequestHeader('Content-Type', this.contentType);
+  xhr.setRequestHeader('Content-Range', "bytes " + this.offset + "-" + (end - 1) + "/" + this.file.size);
+  xhr.setRequestHeader('X-Upload-Content-Type', this.file.type);
+  if (xhr.upload) {
+    xhr.upload.addEventListener('progress', this.onProgress);
+  }
+  xhr.onload = this.onContentUploadSuccess_.bind(this);
+  xhr.onerror = this.onContentUploadError_.bind(this);
+  xhr.send(content);
+};
+
+/**
+ * Query for the state of the file for resumption.
+ *
+ * @private
+ */
+MediaUploader.prototype.resume_ = function() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', this.url, true);
+  xhr.setRequestHeader('Content-Range', "bytes */" + this.file.size);
+  xhr.setRequestHeader('X-Upload-Content-Type', this.file.type);
+  if (xhr.upload) {
+    xhr.upload.addEventListener('progress', this.onProgress);
+  }
+  xhr.onload = this.onContentUploadSuccess_.bind(this);
+  xhr.onerror = this.onContentUploadError_.bind(this);
+  xhr.send();
+};
+
+/**
+ * Extract the last saved range if available in the request.
+ *
+ * @param {XMLHttpRequest} xhr Request object
+ */
+MediaUploader.prototype.extractRange_ = function(xhr) {
+  var range = xhr.getResponseHeader('Range');
+  if (range) {
+    this.offset = parseInt(range.match(/\d+/g).pop(), 10) + 1;
+  }
+};
+
+/**
+ * Handle successful responses for uploads. Depending on the context,
+ * may continue with uploading the next chunk of the file or, if complete,
+ * invokes the caller's callback.
+ *
+ * @private
+ * @param {object} e XHR event
+ */
+MediaUploader.prototype.onContentUploadSuccess_ = function(e) {
+  if (e.target.status == 200 || e.target.status == 201) {
+    this.onComplete(e.target.response);
+  } else if (e.target.status == 308) {
+    this.extractRange_(e.target);
+    this.retryHandler.reset();
+    this.sendFile_();
+  } else {
+    this.onContentUploadError_(e);
+  }
+};
+
+/**
+ * Handles errors for uploads. Either retries or aborts depending
+ * on the error.
+ *
+ * @private
+ * @param {object} e XHR event
+ */
+MediaUploader.prototype.onContentUploadError_ = function(e) {
+  if (e.target.status && e.target.status < 500) {
+    this.onError(e.target.response);
+  } else {
+    this.retryHandler.retry(this.resume_.bind(this));
+  }
+};
+
+/**
+ * Handles errors for the initial request.
+ *
+ * @private
+ * @param {object} e XHR event
+ */
+MediaUploader.prototype.onUploadError_ = function(e) {
+  this.onError(e.target.response); // TODO - Retries for initial upload
+};
+
+/**
+ * Construct a query string from a hash/object
+ *
+ * @private
+ * @param {object} [params] Key/value pairs for query string
+ * @return {string} query string
+ */
+MediaUploader.prototype.buildQuery_ = function(params) {
+  params = params || {};
+  return Object.keys(params).map(function(key) {
+    return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+  }).join('&');
+};
+
+/**
+ * Build the drive upload URL
+ *
+ * @private
+ * @param {string} [id] File ID if replacing
+ * @param {object} [params] Query parameters
+ * @return {string} URL
+ */
+MediaUploader.prototype.buildUrl_ = function(id, params, baseUrl) {
+  var url = baseUrl || 'https://www.googleapis.com/upload/drive/v2/files/';
+  if (id) {
+    url += id;
+  }
+  var query = this.buildQuery_(params);
+  if (query) {
+    url += '?' + query;
+  }
+  return url;
+};
+     </script>
+
+
+     <script type="text/javascript">
+       /*
+ * Create form to request access token from Google's OAuth 2.0 server.
+ */
+function oauthSignIn() {
+  // Google's OAuth 2.0 endpoint for requesting an access token
+  var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+  // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+  var form = document.createElement('form');
+  form.setAttribute('method', 'GET'); // Send as a GET request.
+  form.setAttribute('action', oauth2Endpoint);
+
+  // Parameters to pass to OAuth 2.0 endpoint.
+  var params = {'client_id': '979521732847-ok4nfvn6p6mn0r24alalih2057lqritb.apps.googleusercontent.com',
+                'redirect_uri': 'https://diesussessful.github.io/diesel-dev/htmlTeste.html',
+                'response_type': 'token',
+                'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+                'include_granted_scopes': 'true',
+                'state': 'pass-through value'};
+
+  // Add form parameters as hidden input values.
+  for (var p in params) {
+    var input = document.createElement('input');
+    input.setAttribute('type', 'hidden');
+    input.setAttribute('name', p);
+    input.setAttribute('value', params[p]);
+    form.appendChild(input);
+  }
+
+  // Add form to page and submit it to open the OAuth 2.0 endpoint.
+  document.body.appendChild(form);
+  form.submit();
+}
+     </script>
+
+</body>
+</html>
